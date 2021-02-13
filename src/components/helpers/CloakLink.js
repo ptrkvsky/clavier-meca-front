@@ -11,10 +11,10 @@ const CloakLink = ({ url, content }) => {
     >
       {isCloaked ? (
         <a href={url} className="daclok" rel="noopener" target="_blank">
-          {content} toto
+          {content}
         </a>
       ) : (
-        <span className="daclok">{content} tata</span>
+        <span className="daclok">{content}</span>
       )}
     </div>
   );

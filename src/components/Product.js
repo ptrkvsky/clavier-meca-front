@@ -17,12 +17,17 @@ const ProductTitle = styled('h2')`
   font-family: ${theme.fonts.title};
   text-transform: uppercase;
   .small & {
-    margin-top: 40px;
+    margin-top: 20px;
+    padding: 0 20px;
   }
 `;
 
 const ProductDesc = styled('div')`
-  margin: 40px 0;
+  margin: 22px 0;
+  .small & {
+    margin: 20px 0;
+    padding: 0 20px;
+  }
 `;
 
 const BlockIllu = styled('div')`
@@ -37,20 +42,34 @@ const BlockIllu = styled('div')`
 const BlockDesc = styled('div')`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   .small & {
     justify-content: space-between;
+    .button-primary {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
   }
 `;
 
 const renderLink = (isVisible, url) => {
   if (isVisible) {
     return (
-      <PrimaryButton as="a" href={url} target="_blank">
-        Amazon
+      <PrimaryButton
+        className="button-primary"
+        as="a"
+        href={url}
+        target="_blank"
+      >
+        Voir l'offre
       </PrimaryButton>
     );
   }
-  return <PrimaryButton as="span">Amazon</PrimaryButton>;
+  return (
+    <PrimaryButton className="button-primary" as="span">
+      Voir l'offre
+    </PrimaryButton>
+  );
 };
 
 const Product = ({ product }) => {
@@ -77,6 +96,7 @@ const Product = ({ product }) => {
             <div
               onMouseEnter={() => setLinkVisible(true)}
               onMouseLeave={() => setLinkVisible(false)}
+              className="button-wrapper"
             >
               {renderLink(linkVisible, product.product.url)}
             </div>

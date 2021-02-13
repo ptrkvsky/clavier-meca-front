@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import PortableText from '../components/portableText';
 import Img from 'gatsby-image';
@@ -64,26 +64,21 @@ const BodySectionStyled = styled('section')`
       background-color: ${theme.colors.primary};
     }
   }
+
+  h4 {
+    font-family: ${theme.fonts.title};
+    font-size: 32px;
+  }
 `;
 
-const BodySection = ({ _rawBodyTextt }) => {
-  useEffect(() => {
-    // Get All H2
-    const h2Array = document.querySelectorAll('h2');
-    [...h2Array].forEach((h2, index) => {
-      // If there is no number add one
-      const indexMoreOne = parseInt(index) + 1;
-      if (!h2.children.length > 0) {
-        // Add 0 in front of index
-        const hnNumber = ('0' + indexMoreOne).slice(-2);
-        h2.innerHTML += `<span>${hnNumber}</span>`;
-      }
-    });
-  }, []);
-
+const BodySection = ({ _rawBodyTextt, tableOfContent, setTableOfContent }) => {
   return (
     <BodySectionStyled>
-      <PortableText blocks={_rawBodyTextt} />
+      <PortableText
+        blocks={_rawBodyTextt}
+        tableOfContent={tableOfContent}
+        setTableOfContent={setTableOfContent}
+      />
     </BodySectionStyled>
   );
 };

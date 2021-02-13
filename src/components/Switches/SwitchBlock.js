@@ -53,6 +53,17 @@ const SwitchTitle = styled('h2')`
 
 const SwitchBlock = props => {
   const switchItem = props.switch;
+  const { setTableOfContent } = props;
+  const { tableOfContent } = props;
+  const newTableOfContent = tableOfContent;
+
+  newTableOfContent.push({
+    hn: props.Hn,
+    value: switchItem.nom,
+  });
+
+  setTableOfContent(newTableOfContent);
+
   return (
     <>
       <SwitchBlockStyled color={switchItem.couleur.hex}>

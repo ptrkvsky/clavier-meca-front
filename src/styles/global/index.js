@@ -94,6 +94,32 @@ export default function GlobalStyle() {
         .clr-second {
           color: ${theme.colors.secondary};
         }
+
+        .daclok {
+          position: relative;
+          color: ${theme.colors.main};
+          z-index: 2;
+
+          &:before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 8px;
+            bottom: -4px;
+
+            background-color: ${theme.colors.main};
+            transition: all 0.2s ease-in-out;
+            z-index: -1;
+          }
+          &:hover {
+            color: ${theme.colors.revert};
+
+            &:before {
+              height: 1.5em;
+            }
+          }
+        }
       `}
     />
   );

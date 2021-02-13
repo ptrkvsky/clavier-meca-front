@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import theme from '../../styles/global/theme';
 
 const PostIntroStyle = styled('div')`
-  padding: 114px 0;
+  margin: 114px 0;
   display: grid;
   grid-template-columns: 1fr 760px 1fr;
   h1 {

@@ -23,7 +23,7 @@ const Article12 = styled('article')`
   }
 `;
 const Article6 = styled('article')`
-  padding: 20px;
+  padding: 0 0 30px 0;
   margin: 61px 0;
   width: 343px;
   background: #fefefe;
