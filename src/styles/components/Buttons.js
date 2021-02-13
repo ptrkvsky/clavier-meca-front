@@ -1,0 +1,21 @@
+import styled from '@emotion/styled';
+import theme from '../global/theme';
+
+const PrimaryButton = styled('button')`
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-family: ${theme.fonts.title};
+  text-align: center;
+  text-transform: uppercase;
+  background-color: ${theme.colors.main};
+  color: ${theme.colors.revert};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  &:hover {
+    background-color: ${theme.colors.primary};
+  }
+`;
+
+export { PrimaryButton };
