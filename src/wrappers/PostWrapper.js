@@ -13,8 +13,8 @@ const PostLayout = styled('div')`
 
 const PostWrapper = ({ post }) => {
   const [tableOfContent, setTableOfContent] = useState([]);
-  console.info(tableOfContent);
-
+  console.info(post);
+  // ADD NUMBER TO EVERY H2 IN MAIN CONTENT
   useEffect(() => {
     // Get All H2
     const h2Array = document.querySelectorAll('#main-content h2');
@@ -34,7 +34,9 @@ const PostWrapper = ({ post }) => {
       {/* <Seo title={post.title} /> */}
       <PostLayout>
         <PostIntro post={post} />
-        <TableOfContent tableOfContent={tableOfContent} />
+        {tableOfContent.length > 0 && (
+          <TableOfContent tableOfContent={tableOfContent} />
+        )}
         <div id="main-content">
           <PostSlices
             content={post.content}

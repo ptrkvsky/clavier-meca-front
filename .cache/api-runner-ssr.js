@@ -9,7 +9,7 @@ var plugins = [{
       options: {"plugins":[],"name":"gatsby-starter-default","short_name":"starter","start_url":"/","background_color":"#8000FF","theme_color":"#8000FF","display":"minimal-ui","icon":"src/assets/images/favicons/favicon.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"77517a3c180d59385ab79dfe479e7b14"},
     },{
       plugin: require('/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/gatsby-source-sanity/gatsby-ssr'),
-      options: {"plugins":[],"projectId":"dhh9ms17","dataset":"production","token":"sk1GWHA8AESHqIcKb3Sb0JnIUtWw0WcelsNFsk2TreJrvNu46E9jh7f0MIBUeI3i69NjvoOXeP1UdDfo71xWKt6qtCtvrwVLfTJysocgRJ8yleqLAYxpvAKR7On5erINABVTFgngfAS8F3y6pvhcvBtUsrRWnE342phZRvcJCIbMx5KWCxCw","watchMode":false,"overlayDrafts":false},
+      options: {"plugins":[],"projectId":"dhh9ms17","dataset":"production","token":"sk1GWHA8AESHqIcKb3Sb0JnIUtWw0WcelsNFsk2TreJrvNu46E9jh7f0MIBUeI3i69NjvoOXeP1UdDfo71xWKt6qtCtvrwVLfTJysocgRJ8yleqLAYxpvAKR7On5erINABVTFgngfAS8F3y6pvhcvBtUsrRWnE342phZRvcJCIbMx5KWCxCw","watchMode":true,"overlayDrafts":true},
     },{
       plugin: require('/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/gatsby-ssr'),
       options: {"plugins":[]},

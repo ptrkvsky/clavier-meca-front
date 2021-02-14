@@ -3,6 +3,7 @@ const theme = {
     main: '#000',
     revert: '#FFF',
     primary: '#8000FF',
+    border: '#F6F6F6',
   },
   bg: {
     main: '#FFF',

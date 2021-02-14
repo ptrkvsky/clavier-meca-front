@@ -32,14 +32,42 @@ export const query = graphql`
       summary
       title
       content {
+        ... on SanityKeyboardsTable {
+          _type
+          keyboards {
+            keyboard {
+              _id
+              price
+              mainImage {
+                asset {
+                  fixed(height: 120) {
+                    ...GatsbySanityImageFixed_noBase64
+                  }
+                }
+                alt
+              }
+              urlAmazon
+              urlMateriel
+              slug {
+                current
+              }
+              title
+              rgb
+            }
+            title
+          }
+          Hn
+          title
+        }
         ... on SanityHero {
           _key
           _type
+          padding
           illustration {
             image {
               asset {
                 fluid(maxWidth: 700) {
-                  ...GatsbySanityImageFluid
+                  ...GatsbySanityImageFluid_noBase64
                 }
                 title
               }

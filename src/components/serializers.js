@@ -6,17 +6,6 @@ import CloakLink from '../components/helpers/CloakLink';
 import slugify from './helpers/slugify';
 import MainImage from './MainImage';
 
-const renderLink = (isVisible, url) => {
-  if (isVisible) {
-    return (
-      <PrimaryButton as="a" href={url} target="_blank" rel="noopener">
-        Voir l'offre
-      </PrimaryButton>
-    );
-  }
-  return <PrimaryButton as="span">Voir l'offre</PrimaryButton>;
-};
-
 const serializers = (tableOfContent = false, setTableOfContent = false) => {
   const serializers = {
     types: {

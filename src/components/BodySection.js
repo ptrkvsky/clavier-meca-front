@@ -47,6 +47,7 @@ const BodySectionStyled = styled('section')`
       opacity: 0.2;
     }
   }
+
   h3 {
     position: relative;
     margin: 64px 0 67px;

@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 
 const HighlightStyled = styled('section')`
+  margin: 114px 0;
   .highlight-wrapper {
     display: flex;
     align-items: center;
@@ -13,7 +14,7 @@ const HighlightStyled = styled('section')`
   }
 
   .highlight {
-    padding: 120px 0 35px 0;
+    padding: 0 35px;
     width: 757px;
     max-width: 100%;
     font-size: 32px;

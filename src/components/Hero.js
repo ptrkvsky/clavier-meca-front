@@ -8,9 +8,10 @@ import theme from '../styles/global/theme';
 const HeroStyled = styled('section')`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin: 114px 0;
 
   .illustration {
-    padding: 45px;
+    padding: ${props => (props.padding ? '45px' : '0')};
     background-color: ${theme.colors.primary};
   }
 
@@ -35,6 +36,7 @@ const Hero = ({ _rawBref, illustration }) => {
         <Img
           className="illustration"
           loading="eager"
+          fadeIn={false}
           fluid={illustration.image.asset.fluid}
         />
       </div>

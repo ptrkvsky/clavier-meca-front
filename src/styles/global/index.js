@@ -100,23 +100,22 @@ export default function GlobalStyle() {
           color: ${theme.colors.main};
           z-index: 2;
 
-          &:before {
+          &:after {
             content: '';
             position: absolute;
             display: block;
             width: 100%;
-            height: 8px;
+            height: 4px;
             bottom: -4px;
 
             background-color: ${theme.colors.main};
-            transition: all 0.2s ease-in-out;
-            z-index: -1;
+            transition: all 0.2s linear;
           }
           &:hover {
-            color: ${theme.colors.revert};
-
+            color: ${theme.colors.primary};
             &:before {
-              height: 1.5em;
+              background-color: ${theme.colors.primary};
+              /* height: 1.5em; */
             }
           }
         }
