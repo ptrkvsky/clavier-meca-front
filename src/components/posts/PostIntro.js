@@ -16,9 +16,9 @@ const PostIntroStyle = styled('div')`
   }
   .info {
     font-size: 14px;
-    opacity: 0.5;
     line-height: 18px;
     text-transform: uppercase;
+    color: ${theme.colors.lighter};
   }
   .categorie {
     position: relative;

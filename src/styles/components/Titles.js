@@ -44,6 +44,7 @@ const TitleH3 = styled('h3')`
 const TitleH4 = styled('h4')`
   font-family: ${theme.fonts.title};
   font-size: 32px;
+  letter-spacing: -1px;
 `;
 
 export { TitleH2, TitleH3, TitleH4 };

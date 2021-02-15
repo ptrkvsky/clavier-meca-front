@@ -95,6 +95,22 @@ export const query = graphql`
         ... on SanityKeyboardsSection {
           _key
           _type
+          rightCol
+          subTitleCol
+          titleCol
+          keyboardCol {
+            _key
+            urlAmazon
+            urlMateriel
+            title
+            mainImage {
+              asset {
+                fixed(width: 269) {
+                  ...GatsbySanityImageFixed_noBase64
+                }
+              }
+            }
+          }
           keyboards {
             Hn
             title
