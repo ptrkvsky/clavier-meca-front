@@ -92,6 +92,47 @@ export const query = graphql`
           _type
           _rawBodyTextt
         }
+        ... on SanityKeyboardsSection {
+          _key
+          _type
+          keyboards {
+            Hn
+            title
+            _key
+            keyboard {
+              _key
+              mainImage {
+                asset {
+                  fluid {
+                    base64
+                    srcWebp
+                    srcSetWebp
+                  }
+                  title
+                }
+                alt
+                caption
+              }
+              price
+              rgb
+              _rawShortDesc
+              slug {
+                _key
+                _type
+                current
+              }
+              switchCategory {
+                _key
+                nom
+              }
+              teaser
+              urlAmazon
+              urlMateriel
+              title
+              layout
+            }
+          }
+        }
         ... on SanityProductsSection {
           _key
           _type

@@ -23,4 +23,27 @@ const TitleH2 = styled('h2')`
   }
 `;
 
-export { TitleH2 };
+const TitleH3 = styled('h3')`
+  position: relative;
+  margin: 64px 0 67px;
+  font-size: 48px;
+  font-family: ${theme.fonts.title};
+  line-height: 64px;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    width: 74px;
+    height: 11px;
+    background-color: ${theme.colors.primary};
+  }
+`;
+
+const TitleH4 = styled('h4')`
+  font-family: ${theme.fonts.title};
+  font-size: 32px;
+`;
+
+export { TitleH2, TitleH3, TitleH4 };

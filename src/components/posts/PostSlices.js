@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Hero from '../Hero';
 import Highlight from '../Highlight';
+import KeyboardsSection from '../keyboard/KeyboardsSection';
 import KeyboardTable from '../keyboard/KeyboardTable';
 import SwitchBlock from '../Switches/SwitchBlock';
 import BodySection from '../BodySection';
@@ -22,6 +23,9 @@ const PostSlices = ({ content, setTableOfContent, tableOfContent }) => {
           break;
         case 'keyboardsTable':
           el = <KeyboardTable key={c._key} {...c} />;
+          break;
+        case 'keyboardsSection':
+          el = <KeyboardsSection key={c._key} {...c} />;
           break;
         case 'switchBlock':
           el = (
