@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Img from 'gatsby-image';
-import { GiKeyboard as KeyboardIcon } from '@react-icons/all-files/gi/GiKeyboard';
-import { MdKeyboardArrowDown as SwitchIcon } from '@react-icons/all-files/md/MdKeyboardArrowDown';
-import { FaRegLightbulb as LightIcon } from '@react-icons/all-files/fa/FaRegLightbulb';
-
 import styled from '@emotion/styled';
 import { TitleH3, TitleH4 } from '../../styles/components/Titles';
 import CloakButton from '../helpers/CloakButton';
