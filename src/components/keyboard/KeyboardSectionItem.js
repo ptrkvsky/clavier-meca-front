@@ -8,7 +8,7 @@ import PortableText from '../portableText';
 import theme from '../../styles/global/theme';
 
 const Article = styled('article')` 
-  margin: 114px 0;
+  margin: 98px 0;
   &:first-child {
     margin-top 0;
   }
@@ -86,7 +86,7 @@ const KeyboardsSection = ({ keyboard }) => {
   const keyboardItem = keyboard.keyboard;
 
   return (
-    <article>
+    <Article>
       <StickyHeading>
         <div className="title-teaser">
           <KeyboardTitle as={Hn}>{keyboardItem.title}</KeyboardTitle>
@@ -121,7 +121,7 @@ const KeyboardsSection = ({ keyboard }) => {
         </WrapperImageDesc>
         <PortableText blocks={keyboardItem._rawShortDesc} />
       </div>
-    </article>
+    </Article>
   );
 };
 

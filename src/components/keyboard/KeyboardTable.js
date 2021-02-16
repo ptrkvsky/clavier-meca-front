@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 import KeyboardTableItem from './KeyboardTableItem';
 import { TitleH2 } from '../../styles/components/Titles';
 import theme from '../../styles/global/theme';
+import PortableText from '../portableText';
 
 const Table = styled('table')`
   border-collapse: collapse;
@@ -67,10 +69,11 @@ const Table = styled('table')`
   }
 `;
 
-const KeyboardTable = ({ Hn, keyboards, title }) => {
+const KeyboardTable = ({ keyboards, _rawDescription, hn, title }) => {
   return (
     <section>
-      <TitleH2 as={Hn}>{title}</TitleH2>
+      <TitleH2 as={hn}>{title}</TitleH2>
+      <PortableText blocks={_rawDescription} />
       <Table>
         <thead>
           <tr>
@@ -93,6 +96,13 @@ const KeyboardTable = ({ Hn, keyboards, title }) => {
       </Table>
     </section>
   );
+};
+
+KeyboardTable.propTypes = {
+  _rawDescription: PropTypes.array.isRequired,
+  hn: PropTypes.string.isRequired,
+  keyboards: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default KeyboardTable;

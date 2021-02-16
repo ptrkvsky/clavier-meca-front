@@ -34,6 +34,9 @@ export const query = graphql`
       content {
         ... on SanityKeyboardsTable {
           _type
+          _rawDescription
+          hn
+          title
           keyboards {
             keyboard {
               _id
@@ -56,8 +59,6 @@ export const query = graphql`
             }
             title
           }
-          Hn
-          title
         }
         ... on SanityHero {
           _key
@@ -98,6 +99,9 @@ export const query = graphql`
           rightCol
           subTitleCol
           titleCol
+          _rawDescription
+          hn
+          title
           keyboardCol {
             _key
             urlAmazon
