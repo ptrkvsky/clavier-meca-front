@@ -11,6 +11,7 @@ const NavItemStyle = styled('li')`
 
   a {
     color: ${theme.colors.main};
+    text-decoration: none;
   }
 
   .active {
@@ -29,7 +30,7 @@ const NavItemStyle = styled('li')`
 
 const NavItem = ({ slug, name }) => (
   <NavItemStyle>
-    <Link to={slug} activeClassName="active">
+    <Link to={`/${slug}`} activeClassName="active">
       {name}
     </Link>
   </NavItemStyle>

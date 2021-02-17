@@ -4,8 +4,9 @@ import IndexWrapper from '../wrappers/IndexWrapper';
 
 const IndexPage = ({ data }) => {
   const posts = data.posts.nodes;
+  const postsHome = posts.filter(post => post.home === true);
 
-  return <IndexWrapper posts={posts} />;
+  return <IndexWrapper posts={postsHome} />;
 };
 
 export const query = graphql`

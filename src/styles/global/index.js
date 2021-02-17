@@ -53,8 +53,11 @@ export default function GlobalStyle() {
           color: ${theme.colors.primary};
         }
 
-        a {
-          text-decoration: none;
+        a,
+        .daclok {
+          text-decoration-color: ${theme.colors.primary};
+          text-decoration-thickness: 0.125em;
+          text-underline-offset: 0.125em;
         }
 
         /*Gatsby transition */
@@ -93,31 +96,6 @@ export default function GlobalStyle() {
 
         .clr-second {
           color: ${theme.colors.secondary};
-        }
-
-        .daclok {
-          position: relative;
-          color: ${theme.colors.main};
-          z-index: 2;
-
-          &:after {
-            content: '';
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 4px;
-            bottom: -4px;
-
-            background-color: ${theme.colors.main};
-            transition: all 0.2s linear;
-          }
-          &:hover {
-            color: ${theme.colors.primary};
-            &:before {
-              background-color: ${theme.colors.primary};
-              /* height: 1.5em; */
-            }
-          }
         }
       `}
     />

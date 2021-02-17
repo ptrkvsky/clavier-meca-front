@@ -10,6 +10,7 @@ const LogoStyle = styled(Link)`
   line-height: 1;
   text-transform: uppercase;
   color: ${theme.colors.main};
+  text-decoration: none;
 `;
 
 const Logo = () => <LogoStyle to="/">Clavier Meca</LogoStyle>;
