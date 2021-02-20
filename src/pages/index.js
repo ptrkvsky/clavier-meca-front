@@ -22,9 +22,16 @@ export const query = graphql`
           current
         }
         mainImage {
+          alt
           asset {
-            fluid(maxWidth: 400) {
-              ...GatsbySanityImageFluid
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 200
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                )
+              }
             }
           }
         }

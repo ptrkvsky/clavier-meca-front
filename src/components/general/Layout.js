@@ -10,14 +10,29 @@ const MainWrapper = styled('div')`
   display: grid;
   min-height: 100vh;
   grid-template-rows: 70px auto 70px;
+  grid-template-columns: '1fr';
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+
+  header {
+    grid-area: header;
+  }
+  main {
+    grid-area: main;
+  }
+  footer {
+    grid-area: footer;
+  }
 `;
 
 const Layout = ({ children }) => (
   <>
     <GlobalStyle />
     <MainWrapper>
-      <Header />
       <main>{children}</main>
+      <Header />
       <Footer />
     </MainWrapper>
   </>
