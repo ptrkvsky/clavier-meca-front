@@ -1,14 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const PostItem = ({ post }) => {
-  console.info(post.mainImage);
+  if (post.mainImage) {
+    const imagePost =
+      post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
+    const { alt } = post.mainImage;
+  }
 
-  const imagePost =
-    post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
-  const { alt } = post.mainImage;
-  console.info(alt);
   return (
     <>
       <h3>
@@ -17,6 +18,25 @@ const PostItem = ({ post }) => {
       {imagePost && <GatsbyImage alt={alt} image={imagePost} />}
     </>
   );
+};
+
+PostItem.propTypes = {
+  post: PropTypes.shape({
+    mainImage: PropTypes.shape({
+      alt: PropTypes.string,
+      asset: PropTypes.shape({
+        localFile: PropTypes.shape({
+          childImageSharp: PropTypes.shape({
+            gatsbyImageData: PropTypes.object,
+          }),
+        }),
+      }),
+    }).isRequired,
+    slug: PropTypes.shape({
+      current: PropTypes.string.isRequired,
+    }),
+    title: PropTypes.string.isRequired,
+  }),
 };
 
 export default PostItem;
