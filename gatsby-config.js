@@ -33,8 +33,10 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    'gatsby-source-sanity-transform-images',
     {
       resolve: `gatsby-plugin-emotion`,
       options: {

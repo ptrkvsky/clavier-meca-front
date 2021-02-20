@@ -7,6 +7,12 @@
           "options": {}
         },
         {
+          "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/gatsby-plugin-image/dist/babel-plugin-parse-static-images.js",
+          "options": {
+            "cacheDir": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/.cache/caches/gatsby-plugin-image"
+          }
+        },
+        {
           "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
           "options": {}
         },
@@ -50,6 +56,12 @@
         {
           "name": "babel-plugin-lodash",
           "options": {}
+        },
+        {
+          "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/gatsby-plugin-image/dist/babel-plugin-parse-static-images.js",
+          "options": {
+            "cacheDir": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/.cache/caches/gatsby-plugin-image"
+          }
         },
         {
           "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
@@ -97,6 +109,12 @@
           "options": {}
         },
         {
+          "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/gatsby-plugin-image/dist/babel-plugin-parse-static-images.js",
+          "options": {
+            "cacheDir": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/.cache/caches/gatsby-plugin-image"
+          }
+        },
+        {
           "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
           "options": {}
         },
@@ -140,6 +158,12 @@
         {
           "name": "babel-plugin-lodash",
           "options": {}
+        },
+        {
+          "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/gatsby-plugin-image/dist/babel-plugin-parse-static-images.js",
+          "options": {
+            "cacheDir": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/.cache/caches/gatsby-plugin-image"
+          }
         },
         {
           "name": "/Volumes/System/perso/www/master-gatsby/starter-files/gatsby/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
