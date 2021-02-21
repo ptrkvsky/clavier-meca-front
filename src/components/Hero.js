@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import PortableText from '../components/portableText';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 
@@ -12,7 +12,8 @@ const HeroStyled = styled('section')`
 
   .illustration {
     padding: ${props => (props.padding ? '45px' : '0')};
-    background-color: ${theme.colors.primary};
+    background-color: ${props =>
+      props.padding ? theme.colors.primary : 'transparent'};
   }
 
   .highlight-wrapper {
@@ -29,15 +30,17 @@ const HeroStyled = styled('section')`
   }
 `;
 
-const Hero = ({ _rawBref, illustration }) => {
+const Hero = ({ _rawBref, illustration, padding }) => {
   return (
-    <HeroStyled>
+    <HeroStyled padding={padding}>
       <div className="illustration">
-        <Img
+        <GatsbyImage
+          image={
+            illustration.image.asset.localFile.childImageSharp.gatsbyImageData
+          }
           className="illustration"
           loading="eager"
           fadeIn={false}
-          fluid={illustration.image.asset.fluid}
         />
       </div>
       <div className="highlight-wrapper">
@@ -51,6 +54,17 @@ const Hero = ({ _rawBref, illustration }) => {
 
 Hero.propTypes = {
   _rawBref: PropTypes.array.isRequired,
+  illustration: PropTypes.shape({
+    image: PropTypes.shape({
+      asset: PropTypes.shape({
+        localFile: PropTypes.shape({
+          childImageSharp: PropTypes.shape({
+            gatsbyImageData: PropTypes.any,
+          }),
+        }),
+      }),
+    }),
+  }).isRequired,
 };
 
 export default Hero;

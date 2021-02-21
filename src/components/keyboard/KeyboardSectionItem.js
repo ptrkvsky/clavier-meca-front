@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from '@emotion/styled';
 import { TitleH3, TitleH4 } from '../../styles/components/Titles';
 import CloakButton from '../helpers/CloakButton';
@@ -100,10 +100,9 @@ const KeyboardsSection = ({ keyboard }) => {
       <div>
         <WrapperImageDesc>
           <div class="wrapper-image">
-            <Img
-              alt={keyboardItem.mainImage.alt}
-              fluid={keyboardItem.mainImage.asset.fluid}
-            />
+            <GatsbyImage
+              image={keyboardItem.mainImage.childImageSharp.gatsbyImageData}
+              alt={keyboardItem.mainImage.alt} />
           </div>
           <div class="wrapper-desc">
             <TitleH4>Points clefs</TitleH4>

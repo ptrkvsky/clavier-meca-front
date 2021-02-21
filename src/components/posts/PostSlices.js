@@ -13,7 +13,6 @@ const PostSlices = ({ content, setTableOfContent, tableOfContent }) => {
     .filter(c => !c.disabled)
     .map((c, i) => {
       let el = null;
-      console.info(c._type);
       switch (c._type) {
         case 'hero':
           el = <Hero key={c._key} {...c} />;

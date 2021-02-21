@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const CloakImage = ({ asset, url }) => {
   const [link, setLink] = useState('#');
@@ -11,7 +11,7 @@ const CloakImage = ({ asset, url }) => {
 
   return (
     <a href={link} target="_blank">
-      {asset.fluid && <Img fluid={asset.fluid} alt={asset.alt && asset.alt} />}
+      {asset.fluid && <GatsbyImage image={asset.gatsbyImageData} alt={asset.alt && asset.alt} />}
     </a>
   );
 };

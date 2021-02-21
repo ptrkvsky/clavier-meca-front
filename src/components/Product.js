@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 import { PrimaryButton } from '../styles/components/Buttons';

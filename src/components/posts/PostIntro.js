@@ -2,11 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 import theme from '../../styles/global/theme';
+import mediaQueries from '../../styles/global/mediaQueries';
 
 const PostIntroStyle = styled('div')`
   margin: 114px 0;
   display: grid;
   grid-template-columns: 1fr 760px 1fr;
+  ${mediaQueries.mobile} {
+    grid-template-columns: 1fr;
+  }
+
   h1 {
     margin: 0;
     padding: 0;

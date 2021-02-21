@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import PortableText from '../components/portableText';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 import quote from '../assets/images/chevron.svg';
