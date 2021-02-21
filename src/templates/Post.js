@@ -46,6 +46,15 @@ export const query = graphql`
                   fixed(height: 120) {
                     ...GatsbySanityImageFixed_noBase64
                   }
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(
+                        width: 200
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
+                    }
+                  }
                 }
                 alt
               }
@@ -69,6 +78,14 @@ export const query = graphql`
               asset {
                 fluid(maxWidth: 700) {
                   ...GatsbySanityImageFluid_noBase64
+                }
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
+                  }
                 }
                 title
               }
@@ -112,6 +129,14 @@ export const query = graphql`
                 fixed(width: 269) {
                   ...GatsbySanityImageFixed_noBase64
                 }
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
+                  }
+                }
               }
             }
           }
@@ -129,7 +154,16 @@ export const query = graphql`
                     srcSetWebp
                   }
                   title
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
+                    }
+                  }
                 }
+
                 alt
                 caption
               }
@@ -171,6 +205,14 @@ export const query = graphql`
                   fluid {
                     ...GatsbySanityImageFluid
                   }
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
+                    }
+                  }
                   description
                 }
               }
@@ -202,6 +244,14 @@ export const query = graphql`
               asset {
                 fluid {
                   ...GatsbySanityImageFluid
+                }
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
+                  }
                 }
               }
             }

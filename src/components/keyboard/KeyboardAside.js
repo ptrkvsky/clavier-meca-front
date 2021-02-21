@@ -2,7 +2,7 @@ import React from 'react';
 import CloakButton from '../helpers/CloakButton';
 import styled from '@emotion/styled';
 import theme from '../../styles/global/theme';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const Aside = styled('div')`
   position: sticky;
@@ -49,7 +49,7 @@ const KeyboardAside = ({ keyboard, subTitleCol, titleCol }) => {
   console.info(keyboard, subTitleCol, titleCol);
   return (
     <Aside>
-      <Img fixed={keyboard.mainImage.asset.fixed} />
+      <GatsbyImage image={keyboard.mainImage.childImageSharp.gatsbyImageData} />
       <Title>{titleCol}</Title>
       <TitleProduct>{keyboard.title}</TitleProduct>
       <SubTitle>{subTitleCol}</SubTitle>

@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import PortableText from '../portableText';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import theme from '../../styles/global/theme';
+import mediaQueries from '../../styles/global/mediaQueries';
 import SwitchDetails from './SwitchDetails';
 
 const SwitchBlockStyled = styled('section')`
@@ -14,6 +15,9 @@ const SwitchBlockStyled = styled('section')`
     display: grid;
     grid-template-columns: 464px 1fr;
     grid-column-gap: 122px;
+    ${mediaQueries.mobile} {
+      grid-template-columns: 1fr;
+    }
   }
 
   .switch-illustration {
@@ -56,6 +60,8 @@ const SwitchBlock = props => {
   const { setTableOfContent } = props;
   const { tableOfContent } = props;
   const newTableOfContent = tableOfContent;
+  const imgSwitch =
+    switchItem.mainImage.asset.localFile.childImageSharp?.gatsbyImageData;
 
   newTableOfContent.push({
     hn: props.Hn,
@@ -72,7 +78,7 @@ const SwitchBlock = props => {
         </SwitchTitle>
         <div className="grid">
           <div className="switch-illustration">
-            <Img fluid={switchItem.mainImage.asset.fluid} />
+            {imgSwitch && <GatsbyImage image={imgSwitch} />}
           </div>
 
           <div className="switch-desc-wrapper">

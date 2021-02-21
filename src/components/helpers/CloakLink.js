@@ -10,11 +10,11 @@ const CloakLink = ({ url, content }) => {
       onMouseLeave={() => setIsCloaked(false)}
     >
       {isCloaked ? (
+        <span className="daclok">{content}</span>
+      ) : (
         <a href={url} className="daclok" rel="noopener" target="_blank">
           {content}
         </a>
-      ) : (
-        <span className="daclok">{content}</span>
       )}
     </div>
   );
