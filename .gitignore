@@ -3,6 +3,9 @@
 .cache
 .storybook
 
+# gatsby
+/public
+
 # Dependency directories
 /node_modules
 
