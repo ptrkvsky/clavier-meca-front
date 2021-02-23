@@ -8,7 +8,6 @@ const PostItem = ({ post }) => {
     post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
 
   const alt = post.mainImage?.alt;
-  console.info(imagePost);
   return (
     <>
       <h3>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
-// import { BsCardText as Icon } from 'react-icons/bs';
 import { BsLayoutTextSidebarReverse as Icon } from '@react-icons/all-files/bs/BsLayoutTextSidebarReverse';
 
 const TableOfContentStyled = styled('div')`
