@@ -50,7 +50,6 @@ export default function GlobalStyle() {
         strong {
           font-family: ${theme.fonts.title};
           font-size: 1.05em;
-          color: ${theme.colors.primary};
         }
 
         a,

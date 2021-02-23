@@ -39,8 +39,6 @@ const Hero = ({ _rawBref, illustration, padding }) => {
             illustration.image.asset.localFile.childImageSharp.gatsbyImageData
           }
           className="illustration"
-          loading="eager"
-          fadeIn={false}
         />
       </div>
       <div className="highlight-wrapper">

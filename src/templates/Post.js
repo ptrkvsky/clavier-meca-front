@@ -184,6 +184,8 @@ export const query = graphql`
               urlMateriel
               title
               layout
+              _rawPros
+              _rawCons
             }
           }
         }

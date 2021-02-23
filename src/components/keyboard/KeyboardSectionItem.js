@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
+import KeyboardProsCons from './KeyboardProsCons';
 import { TitleH3, TitleH4 } from '../../styles/components/Titles';
 import CloakButton from '../helpers/CloakButton';
 import PortableText from '../portableText';
@@ -11,6 +12,11 @@ const Article = styled('article')`
   margin: 98px 0;
   &:first-child {
     margin-top 0;
+  }
+  .button {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
   }
 `;
 
@@ -119,6 +125,13 @@ const KeyboardsSection = ({ keyboard }) => {
           </div>
         </WrapperImageDesc>
         <PortableText blocks={keyboardItem._rawShortDesc} />
+        <KeyboardProsCons
+          pros={keyboardItem._rawPros}
+          cons={keyboardItem._rawCons}
+        />
+        <div className="button">
+          <CloakButton url={keyboardItem.url} />
+        </div>
       </div>
     </Article>
   );

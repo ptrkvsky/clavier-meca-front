@@ -39,11 +39,11 @@ KeyboardTableItem.propTypes = {
         }),
       }),
     }),
-    price: PropTypes.string,
+    price: PropTypes.number,
     title: PropTypes.string,
     url: PropTypes.string,
   }).object,
-  position: PropTypes.string.isRequired,
+  position: PropTypes.number.isRequired,
 };
 
 export default KeyboardTableItem;
