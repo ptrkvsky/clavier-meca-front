@@ -61,7 +61,6 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
 
     marks: {
       internalLink: ({ mark, children }) => {
-        console.info('internal');
         const { slug = {} } = mark;
         const href = `/${slug.current}`;
         return <a href={href}>{children}</a>;

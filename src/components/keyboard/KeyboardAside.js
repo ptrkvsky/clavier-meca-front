@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import CloakButton from '../helpers/CloakButton';
 import styled from '@emotion/styled';
 import theme from '../../styles/global/theme';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Aside = styled('div')`
   position: sticky;
@@ -46,16 +47,36 @@ const SubTitle = styled('p')`
 `;
 
 const KeyboardAside = ({ keyboard, subTitleCol, titleCol }) => {
-  console.info(keyboard, subTitleCol, titleCol);
+  const image =
+    keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+
   return (
     <Aside>
-      <GatsbyImage image={keyboard.mainImage.childImageSharp.gatsbyImageData} />
+      {image && <GatsbyImage image={image} />}
       <Title>{titleCol}</Title>
       <TitleProduct>{keyboard.title}</TitleProduct>
       <SubTitle>{subTitleCol}</SubTitle>
       <CloakButton url={keyboard.urlAmazon} />
     </Aside>
   );
+};
+
+KeyboardAside.propTypes = {
+  keyboard: PropTypes.shape({
+    mainImage: PropTypes.shape({
+      asset: PropTypes.shape({
+        localFile: PropTypes.shape({
+          childImageSharp: PropTypes.shape({
+            gatsbyImageData: PropTypes.object,
+          }),
+        }),
+      }),
+    }),
+    title: PropTypes.string,
+    urlAmazon: PropTypes.string,
+  }),
+  subTitleCol: PropTypes.string,
+  titleCol: PropTypes.string,
 };
 
 export default KeyboardAside;

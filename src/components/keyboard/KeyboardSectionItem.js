@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import { TitleH3, TitleH4 } from '../../styles/components/Titles';
 import CloakButton from '../helpers/CloakButton';
@@ -84,6 +84,8 @@ const displaySwitch = switchArrray => {
 const KeyboardsSection = ({ keyboard }) => {
   const { Hn } = keyboard;
   const keyboardItem = keyboard.keyboard;
+  const image =
+    keyboardItem.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
 
   return (
     <Article>
@@ -100,9 +102,7 @@ const KeyboardsSection = ({ keyboard }) => {
       <div>
         <WrapperImageDesc>
           <div class="wrapper-image">
-            <GatsbyImage
-              image={keyboardItem.mainImage.childImageSharp.gatsbyImageData}
-              alt={keyboardItem.mainImage.alt} />
+            <GatsbyImage image={image} alt={keyboardItem.mainImage.alt} />
           </div>
           <div class="wrapper-desc">
             <TitleH4>Points clefs</TitleH4>

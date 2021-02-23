@@ -18,11 +18,10 @@ const ImageContainer = styled('div')`
 
 const MainImage = ({ mainImage, width = 1200 }) => {
   const imgUrl = mainImage && imageUrlFor(buildImageObj(mainImage)).url();
-
   return imgUrl ? (
     <ImageContainer>
       <img loading="lazy" src={imgUrl} alt={mainImage.alt || ''} />
-      {imgUrl && <StaticImage src={imgUrl} alt="A kitten" />}
+      {/* {imgUrl && <StaticImage src={imgUrl} alt="A kitten" />} */}
     </ImageContainer>
   ) : (
     <></>
