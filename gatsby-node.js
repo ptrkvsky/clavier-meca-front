@@ -47,7 +47,6 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   const categoryList = Array.from(categorySet);
-  console.log(categoryList);
 
   categoryList.forEach(category => {
     createPage({

@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { graphql } from 'gatsby';
-import PostWrapper from '../wrappers/PostWrapper';
+import CategoryWrapper from '../wrappers/CategoryWrapper';
 
 const PostPage = ({ data }) => {
   const { categorie, postsCategorie } = data;
   return (
     <div>
-      <h1>{categorie.title}</h1>
+      <CategoryWrapper title={categorie.title} posts={postsCategorie.nodes} />
     </div>
   );
 };
@@ -30,10 +30,25 @@ export const query = graphql`
       }
     ) {
       nodes {
-        id
-        author {
-          name
+        slug {
+          _key
+          current
         }
+        mainImage {
+          asset {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 200
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                )
+              }
+            }
+          }
+        }
+        _key
+        title
       }
     }
   }

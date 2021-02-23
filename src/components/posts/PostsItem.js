@@ -8,13 +8,13 @@ const PostItem = ({ post }) => {
     post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
 
   const alt = post.mainImage?.alt;
-
+  console.info(imagePost);
   return (
     <>
       <h3>
-        <Link to={post.slug.current}>{post.title}</Link>
+        <Link to={`/${post.slug.current}`}>{post.title}</Link>
       </h3>
-      {imagePost && alt ? <GatsbyImage alt={alt} image={imagePost} /> : ''}
+      {imagePost ? <GatsbyImage alt={alt ? alt : ''} image={imagePost} /> : ''}
     </>
   );
 };
