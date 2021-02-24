@@ -4,21 +4,31 @@ import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 
 const Form = styled('form')`
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
   .ipt {
+    margin-top: 8px;
+    padding: 12px 0;
     border: none;
     border-bottom: 8px solid ${theme.colors.main};
+    width: 100%;
+    font-size: 32px;
+    letter-spacing: -1px;
   }
   .item-form {
     margin-bottom: 48px;
   }
   .label {
     display: block;
-    margin-bottom: 24px;
     text-transform: uppercase;
     font-size: 24px;
     letter-spacing: 1px;
     font-family: ${theme.fonts.light};
     color: ${theme.colors.contrast};
+  }
+  .btn {
+    margin-top: 24px;
   }
 `;
 
@@ -44,12 +54,19 @@ const FormContact = () => {
       </p>
 
       <p>
-        <label>
-          Mon message : <textarea name="message"></textarea>
+        <label className="label">
+          Mon message :
+          <textarea
+            placeholder="Un mot sympathique"
+            className="ipt"
+            name="message"
+          ></textarea>
         </label>
       </p>
       <p>
-        <PrimaryButton type="submit">Send</PrimaryButton>
+        <PrimaryButton className="btn" type="submit">
+          J'envoie
+        </PrimaryButton>
       </p>
     </Form>
   );

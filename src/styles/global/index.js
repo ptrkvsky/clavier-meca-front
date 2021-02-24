@@ -52,6 +52,20 @@ export default function GlobalStyle() {
           font-size: 1.05em;
         }
 
+        input:focus {
+          outline: none !important;
+          border-color: #719ece;
+          box-shadow: 0 0 1px #719ece;
+          padding-left: 8px;
+        }
+
+        textarea:focus {
+          outline: none !important;
+          border-color: #719ece;
+          box-shadow: 0 0 10px #719ece;
+          padding-left: 8px;
+        }
+
         a,
         .daclok {
           text-decoration-color: ${theme.colors.primary};
