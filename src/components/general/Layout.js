@@ -3,7 +3,7 @@ import Nav from './header/nav/index';
 import 'normalize.css';
 import GlobalStyle from '../../styles/global/';
 import Header from './header';
-import Footer from './Footer';
+import Footer from './footer/index';
 import styled from '@emotion/styled';
 
 const MainWrapper = styled('div')`

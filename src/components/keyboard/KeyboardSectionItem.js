@@ -93,6 +93,8 @@ const KeyboardsSection = ({ keyboard }) => {
   const image =
     keyboardItem.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
 
+  const url = keyboardItem.urlAmazon || keyboardItem.urlMateriel;
+
   return (
     <Article>
       <StickyHeading>
@@ -101,7 +103,7 @@ const KeyboardsSection = ({ keyboard }) => {
           <span class="teaser">{keyboardItem.teaser}</span>
         </div>
         <div className="button-wrapper">
-          <CloakButton url={keyboardItem.url} />
+          <CloakButton url={url} />
         </div>
       </StickyHeading>
 
@@ -130,7 +132,7 @@ const KeyboardsSection = ({ keyboard }) => {
           cons={keyboardItem._rawCons}
         />
         <div className="button">
-          <CloakButton url={keyboardItem.url} />
+          <CloakButton url={url} />
         </div>
       </div>
     </Article>
