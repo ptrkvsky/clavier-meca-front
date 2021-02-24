@@ -5,6 +5,7 @@ const theme = {
     revert: '#FFF',
     primary: '#8000FF',
     border: '#F6F6F6',
+    contrast: '#767676',
   },
   bg: {
     main: '#FFF',

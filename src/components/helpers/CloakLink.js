@@ -6,8 +6,8 @@ const CloakLink = ({ url, content }) => {
   return (
     <div
       style={{ display: 'inline-block' }}
-      onMouseEnter={() => setIsCloaked(true)}
-      onMouseLeave={() => setIsCloaked(false)}
+      onMouseEnter={() => setIsCloaked(false)}
+      onMouseLeave={() => setIsCloaked(true)}
     >
       {isCloaked ? (
         <span className="daclok">{content}</span>
