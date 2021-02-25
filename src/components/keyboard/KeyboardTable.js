@@ -70,7 +70,6 @@ const Table = styled('table')`
 `;
 
 const KeyboardTable = ({ keyboards, _rawDescription, hn, title }) => {
-  console.info(keyboards);
   return (
     <section>
       <TitleH2 as={hn}>{title}</TitleH2>
