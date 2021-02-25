@@ -96,7 +96,7 @@ const FormContact = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const formData = new FormData(formEl.current);
-    fetch('/', {
+    fetch('/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(formData).toString(),
