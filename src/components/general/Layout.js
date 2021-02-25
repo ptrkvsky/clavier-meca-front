@@ -9,8 +9,8 @@ import styled from '@emotion/styled';
 const MainWrapper = styled('div')`
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 70px auto 70px;
-  grid-template-columns: '1fr';
+  grid-template-rows: 70px auto 274px;
+
   grid-template-areas:
     'header'
     'main'

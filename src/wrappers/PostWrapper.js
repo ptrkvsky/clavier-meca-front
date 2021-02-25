@@ -22,6 +22,7 @@ const PostWrapper = ({ post }) => {
   // ADD NUMBER TO EVERY H2 IN MAIN CONTENT
   useEffect(() => {
     // Get All H2
+    console.info('HELOOOOOOW');
     const h2Array = document.querySelectorAll('#main-content h2');
     [...h2Array].forEach((h2, index) => {
       // If there is no number add one
@@ -32,7 +33,7 @@ const PostWrapper = ({ post }) => {
         h2.innerHTML += `<span>${hnNumber}</span>`;
       }
     });
-  }, []);
+  }, [tableOfContent, setTableOfContent]);
 
   return (
     <>

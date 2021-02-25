@@ -1,12 +1,19 @@
 import React from 'react';
+import slugify from 'slugify';
 import getYouTubeId from 'get-youtube-id';
 import YouTube from 'react-youtube';
 import BasePortableText from '@sanity/block-content-to-react';
 import CloakLink from '../components/helpers/CloakLink';
-import slugify from './helpers/slugify';
 import MainImage from './MainImage';
 
 const serializers = (tableOfContent = false, setTableOfContent = false) => {
+  const configSlug = {
+    replacement: '-', // replace spaces with replacement character, defaults to `-` // remove characters that match regex, defaults to `undefined`
+    lower: true, // convert to lower case, defaults to `false`
+    strict: true, // strip special characters except replacement, defaults to `false`
+    locale: 'fr', // language code of the locale to use
+  };
+
   const serializers = {
     types: {
       block: props => {
@@ -20,7 +27,19 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
             });
             setTableOfContent(newTableOfContent);
           }
-          return <h2 id={slugify(props.children)}>{props.children}</h2>;
+
+          return (
+            <h2
+              id={slugify(props.children[0], {
+                replacement: '-', // replace spaces with replacement character, defaults to `-` // remove characters that match regex, defaults to `undefined`
+                lower: true, // convert to lower case, defaults to `false`
+                strict: true, // strip special characters except replacement, defaults to `false`
+                locale: 'fr', // language code of the locale to use
+              })}
+            >
+              {props.children}
+            </h2>
+          );
         }
         if (props.node.style === 'h3') {
           if (setTableOfContent && tableOfContent) {
@@ -30,7 +49,11 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
             });
             setTableOfContent(newTableOfContent);
           }
-          return <h3 id={slugify(props.children)}>{props.children}</h3>;
+          return (
+            <h3 id={slugify(props.children[0], configSlug)}>
+              {props.children}
+            </h3>
+          );
         }
         if (props.node.style === 'h4') {
           if (setTableOfContent && tableOfContent) {
@@ -40,13 +63,25 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
             });
             setTableOfContent(newTableOfContent);
           }
-          return <h4 id={slugify(props.children)}>{props.children}</h4>;
+          return (
+            <h4 id={slugify(props.children[0], configSlug)}>
+              {props.children}
+            </h4>
+          );
         }
         if (props.node.style === 'h5') {
-          return <h5 id={slugify(props.children)}>{props.children}</h5>;
+          return (
+            <h5 id={slugify(props.children[0], configSlug)}>
+              {props.children}
+            </h5>
+          );
         }
         if (props.node.style === 'h6') {
-          return <h6 id={slugify(props.children)}>{props.children}</h6>;
+          return (
+            <h6 id={slugify(props.children[0], configSlug)}>
+              {props.children}
+            </h6>
+          );
         }
 
         return BasePortableText.defaultSerializers.types.block(props);

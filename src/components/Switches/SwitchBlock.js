@@ -62,7 +62,7 @@ const SwitchBlock = props => {
   const newTableOfContent = tableOfContent;
   const imgSwitch =
     switchItem.mainImage.asset.localFile?.childImageSharp?.gatsbyImageData;
-  console.info(imgSwitch, switchItem.nom);
+
   newTableOfContent.push({
     hn: props.Hn,
     value: switchItem.nom,

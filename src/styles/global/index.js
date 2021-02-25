@@ -72,9 +72,7 @@ export default function GlobalStyle() {
 
         a,
         .daclok {
-          text-decoration-color: ${theme.colors.primary};
-          text-decoration-thickness: 0.125em;
-          text-underline-offset: 0.125em;
+          text-decoration: underline;
         }
 
         /*Gatsby transition */
