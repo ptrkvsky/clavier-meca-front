@@ -4,8 +4,8 @@ import theme from '../global/theme';
 const PrimaryButton = styled('button')`
   cursor: pointer;
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 18px;
+  padding: ${props => (props.big ? '12px 32px' : '10px 20px')};
+  font-size: ${props => (props.big ? '24px' : '18px')};
   font-family: ${theme.fonts.title};
   text-align: center;
   text-transform: uppercase;
