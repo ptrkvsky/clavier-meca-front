@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { PrimaryButton } from '../styles/components/Buttons';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
@@ -90,16 +90,16 @@ const Form = styled('form')`
 `;
 
 const FormContact = () => {
+  const formEl = useRef(null);
   const [formSuccess, setFormSuccess] = useState(false);
+
   const handleSubmit = event => {
     event.preventDefault();
+    const formData = new FormData(formEl.current);
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': event.target.getAttribute('name'),
-        ...name,
-      }),
+      body: new URLSearchParams(formData).toString(),
     })
       .then(() => setFormSuccess(true))
       .catch(error => alert(error));
@@ -107,6 +107,7 @@ const FormContact = () => {
 
   return (
     <Form
+      ref={formEl}
       name="contact"
       method="POST"
       data-netlify="true"
