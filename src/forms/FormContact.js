@@ -108,12 +108,14 @@ const FormContact = () => {
   return (
     <Form
       ref={formEl}
-      name="contact"
-      method="POST"
+      method="post"
+      netlify-honeypot="bot-field"
       data-netlify="true"
-      data-netlify-recaptcha="true"
+      name="contact"
       onSubmit={handleSubmit}
     >
+      <input type="hidden" name="bot-field" />
+      <input type="hidden" name="form-name" value="contact" />
       <div class="input-text-wrapper">
         <div class="item-form">
           <label>
@@ -138,7 +140,6 @@ const FormContact = () => {
           </label>
         </div>
       </div>
-
       <div>
         <label className="label">
           Message
