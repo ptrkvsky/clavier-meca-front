@@ -27,6 +27,10 @@ export default function GlobalStyle() {
           font-display: swap;
         }
 
+        * {
+          box-sizing: border-box;
+        }
+
         body {
           background: ${theme.bg.main};
           color: ${theme.colors.main};
@@ -50,6 +54,20 @@ export default function GlobalStyle() {
         strong {
           font-family: ${theme.fonts.title};
           font-size: 1.05em;
+        }
+
+        input:focus {
+          outline: none !important;
+          border: none;
+          background-color: #e8e8e8;
+          padding-left: 8px;
+        }
+
+        textarea:focus {
+          border: none;
+          outline: none !important;
+          padding-left: 12px;
+          background-color: #e8e8e8;
         }
 
         a,
