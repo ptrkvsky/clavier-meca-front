@@ -10,7 +10,6 @@ const MainWrapper = styled('div')`
   display: grid;
   min-height: 100vh;
   grid-template-rows: 70px auto 274px;
-
   grid-template-areas:
     'header'
     'main'

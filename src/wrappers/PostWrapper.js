@@ -5,6 +5,7 @@ import mediaQueries from '../styles/global/mediaQueries';
 import PostSlices from '../components/posts/PostSlices';
 import PostIntro from '../components/posts/PostIntro';
 import TableOfContent from '../components/TableOfContent';
+import Seo from '../components/general/Seo';
 
 const PostLayout = styled('div')`
   width: ${theme.maxWidth};
@@ -22,7 +23,6 @@ const PostWrapper = ({ post }) => {
   // ADD NUMBER TO EVERY H2 IN MAIN CONTENT
   useEffect(() => {
     // Get All H2
-    console.info('HELOOOOOOW');
     const h2Array = document.querySelectorAll('#main-content h2');
     [...h2Array].forEach((h2, index) => {
       // If there is no number add one
@@ -37,7 +37,7 @@ const PostWrapper = ({ post }) => {
 
   return (
     <>
-      {/* <Seo title={post.title} /> */}
+      <Seo title={post.title} />
       <PostLayout>
         <PostIntro post={post} />
         {tableOfContent && <TableOfContent tableOfContent={tableOfContent} />}
