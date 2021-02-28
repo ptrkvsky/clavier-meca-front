@@ -9,7 +9,6 @@ const CloakImage = ({ asset, url }) => {
     setLink(url);
   }, [link]);
 
-  console.info(asset.localFile.childImageSharp.gatsbyImageData);
   return (
     <a href={link} target="_blank">
       {asset.fluid && (

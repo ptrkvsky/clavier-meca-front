@@ -27,7 +27,6 @@ const TableOfContent = ({ tableOfContent }) => {
   const [tocIsVisible, setTocIsVisible] = useState(false);
 
   const handleClick = () => {
-    console.info(tocIsVisible);
     setTocIsVisible(!tocIsVisible);
   };
 

@@ -110,7 +110,7 @@ export const query = graphql`
         ... on SanityBodySection {
           _key
           _type
-          _rawBodyTextt
+          _rawBodyTextt(resolveReferences: { maxDepth: 10 })
         }
         ... on SanityKeyboardsSection {
           _key

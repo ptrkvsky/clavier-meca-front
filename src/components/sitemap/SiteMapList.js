@@ -3,7 +3,6 @@ import React from 'react';
 import CategorieItem from './CategorieItem';
 
 const SiteMapList = ({ posts, categories }) => {
-  console.info(posts, categories);
   return (
     <>
       {categories &&

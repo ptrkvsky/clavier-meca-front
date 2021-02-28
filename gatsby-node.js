@@ -1,9 +1,12 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
 const amazonPaapi = require('amazon-paapi');
 
 exports.createPages = async ({ graphql, actions }) => {
   const commonParameters = {
-    AccessKey: 'AKIAJY23GLDA36YQJEXA',
-    SecretKey: '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',
+    AccessKey: process.env.GATSBY_AMAZON_ACCESS,
+    SecretKey: process.env.GATSBY_AMAZON_SECRET,
     PartnerTag: 'clavier07-21', // yourtag-20
     PartnerType: 'Associates', // Optional. Default value is Associates.
     Marketplace: 'www.amazon.fr', // Optional. Default value is US.
