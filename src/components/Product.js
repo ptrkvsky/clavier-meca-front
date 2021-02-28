@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 import { PrimaryButton } from '../styles/components/Buttons';
@@ -72,8 +72,22 @@ const renderLink = (isVisible, url) => {
   );
 };
 
-const Product = ({ product }) => {
+const Product = ({ product, productsAmazon }) => {
   const [linkVisible, setLinkVisible] = useState(false);
+  let availability = null;
+  // Filter amazon products tab
+  if (productsAmazon) {
+    const productAmazonFiltered = productsAmazon.filter(productAmazon => {
+      if (productAmazon.ASIN === product.product.asin) {
+        return productAmazon;
+      }
+    });
+
+    if (productAmazonFiltered.length > 0) {
+      availability =
+        productAmazonFiltered[0].Offers.Listings[0].Availability.Message;
+    }
+  }
   return (
     <>
       {product ? (
@@ -91,6 +105,14 @@ const Product = ({ product }) => {
               </ProductTitle>
               <ProductDesc>
                 <PortableText blocks={product.product._rawLongDesc} />
+
+                {availability ? (
+                  <p>
+                    <b>Disponibilité :</b> {availability}
+                  </p>
+                ) : (
+                  ''
+                )}
               </ProductDesc>
             </div>
             <div

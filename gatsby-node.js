@@ -1,4 +1,16 @@
+const amazonPaapi = require('amazon-paapi');
+
 exports.createPages = async ({ graphql, actions }) => {
+  const commonParameters = {
+    AccessKey: 'AKIAJY23GLDA36YQJEXA',
+    SecretKey: 'pS3R2CjFv5mFuSECoVD3N1Qz/Ivz0f/LfdCGhk6s',
+    PartnerTag: 'clavier07-21', // yourtag-20
+    PartnerType: 'Associates', // Optional. Default value is Associates.
+    Marketplace: 'www.amazon.fr', // Optional. Default value is US.
+  };
+
+  /** Promise */
+
   const { createPage } = actions;
 
   const postTemplate = require.resolve('./src/templates/Post.js');
@@ -20,6 +32,14 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allSanityProduct {
+        nodes {
+          asin
+          slug {
+            current
+          }
+        }
+      }
     }
   `);
   if (result.errors) {
@@ -28,12 +48,47 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const categorySet = new Set();
   const posts = result.data.allSanityPost.edges || [];
+  const asinSet = new Set();
+  const products = result.data.allSanityProduct.nodes || [];
+
+  // Loop over all products
+  products.forEach(node => {
+    // addAsin to set
+    if (node.asin) {
+      asinSet.add(node.asin);
+    }
+  });
+  const asinList = Array.from(asinSet);
+  const requestParameters = {
+    ItemIds: asinList,
+    ItemIdType: 'ASIN',
+    Condition: 'New',
+    Resources: [
+      'ItemInfo.ByLineInfo',
+      'ItemInfo.ContentInfo',
+      'ItemInfo.ContentRating',
+      'ItemInfo.Classifications',
+      'ItemInfo.ExternalIds',
+      'ItemInfo.Features',
+      'ItemInfo.ManufactureInfo',
+      'ItemInfo.ProductInfo',
+      'ItemInfo.TechnicalInfo',
+      'ItemInfo.Title',
+      'ItemInfo.TradeInInfo',
+      'Offers.Listings.Availability.Message',
+      'Offers.Listings.Price',
+      'Offers.Listings.DeliveryInfo.IsPrimeEligible',
+    ],
+  };
+  const productsAmazon = await amazonPaapi.GetItems(
+    commonParameters,
+    requestParameters
+  );
 
   posts.forEach((edge, index) => {
     // Get categories
     if (edge.node.categories[0].slug.current) {
       edge.node.categories.forEach(cat => {
-        console.info(cat.slug.current);
         categorySet.add(cat.slug.current);
       });
     }
@@ -42,7 +97,10 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path,
       component: postTemplate,
-      context: { slug: edge.node.slug.current },
+      context: {
+        slug: edge.node.slug.current,
+        productsAmazon,
+      },
     });
   });
 

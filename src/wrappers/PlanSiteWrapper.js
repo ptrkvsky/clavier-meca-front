@@ -4,12 +4,13 @@ import SiteMapList from '../components/sitemap/SiteMapList';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 import mediaQueries from '../styles/global/mediaQueries';
+import { MainTitle } from '../styles/components/Titles';
 import { DefaultLayout } from '../styles/global/layouts';
 
 const PlanSiteWrapper = ({ posts, categories }) => {
   return (
     <DefaultLayout>
-      <h1>Plan de site</h1>
+      <MainTitle>Plan de site</MainTitle>
       <SiteMapList posts={posts} categories={categories} />
     </DefaultLayout>
   );

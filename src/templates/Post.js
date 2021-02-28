@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
 import PostWrapper from '../wrappers/PostWrapper';
 
-const PostPage = ({ data }) => {
+const PostPage = ({ data, pageContext }) => {
   const { post } = data;
-  return <PostWrapper post={post} />;
+  const productsAmazon = pageContext.productsAmazon.ItemsResult.Items;
+
+  return <PostWrapper productsAmazon={productsAmazon} post={post} />;
 };
 
 PostPage.propTypes = {
@@ -197,6 +199,7 @@ export const query = graphql`
             title
             size
             product {
+              asin
               url
               title
               _rawLongDesc

@@ -10,7 +10,6 @@ const MainWrapper = styled('div')`
   display: grid;
   min-height: 100vh;
   grid-template-rows: 70px auto 274px;
-
   grid-template-areas:
     'header'
     'main'
@@ -27,15 +26,17 @@ const MainWrapper = styled('div')`
   }
 `;
 
-const Layout = ({ children }) => (
-  <>
-    <GlobalStyle />
-    <MainWrapper>
-      <main>{children}</main>
-      <Header />
-      <Footer />
-    </MainWrapper>
-  </>
-);
+const Layout = ({ children, amazonPaapi }) => {
+  return (
+    <>
+      <GlobalStyle />
+      <MainWrapper>
+        <main>{children}</main>
+        <Header />
+        <Footer />
+      </MainWrapper>
+    </>
+  );
+};
 
 export default Layout;

@@ -1,6 +1,16 @@
 import styled from '@emotion/styled';
 import theme from '../global/theme';
 
+const MainTitle = styled('h1')`
+  margin: 100px 0;
+  font-size: 45px;
+  line-height: 1.33;
+  letter-spacing: 21px;
+  font-family: ${theme.fonts.title};
+  text-align: center;
+  text-transform: uppercase;
+`;
+
 const TitleH2 = styled('h2')`
   position: relative;
   font-size: 48px;
@@ -47,4 +57,4 @@ const TitleH4 = styled('h4')`
   letter-spacing: -1px;
 `;
 
-export { TitleH2, TitleH3, TitleH4 };
+export { MainTitle, TitleH2, TitleH3, TitleH4 };

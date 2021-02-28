@@ -12,11 +12,17 @@ const Section = styled('section')`
   justify-content: center;
 `;
 
-const ProductsSection = ({ products }) => {
+const ProductsSection = ({ products, productsAmazon }) => {
   return (
     <Section>
       {products.map(product => {
-        return <ProductWrapper product={product} key={product._key} />;
+        return (
+          <ProductWrapper
+            product={product}
+            key={product._key}
+            productsAmazon={productsAmazon}
+          />
+        );
       })}
     </Section>
   );
@@ -24,6 +30,7 @@ const ProductsSection = ({ products }) => {
 
 ProductsSection.propTypes = {
   products: PropTypes.array.isRequired,
+  productsAmazon: PropTypes.array.isRequired,
 };
 
 export default ProductsSection;

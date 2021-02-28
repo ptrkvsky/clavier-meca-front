@@ -8,7 +8,12 @@ import SwitchBlock from '../Switches/SwitchBlock';
 import BodySection from '../BodySection';
 import ProductsSection from '../ProductsSection';
 
-const PostSlices = ({ content, setTableOfContent, tableOfContent }) => {
+const PostSlices = ({
+  content,
+  setTableOfContent,
+  tableOfContent,
+  productsAmazon,
+}) => {
   const slices = content
     .filter(c => !c.disabled)
     .map((c, i) => {
@@ -47,7 +52,13 @@ const PostSlices = ({ content, setTableOfContent, tableOfContent }) => {
           );
           break;
         case 'productsSection':
-          el = <ProductsSection key={c._key} {...c} />;
+          el = (
+            <ProductsSection
+              key={c._key}
+              {...c}
+              productsAmazon={productsAmazon}
+            />
+          );
           break;
         default:
           el = null;
@@ -59,6 +70,7 @@ const PostSlices = ({ content, setTableOfContent, tableOfContent }) => {
 
 PostSlices.propTypes = {
   content: PropTypes.array.isRequired,
+  productsAmazon: PropTypes.array.isRequired,
   setTableOfContent: PropTypes.func.isRequired,
   tableOfContent: PropTypes.array.isRequired,
 };
