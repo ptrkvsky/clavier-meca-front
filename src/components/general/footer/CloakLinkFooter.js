@@ -25,6 +25,7 @@ const SpanFooter = styled('span')`
 
 const CloakLinkFooter = ({ url, content }) => {
   const [isCloaked, setIsCloaked] = useState(true);
+
   return (
     <div
       style={{ display: 'inline-block' }}

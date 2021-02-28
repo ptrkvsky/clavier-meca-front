@@ -26,15 +26,17 @@ const MainWrapper = styled('div')`
   }
 `;
 
-const Layout = ({ children }) => (
-  <>
-    <GlobalStyle />
-    <MainWrapper>
-      <main>{children}</main>
-      <Header />
-      <Footer />
-    </MainWrapper>
-  </>
-);
+const Layout = ({ children, amazonPaapi }) => {
+  return (
+    <>
+      <GlobalStyle />
+      <MainWrapper>
+        <main>{children}</main>
+        <Header />
+        <Footer />
+      </MainWrapper>
+    </>
+  );
+};
 
 export default Layout;

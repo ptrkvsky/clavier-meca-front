@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
@@ -17,7 +18,7 @@ const PostLayout = styled('div')`
   }
 `;
 
-const PostWrapper = ({ post }) => {
+const PostWrapper = ({ post, productsAmazon }) => {
   const [tableOfContent, setTableOfContent] = useState([]);
 
   // ADD NUMBER TO EVERY H2 IN MAIN CONTENT
@@ -45,12 +46,21 @@ const PostWrapper = ({ post }) => {
           <PostSlices
             content={post.content}
             tableOfContent={tableOfContent}
+            productsAmazon={productsAmazon}
             setTableOfContent={setTableOfContent}
           />
         </div>
       </PostLayout>
     </>
   );
+};
+
+PostWrapper.propTypes = {
+  post: PropTypes.shape({
+    content: PropTypes.any,
+    title: PropTypes.any,
+  }),
+  productsAmazon: PropTypes.array.isRequired,
 };
 
 export default PostWrapper;

@@ -39,16 +39,23 @@ const Article6 = styled('article')`
   }
 `;
 
-const ProductWrapper = ({ product }) => {
+const ProductWrapper = ({ product, productsAmazon }) => {
   return product.size === 'full' ? (
     <Article12 className="full">
-      <Product product={product} />
+      <Product product={product} productsAmazon={productsAmazon} />
     </Article12>
   ) : (
     <Article6 className="small">
-      <Product product={product} />
+      <Product product={product} productsAmazon={productsAmazon} />
     </Article6>
   );
+};
+
+ProductWrapper.propTypes = {
+  product: PropTypes.shape({
+    size: PropTypes.string,
+  }),
+  productsAmazon: PropTypes.array.isRequired,
 };
 
 export default ProductWrapper;

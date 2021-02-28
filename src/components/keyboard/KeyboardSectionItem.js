@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
+import slugify from 'slugify';
 import KeyboardProsCons from './KeyboardProsCons';
 import { TitleH3, TitleH4 } from '../../styles/components/Titles';
 import CloakButton from '../helpers/CloakButton';
@@ -95,11 +96,15 @@ const KeyboardsSection = ({ keyboard }) => {
 
   const url = keyboardItem.urlAmazon || keyboardItem.urlMateriel;
 
+  const idTitle = `#${slugify(keyboardItem.title)}`;
+
   return (
     <Article>
       <StickyHeading>
         <div className="title-teaser">
-          <KeyboardTitle as={Hn}>{keyboardItem.title}</KeyboardTitle>
+          <KeyboardTitle id={idTitle} as={Hn}>
+            {keyboardItem.title}
+          </KeyboardTitle>
           <span class="teaser">{keyboardItem.teaser}</span>
         </div>
         <div className="button-wrapper">
