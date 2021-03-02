@@ -7,8 +7,11 @@ import CloakButton from '../helpers/CloakButton';
 const KeyboardTableItemStyle = styled('h2')``;
 
 const KeyboardTableItem = ({ keyboard, position }) => {
+  // console.info(keyboard);
+
   const image =
     keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+
   return (
     <tr>
       <td className="cell pos">

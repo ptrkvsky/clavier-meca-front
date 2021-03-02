@@ -18,7 +18,7 @@ const PostLayout = styled('div')`
   }
 `;
 
-const PostWrapper = ({ post, productsAmazon }) => {
+const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
   const [tableOfContent, setTableOfContent] = useState([]);
 
   // ADD NUMBER TO EVERY H2 IN MAIN CONTENT
@@ -45,6 +45,7 @@ const PostWrapper = ({ post, productsAmazon }) => {
         <div id="main-content">
           <PostSlices
             content={post.content}
+            keyboardsAmazon={keyboardsAmazon}
             tableOfContent={tableOfContent}
             productsAmazon={productsAmazon}
             setTableOfContent={setTableOfContent}
@@ -56,6 +57,7 @@ const PostWrapper = ({ post, productsAmazon }) => {
 };
 
 PostWrapper.propTypes = {
+  keyboardsAmazon: PropTypes.array.isRequired,
   post: PropTypes.shape({
     content: PropTypes.any,
     title: PropTypes.any,

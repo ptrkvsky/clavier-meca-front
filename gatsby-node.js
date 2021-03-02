@@ -43,27 +43,35 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allSanityKeyboard {
+        nodes {
+          asin
+        }
+      }
     }
   `);
   if (result.errors) {
     throw result.errors;
   }
 
+  // Category
   const categorySet = new Set();
   const posts = result.data.allSanityPost.edges || [];
-  const asinSet = new Set();
+
+  // Products
+  const asinProductsSet = new Set();
   const products = result.data.allSanityProduct.nodes || [];
 
   // Loop over all products
   products.forEach(node => {
     // addAsin to set
     if (node.asin) {
-      asinSet.add(node.asin);
+      asinProductsSet.add(node.asin);
     }
   });
-  const asinList = Array.from(asinSet);
-  const requestParameters = {
-    ItemIds: asinList,
+  const asinProductsList = Array.from(asinProductsSet);
+  const requestParametersProducts = {
+    ItemIds: asinProductsList,
     ItemIdType: 'ASIN',
     Condition: 'New',
     Resources: [
@@ -85,8 +93,69 @@ exports.createPages = async ({ graphql, actions }) => {
   };
   const productsAmazon = await amazonPaapi.GetItems(
     commonParameters,
-    requestParameters
+    requestParametersProducts
   );
+
+  // Keyboards
+  const asinKeyboardsSet = new Set();
+  const keyboards = result.data.allSanityKeyboard.nodes || [];
+
+  // Loop over all products
+  keyboards.forEach(node => {
+    // addAsin to set
+    if (node.asin) {
+      asinKeyboardsSet.add(node.asin);
+    }
+  });
+
+  // Keyboards Amazon
+  const asinKeyboardsList = Array.from(asinKeyboardsSet);
+  const asinKeyboardsListFiltered = asinKeyboardsList.filter(el => el != null);
+  const chunk = 9;
+  const arrayRequest = []; // array for slice results
+
+  for (let i = 0; i < asinKeyboardsListFiltered.length; i += chunk) {
+    const tabSliced = asinKeyboardsListFiltered.slice(i, i + chunk);
+
+    const requestParametersKeyboards = {
+      ItemIds: tabSliced,
+      ItemIdType: 'ASIN',
+      Condition: 'New',
+      Resources: [
+        'ItemInfo.ByLineInfo',
+        'ItemInfo.ContentInfo',
+        'ItemInfo.Features',
+        'ItemInfo.ProductInfo',
+        'ItemInfo.TechnicalInfo',
+        'ItemInfo.Title',
+        'ItemInfo.TradeInInfo',
+        'Offers.Listings.Availability.Message',
+        'Offers.Listings.Price',
+        'Offers.Listings.DeliveryInfo.IsPrimeEligible',
+      ],
+    };
+    arrayRequest.push(requestParametersKeyboards);
+  }
+  const keyboardsAmazon = [];
+  for (let i = 0; i < arrayRequest.length; i += 1) {
+    const resultApi = await amazonPaapi.GetItems(
+      commonParameters,
+      arrayRequest[i]
+    );
+    keyboardsAmazon.push(resultApi);
+  }
+  const finalArray = keyboardsAmazon.map(
+    objectsAmazon => objectsAmazon.ItemsResult.Items
+  );
+
+  // Merge arrays for every amazon request
+  const keyboardsAmazonMerged = [];
+  keyboardsAmazon.forEach(element => {
+    console.info(element.ItemsResult.Items);
+    element.ItemsResult.Items.forEach(el => {
+      keyboardsAmazonMerged.push(el);
+    });
+  });
 
   posts.forEach((edge, index) => {
     // Get categories
@@ -103,6 +172,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: edge.node.slug.current,
         productsAmazon,
+        keyboardsAmazon: keyboardsAmazonMerged,
       },
     });
   });

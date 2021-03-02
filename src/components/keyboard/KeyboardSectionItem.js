@@ -88,24 +88,25 @@ const displaySwitch = switchArrray => {
   return switchArrray.map(switchItem => <span>{switchItem.nom}</span>);
 };
 
-const KeyboardsSection = ({ keyboard }) => {
-  const { Hn } = keyboard;
-  const keyboardItem = keyboard.keyboard;
+const KeyboardsSection = ({ keyboard, Hn }) => {
   const image =
-    keyboardItem.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+    keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
 
-  const url = keyboardItem.urlAmazon || keyboardItem.urlMateriel;
-
-  const idTitle = `#${slugify(keyboardItem.title)}`;
+  const url = keyboard.urlAmazon || keyboard.urlMateriel;
+  const idTitle = `#${slugify(keyboard.title)}`;
+  // Amazon informations
+  const features = keyboard.ItemInfo?.Features.DisplayValues;
+  const price = keyboard.Offers?.Listings[0].Price.DisplayAmount;
+  const availability = keyboard.Offers?.Listings[0].Availability.Message;
 
   return (
     <Article>
       <StickyHeading>
         <div className="title-teaser">
           <KeyboardTitle id={idTitle} as={Hn}>
-            {keyboardItem.title}
+            {keyboard.title}
           </KeyboardTitle>
-          <span class="teaser">{keyboardItem.teaser}</span>
+          <span class="teaser">{keyboard.teaser}</span>
         </div>
         <div className="button-wrapper">
           <CloakButton url={url} />
@@ -115,27 +116,39 @@ const KeyboardsSection = ({ keyboard }) => {
       <div>
         <WrapperImageDesc>
           <div class="wrapper-image">
-            <GatsbyImage image={image} alt={keyboardItem.mainImage.alt} />
+            <GatsbyImage image={image} alt={keyboard.mainImage.alt} />
           </div>
           <div class="wrapper-desc">
             <TitleH4>Points clefs</TitleH4>
             <dl>
               <dt>Gabarit :</dt>
-              <dd>{keyboardItem.layout}</dd>
+              <dd>{keyboard.layout}</dd>
 
               <dt>Switches :</dt>
-              <dd>{displaySwitch(keyboardItem.switchCategory)}</dd>
+              <dd>{displaySwitch(keyboard.switchCategory)}</dd>
 
               <dt>RGB :</dt>
-              <dd>{keyboardItem.rgb ? 'Oui' : 'Non'}</dd>
+              <dd>{keyboard.rgb ? 'Oui' : 'Non'}</dd>
             </dl>
           </div>
         </WrapperImageDesc>
-        <PortableText blocks={keyboardItem._rawShortDesc} />
-        <KeyboardProsCons
-          pros={keyboardItem._rawPros}
-          cons={keyboardItem._rawCons}
-        />
+        <PortableText blocks={keyboard._rawShortDesc} />
+        {features && (
+          <>
+            <h4>Fonctionnalités</h4>
+            <ul>
+              {features.map(feature => (
+                <li>{feature}.</li>
+              ))}
+            </ul>
+          </>
+        )}
+        <KeyboardProsCons pros={keyboard._rawPros} cons={keyboard._rawCons} />
+
+        <div>
+          {price && price} {availability && availability}
+        </div>
+
         <div className="button">
           <CloakButton url={url} />
         </div>
@@ -149,6 +162,7 @@ KeyboardsSection.propTypes = {
     Hn: PropTypes.string.isRequired,
     keyboard: PropTypes.object.isRequired,
   }),
+  keyboardsAmazon: PropTypes.array.isRequired,
 };
 
 export default KeyboardsSection;

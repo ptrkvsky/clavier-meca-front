@@ -10,9 +10,9 @@ const PostItem = ({ post }) => {
   const alt = post.mainImage?.alt;
   return (
     <>
-      <h3>
+      <h2>
         <Link to={`/${post.slug.current}`}>{post.title}</Link>
-      </h3>
+      </h2>
       {imagePost ? <GatsbyImage alt={alt ? alt : ''} image={imagePost} /> : ''}
     </>
   );

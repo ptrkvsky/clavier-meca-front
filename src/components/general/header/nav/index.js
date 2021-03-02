@@ -21,8 +21,10 @@ const Nav = ({ data }) => {
         {menuItems.map(menuItem => {
           return (
             <NavItem
+              key={menuItem.menuItemSlug.current}
               name={menuItem.menuItemName}
               slug={menuItem.menuItemSlug.current}
+
             />
           );
         })}

@@ -10,6 +10,7 @@ import ProductsSection from '../ProductsSection';
 
 const PostSlices = ({
   content,
+  keyboardsAmazon,
   setTableOfContent,
   tableOfContent,
   productsAmazon,
@@ -26,10 +27,22 @@ const PostSlices = ({
           el = <Highlight key={c._key} {...c} />;
           break;
         case 'keyboardsTable':
-          el = <KeyboardTable key={c._key} {...c} />;
+          el = (
+            <KeyboardTable
+              keyboardsAmazon={keyboardsAmazon}
+              key={c._key}
+              {...c}
+            />
+          );
           break;
         case 'keyboardsSection':
-          el = <KeyboardsSection key={c._key} {...c} />;
+          el = (
+            <KeyboardsSection
+              key={c._key}
+              keyboardsAmazon={keyboardsAmazon}
+              {...c}
+            />
+          );
           break;
         case 'switchBlock':
           el = (
@@ -70,6 +83,7 @@ const PostSlices = ({
 
 PostSlices.propTypes = {
   content: PropTypes.array.isRequired,
+  keyboardsAmazon: PropTypes.array.isRequired,
   productsAmazon: PropTypes.array.isRequired,
   setTableOfContent: PropTypes.func.isRequired,
   tableOfContent: PropTypes.array.isRequired,

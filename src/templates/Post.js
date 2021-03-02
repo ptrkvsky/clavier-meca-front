@@ -6,12 +6,20 @@ import PostWrapper from '../wrappers/PostWrapper';
 const PostPage = ({ data, pageContext }) => {
   const { post } = data;
   const productsAmazon = pageContext.productsAmazon.ItemsResult.Items;
+  const { keyboardsAmazon } = pageContext;
 
-  return <PostWrapper productsAmazon={productsAmazon} post={post} />;
+  return (
+    <PostWrapper
+      productsAmazon={productsAmazon}
+      keyboardsAmazon={keyboardsAmazon}
+      post={post}
+    />
+  );
 };
 
 PostPage.propTypes = {
   data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
@@ -42,6 +50,7 @@ export const query = graphql`
           keyboards {
             keyboard {
               _id
+              asin
               price
               mainImage {
                 asset {
@@ -115,12 +124,12 @@ export const query = graphql`
         ... on SanityKeyboardsSection {
           _key
           _type
-          rightCol
-          subTitleCol
-          titleCol
           _rawDescription
           hn
+          rightCol
+          subTitleCol
           title
+          titleCol
           keyboardCol {
             _key
             urlAmazon
@@ -148,6 +157,7 @@ export const query = graphql`
             _key
             keyboard {
               _key
+              asin
               mainImage {
                 asset {
                   fluid {
@@ -165,7 +175,6 @@ export const query = graphql`
                     }
                   }
                 }
-
                 alt
                 caption
               }

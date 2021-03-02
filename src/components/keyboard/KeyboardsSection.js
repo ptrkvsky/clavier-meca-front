@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 import KeyboardSectionItem from './KeyboardSectionItem';
+import KeyboardContainer from './KeyboardContainer';
 import KeyboardAside from './KeyboardAside';
 import { TitleH2 } from '../../styles/components/Titles';
 import PortableText from '../portableText';
@@ -16,6 +18,7 @@ const KeyboardsSection = ({
   hn,
   keyboardCol,
   keyboards,
+  keyboardsAmazon,
   subTitleCol,
   title,
   titleCol,
@@ -28,7 +31,13 @@ const KeyboardsSection = ({
         <div class="col-left">
           <PortableText blocks={_rawDescription} />
           {keyboards.map(keyboard => (
-            <KeyboardSectionItem key={keyboard._key} keyboard={keyboard} />
+            <KeyboardContainer
+              keyboardsAmazon={keyboardsAmazon}
+              key={keyboard._key}
+              keyboard={keyboard.keyboard}
+              hn={keyboard.Hn}
+              renderComponent={KeyboardSectionItem}
+            />
           ))}
         </div>
         <div class="col-right">
@@ -41,6 +50,19 @@ const KeyboardsSection = ({
       </Grid>
     </div>
   );
+};
+
+KeyboardsSection.propTypes = {
+  _rawDescription: PropTypes.object.isRequired,
+  hn: PropTypes.string.isRequired,
+  keyboardCol: PropTypes.bool.isRequired,
+  keyboards: PropTypes.shape({
+    map: PropTypes.func,
+  }),
+  keyboardsAmazon: PropTypes.array.isRequired,
+  subTitleCol: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  titleCol: PropTypes.string.isRequired,
 };
 
 export default KeyboardsSection;
