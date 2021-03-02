@@ -16,6 +16,7 @@ const PrimaryButton = styled('button')`
   transition: all 0.1s linear;
   border: none;
   &:hover {
+    text-decoration: none;
     box-shadow: 0px 4px 9px rgba(128, 0, 255, 0.25);
   }
 `;

@@ -4,13 +4,19 @@ import PortableText from '../components/portableText';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
+import mediaQueries from '../styles/global/mediaQueries';
 
 const HeroStyled = styled('section')`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 114px 0;
 
+  ${mediaQueries.tabletLandscape} {
+    grid-template-columns: 1fr;
+  }
+
   .illustration {
+    display: flex;
     padding: ${props => (props.padding ? '45px' : '0')};
     background-color: ${props =>
       props.padding ? theme.colors.primary : 'transparent'};

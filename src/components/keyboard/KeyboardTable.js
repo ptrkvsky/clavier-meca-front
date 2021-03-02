@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
-import KeyboardTableItem from './KeyboardTableItem';
 import { TitleH2 } from '../../styles/components/Titles';
 import theme from '../../styles/global/theme';
 import PortableText from '../portableText';
 import KeyboardContainer from './KeyboardContainer';
+import KeyboardTableItem from './KeyboardTableItem';
 
 const Table = styled('table')`
   border-collapse: collapse;
@@ -77,9 +77,8 @@ const KeyboardTable = ({
   title,
   keyboardsAmazon,
 }) => {
-
   return (
-    <section>
+    <section className="numberh2">
       <TitleH2 as={hn}>{title}</TitleH2>
       <PortableText blocks={_rawDescription} />
       <Table>

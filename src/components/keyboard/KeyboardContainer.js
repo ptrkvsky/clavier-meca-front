@@ -1,6 +1,6 @@
 // Create an object with sanity + amazon information
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // Merge inforrmations keyboard from Sanity to informations from an Array with every keyboard products
 const KeyboardContainer = ({
@@ -11,7 +11,6 @@ const KeyboardContainer = ({
 }) => {
   const RenderComponent = renderComponent;
   let keyboardMerged = keyboard;
-  console.info(keyboard, keyboardsAmazon);
   if (keyboardsAmazon) {
     const keyboardAmazonFiltered = keyboardsAmazon.filter(keyboardAmazon => {
       if (keyboardAmazon.ASIN === keyboard?.asin) {
@@ -26,9 +25,6 @@ const KeyboardContainer = ({
       };
     }
   }
-
-  console.info(keyboardMerged);
-
   return <RenderComponent keyboard={keyboardMerged} {...rest} />;
 };
 

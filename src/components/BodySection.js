@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import PortableText from '../components/portableText';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 import quote from '../assets/images/chevron.svg';
@@ -74,7 +74,7 @@ const BodySectionStyled = styled('section')`
 
 const BodySection = ({ _rawBodyTextt, tableOfContent, setTableOfContent }) => {
   return (
-    <BodySectionStyled>
+    <BodySectionStyled className="numberh2">
       <PortableText
         blocks={_rawBodyTextt}
         tableOfContent={tableOfContent}

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import PortableText from '../components/portableText';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
+import mediaQueries from '../styles/global/mediaQueries';
 
 const HighlightStyled = styled('section')`
   margin: 114px 0;
@@ -21,6 +22,9 @@ const HighlightStyled = styled('section')`
     line-height: 44px;
     letter-spacing: -1px;
     font-family: ${theme.fonts.light};
+    ${mediaQueries.tabletLandscape} {
+      width: auto;
+    }
     p:first-of-type {
       margin: 0;
       padding-top: 0;

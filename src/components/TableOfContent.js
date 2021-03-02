@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
+import mediaQueries from '../styles/global/mediaQueries';
 import { BsLayoutTextSidebarReverse as Icon } from '@react-icons/all-files/bs/BsLayoutTextSidebarReverse';
 
 import TableOfContentList from './TableOfContentList';
@@ -14,6 +15,10 @@ const TableOfContentStyled = styled('div')`
   line-height: 1.3;
   background: #000;
   color: #fff;
+
+  ${mediaQueries.tabletLandscape} {
+    margin: 68px 0;
+  }
 
   .heading {
     display: flex;

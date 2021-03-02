@@ -8,8 +8,12 @@ const PostIntroStyle = styled('div')`
   margin: 114px 0;
   display: grid;
   grid-template-columns: 1fr 760px 1fr;
-  ${mediaQueries.mobile} {
+  ${mediaQueries.tabletLandscape} {
     grid-template-columns: 1fr;
+    margin: 64px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   h1 {

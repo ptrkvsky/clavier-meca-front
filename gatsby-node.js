@@ -113,7 +113,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const asinKeyboardsListFiltered = asinKeyboardsList.filter(el => el != null);
   const chunk = 9;
   const arrayRequest = []; // array for slice results
-
+  // Slice tab of keyboards into chunk of 9 elements
   for (let i = 0; i < asinKeyboardsListFiltered.length; i += chunk) {
     const tabSliced = asinKeyboardsListFiltered.slice(i, i + chunk);
 
@@ -136,6 +136,8 @@ exports.createPages = async ({ graphql, actions }) => {
     };
     arrayRequest.push(requestParametersKeyboards);
   }
+
+  // Request amazon API and build array for every chunk of 9 elements
   const keyboardsAmazon = [];
   for (let i = 0; i < arrayRequest.length; i += 1) {
     const resultApi = await amazonPaapi.GetItems(
@@ -144,19 +146,16 @@ exports.createPages = async ({ graphql, actions }) => {
     );
     keyboardsAmazon.push(resultApi);
   }
-  const finalArray = keyboardsAmazon.map(
-    objectsAmazon => objectsAmazon.ItemsResult.Items
-  );
 
-  // Merge arrays for every amazon request
+  // Merge arrays from every amazon request
   const keyboardsAmazonMerged = [];
   keyboardsAmazon.forEach(element => {
-    console.info(element.ItemsResult.Items);
     element.ItemsResult.Items.forEach(el => {
       keyboardsAmazonMerged.push(el);
     });
   });
 
+  // Build pages for every posts
   posts.forEach((edge, index) => {
     // Get categories
     if (edge.node.categories[0].slug.current) {
@@ -164,7 +163,7 @@ exports.createPages = async ({ graphql, actions }) => {
         categorySet.add(cat.slug.current);
       });
     }
-
+    // Create pages and pass products and keyboards as context
     const path = `/${edge.node.slug.current}`;
     createPage({
       path,
@@ -177,6 +176,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  // Build pages for every category
   const categoryList = Array.from(categorySet);
 
   categoryList.forEach(category => {

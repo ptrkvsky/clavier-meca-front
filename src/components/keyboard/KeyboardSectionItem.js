@@ -94,10 +94,10 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
 
   const url = keyboard.urlAmazon || keyboard.urlMateriel;
   const idTitle = `#${slugify(keyboard.title)}`;
-  // Amazon informations
-  const features = keyboard.ItemInfo?.Features.DisplayValues;
-  const price = keyboard.Offers?.Listings[0].Price.DisplayAmount;
-  const availability = keyboard.Offers?.Listings[0].Availability.Message;
+  // Amazon informations for V2 or A/B testing
+  // const features = keyboard.ItemInfo?.Features.DisplayValues;
+  // const price = keyboard.Offers?.Listings[0].Price.DisplayAmount;
+  // const availability = keyboard.Offers?.Listings[0].Availability.Message;
 
   return (
     <Article>
@@ -133,21 +133,8 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
           </div>
         </WrapperImageDesc>
         <PortableText blocks={keyboard._rawShortDesc} />
-        {features && (
-          <>
-            <h4>Fonctionnalités</h4>
-            <ul>
-              {features.map(feature => (
-                <li>{feature}.</li>
-              ))}
-            </ul>
-          </>
-        )}
-        <KeyboardProsCons pros={keyboard._rawPros} cons={keyboard._rawCons} />
 
-        <div>
-          {price && price} {availability && availability}
-        </div>
+        <KeyboardProsCons pros={keyboard._rawPros} cons={keyboard._rawCons} />
 
         <div className="button">
           <CloakButton url={url} />

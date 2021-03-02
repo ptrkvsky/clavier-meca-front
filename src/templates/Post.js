@@ -54,13 +54,11 @@ export const query = graphql`
               price
               mainImage {
                 asset {
-                  fixed(height: 120) {
-                    ...GatsbySanityImageFixed_noBase64
-                  }
                   localFile {
                     childImageSharp {
                       gatsbyImageData(
                         width: 200
+                        height: 113
                         placeholder: BLURRED
                         formats: [AUTO, WEBP, AVIF]
                       )
@@ -137,12 +135,11 @@ export const query = graphql`
             title
             mainImage {
               asset {
-                fixed(width: 269) {
-                  ...GatsbySanityImageFixed_noBase64
-                }
                 localFile {
                   childImageSharp {
                     gatsbyImageData(
+                      width: 269
+                      height: 179
                       placeholder: BLURRED
                       formats: [AUTO, WEBP, AVIF]
                     )
@@ -160,15 +157,11 @@ export const query = graphql`
               asin
               mainImage {
                 asset {
-                  fluid {
-                    base64
-                    srcWebp
-                    srcSetWebp
-                  }
                   title
                   localFile {
                     childImageSharp {
                       gatsbyImageData(
+                        width: 783
                         placeholder: BLURRED
                         formats: [AUTO, WEBP, AVIF]
                       )

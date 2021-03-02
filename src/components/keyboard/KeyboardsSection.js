@@ -6,11 +6,15 @@ import KeyboardContainer from './KeyboardContainer';
 import KeyboardAside from './KeyboardAside';
 import { TitleH2 } from '../../styles/components/Titles';
 import PortableText from '../portableText';
+import mediaQueries from '../../styles/global/mediaQueries';
 
 const Grid = styled('section')`
   display: grid;
   grid-template-columns: 1fr 269px;
   grid-gap: 98px;
+  ${mediaQueries.tabletLandscape} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const KeyboardsSection = ({
@@ -25,10 +29,12 @@ const KeyboardsSection = ({
 }) => {
   return (
     <div>
-      <TitleH2 as={hn}>{title}</TitleH2>
+      <div className="numberh2">
+        <TitleH2 as={hn}>{title}</TitleH2>
+      </div>
 
       <Grid>
-        <div class="col-left">
+        <div className="col-left numberh2">
           <PortableText blocks={_rawDescription} />
           {keyboards.map(keyboard => (
             <KeyboardContainer
@@ -53,7 +59,7 @@ const KeyboardsSection = ({
 };
 
 KeyboardsSection.propTypes = {
-  _rawDescription: PropTypes.object.isRequired,
+  _rawDescription: PropTypes.array.isRequired,
   hn: PropTypes.string.isRequired,
   keyboardCol: PropTypes.bool.isRequired,
   keyboards: PropTypes.shape({

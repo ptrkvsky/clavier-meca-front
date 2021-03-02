@@ -24,7 +24,8 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
   // ADD NUMBER TO EVERY H2 IN MAIN CONTENT
   useEffect(() => {
     // Get All H2
-    const h2Array = document.querySelectorAll('#main-content h2');
+    const h2Array = document.querySelectorAll('.numberh2 h2');
+
     [...h2Array].forEach((h2, index) => {
       // If there is no number add one
       const indexMoreOne = parseInt(index) + 1;
