@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
+import mediaQueries from '../styles/global/mediaQueries';
 import { BsLayoutTextSidebarReverse as Icon } from '@react-icons/all-files/bs/BsLayoutTextSidebarReverse';
 
 import TableOfContentList from './TableOfContentList';
@@ -15,6 +16,10 @@ const TableOfContentStyled = styled('div')`
   background: #000;
   color: #fff;
 
+  ${mediaQueries.tabletLandscape} {
+    margin: 68px 0;
+  }
+
   .heading {
     display: flex;
     flex-direction: row;
@@ -27,7 +32,6 @@ const TableOfContent = ({ tableOfContent }) => {
   const [tocIsVisible, setTocIsVisible] = useState(false);
 
   const handleClick = () => {
-    console.info(tocIsVisible);
     setTocIsVisible(!tocIsVisible);
   };
 

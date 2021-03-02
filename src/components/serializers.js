@@ -3,6 +3,7 @@ import slugify from 'slugify';
 import getYouTubeId from 'get-youtube-id';
 import YouTube from 'react-youtube';
 import BasePortableText from '@sanity/block-content-to-react';
+import { Link } from 'gatsby';
 import CloakLink from '../components/helpers/CloakLink';
 import MainImage from './MainImage';
 
@@ -96,9 +97,9 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
 
     marks: {
       internalLink: ({ mark, children }) => {
-        const { slug = {} } = mark;
-        const href = `/${slug.current}`;
-        return <a href={href}>{children}</a>;
+        const { slug } = mark.reference;
+        const link = `/${slug.current}`;
+        return <Link to={link}>{children}</Link>;
       },
       link: ({ mark, children }) => {
         const { blank, href, cloaked, sponsored, noreferrer, ugc } = mark;

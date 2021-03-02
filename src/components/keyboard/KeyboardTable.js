@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
-import KeyboardTableItem from './KeyboardTableItem';
 import { TitleH2 } from '../../styles/components/Titles';
 import theme from '../../styles/global/theme';
 import PortableText from '../portableText';
+import KeyboardContainer from './KeyboardContainer';
+import KeyboardTableItem from './KeyboardTableItem';
 
 const Table = styled('table')`
   border-collapse: collapse;
@@ -69,9 +70,15 @@ const Table = styled('table')`
   }
 `;
 
-const KeyboardTable = ({ keyboards, _rawDescription, hn, title }) => {
+const KeyboardTable = ({
+  keyboards,
+  _rawDescription,
+  hn,
+  title,
+  keyboardsAmazon,
+}) => {
   return (
-    <section>
+    <section className="numberh2">
       <TitleH2 as={hn}>{title}</TitleH2>
       <PortableText blocks={_rawDescription} />
       <Table>
@@ -86,10 +93,12 @@ const KeyboardTable = ({ keyboards, _rawDescription, hn, title }) => {
         </thead>
         <tbody>
           {keyboards.map((keyboard, index) => (
-            <KeyboardTableItem
+            <KeyboardContainer
               key={keyboard.keyboard._id}
               position={index + 1}
               keyboard={keyboard.keyboard}
+              keyboardsAmazon={keyboardsAmazon}
+              renderComponent={KeyboardTableItem}
             />
           ))}
         </tbody>
@@ -102,6 +111,7 @@ KeyboardTable.propTypes = {
   _rawDescription: PropTypes.array.isRequired,
   hn: PropTypes.string.isRequired,
   keyboards: PropTypes.array.isRequired,
+  keyboardsAmazon: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
 };
 

@@ -5,11 +5,12 @@ import GlobalStyle from '../../styles/global/';
 import Header from './header';
 import Footer from './footer/index';
 import styled from '@emotion/styled';
+import Scroll from './Scroll';
 
 const MainWrapper = styled('div')`
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 70px auto 274px;
+  grid-template-rows: 70px auto auto;
   grid-template-areas:
     'header'
     'main'
@@ -33,8 +34,10 @@ const Layout = ({ children, amazonPaapi }) => {
       <MainWrapper>
         <main>{children}</main>
         <Header />
+
         <Footer />
       </MainWrapper>
+      <Scroll showBelow={1000} />
     </>
   );
 };

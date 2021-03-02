@@ -6,12 +6,20 @@ import PostWrapper from '../wrappers/PostWrapper';
 const PostPage = ({ data, pageContext }) => {
   const { post } = data;
   const productsAmazon = pageContext.productsAmazon.ItemsResult.Items;
+  const { keyboardsAmazon } = pageContext;
 
-  return <PostWrapper productsAmazon={productsAmazon} post={post} />;
+  return (
+    <PostWrapper
+      productsAmazon={productsAmazon}
+      keyboardsAmazon={keyboardsAmazon}
+      post={post}
+    />
+  );
 };
 
 PostPage.propTypes = {
   data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
@@ -42,16 +50,15 @@ export const query = graphql`
           keyboards {
             keyboard {
               _id
+              asin
               price
               mainImage {
                 asset {
-                  fixed(height: 120) {
-                    ...GatsbySanityImageFixed_noBase64
-                  }
                   localFile {
                     childImageSharp {
                       gatsbyImageData(
                         width: 200
+                        height: 113
                         placeholder: BLURRED
                         formats: [AUTO, WEBP, AVIF]
                       )
@@ -110,17 +117,17 @@ export const query = graphql`
         ... on SanityBodySection {
           _key
           _type
-          _rawBodyTextt
+          _rawBodyTextt(resolveReferences: { maxDepth: 10 })
         }
         ... on SanityKeyboardsSection {
           _key
           _type
-          rightCol
-          subTitleCol
-          titleCol
           _rawDescription
           hn
+          rightCol
+          subTitleCol
           title
+          titleCol
           keyboardCol {
             _key
             urlAmazon
@@ -128,12 +135,11 @@ export const query = graphql`
             title
             mainImage {
               asset {
-                fixed(width: 269) {
-                  ...GatsbySanityImageFixed_noBase64
-                }
                 localFile {
                   childImageSharp {
                     gatsbyImageData(
+                      width: 269
+                      height: 179
                       placeholder: BLURRED
                       formats: [AUTO, WEBP, AVIF]
                     )
@@ -148,24 +154,20 @@ export const query = graphql`
             _key
             keyboard {
               _key
+              asin
               mainImage {
                 asset {
-                  fluid {
-                    base64
-                    srcWebp
-                    srcSetWebp
-                  }
                   title
                   localFile {
                     childImageSharp {
                       gatsbyImageData(
+                        width: 783
                         placeholder: BLURRED
                         formats: [AUTO, WEBP, AVIF]
                       )
                     }
                   }
                 }
-
                 alt
                 caption
               }

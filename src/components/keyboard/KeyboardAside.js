@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import theme from '../../styles/global/theme';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
-const Aside = styled('div')`
+const Aside = styled('aside')`
   position: sticky;
   top: 27px;
   padding-bottom: 27px;

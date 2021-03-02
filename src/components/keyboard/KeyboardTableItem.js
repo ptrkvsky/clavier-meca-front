@@ -7,8 +7,10 @@ import CloakButton from '../helpers/CloakButton';
 const KeyboardTableItemStyle = styled('h2')``;
 
 const KeyboardTableItem = ({ keyboard, position }) => {
+  const price = keyboard?.Offers?.Listings[0]?.Price.Amount || keyboard.price;
   const image =
     keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+
   return (
     <tr>
       <td className="cell pos">
@@ -18,7 +20,7 @@ const KeyboardTableItem = ({ keyboard, position }) => {
       <td className="cell photo">{image && <GatsbyImage image={image} />}</td>
       <td className="cell name">{keyboard.title}</td>
       <td className="cell price">
-        {keyboard.price}
+        {price}
         <span className="currency">€</span>
       </td>
       <td className="cell offer">
