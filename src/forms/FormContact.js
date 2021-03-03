@@ -4,12 +4,6 @@ import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 import mediaQueries from '../styles/global/mediaQueries';
 
-function encode(data) {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
-}
-
 const Form = styled('form')`
   width: 947px;
   margin-left: auto;

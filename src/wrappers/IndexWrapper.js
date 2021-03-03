@@ -1,8 +1,5 @@
 import React from 'react';
 import PostsList from '../components/posts/PostsList';
-import styled from '@emotion/styled';
-import theme from '../styles/global/theme';
-import mediaQueries from '../styles/global/mediaQueries';
 import { MainTitle } from '../styles/components/Titles';
 import { DefaultLayout } from '../styles/global/layouts';
 import Seo from '../components/general/Seo';

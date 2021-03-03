@@ -48,30 +48,7 @@ module.exports = {
         cssPropOptimization: true,
       },
     },
-    {
-      resolve: 'gatsby-source-amazon-paapi',
-      options: {
-        accessKey: 'AKIAJY23GLDA36YQJEXA',
-        secretKey: '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',
-        host: 'webservices.amazon.fr',
-        region: 'eu-west-1',
-        queries: [
-          {
-            // Amazon partner program credentials
-            PartnerTag: 'clavier07-21', // required
-            PartnerType: 'Associates', // required
 
-            // Filter items
-            Condition: 'Used', // optional
-            ItemCount: 10, // optional
-            MaxPrice: 3241, // optional
-
-            // Values to return
-            Resources: ['Images.Primary.Medium', 'ItemInfo.Title'], // optional, defaults to ItemInfo.Title
-          },
-        ],
-      },
-    },
     {
       resolve: 'gatsby-source-sanity',
       options: {
