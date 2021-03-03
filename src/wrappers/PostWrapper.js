@@ -7,6 +7,7 @@ import PostSlices from '../components/posts/PostSlices';
 import PostIntro from '../components/posts/PostIntro';
 import TableOfContent from '../components/TableOfContent';
 import Seo from '../components/general/Seo';
+import Author from '../components/Author';
 
 const PostLayout = styled('div')`
   width: ${theme.maxWidth};
@@ -36,22 +37,26 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
       }
     });
   }, [tableOfContent, setTableOfContent]);
-
+  console.info(post);
   return (
     <>
       <Seo title={post.title} />
       <PostLayout>
         <PostIntro post={post} />
         {tableOfContent && <TableOfContent tableOfContent={tableOfContent} />}
-        <div id="main-content">
-          <PostSlices
-            content={post.content}
-            keyboardsAmazon={keyboardsAmazon}
-            tableOfContent={tableOfContent}
-            productsAmazon={productsAmazon}
-            setTableOfContent={setTableOfContent}
-          />
-        </div>
+
+        <PostSlices
+          content={post.content}
+          keyboardsAmazon={keyboardsAmazon}
+          tableOfContent={tableOfContent}
+          productsAmazon={productsAmazon}
+          setTableOfContent={setTableOfContent}
+        />
+        {post.categories[0].title !== 'Informations' ? (
+          <Author author={post.author} />
+        ) : (
+          ''
+        )}
       </PostLayout>
     </>
   );

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { PrimaryButton } from '../../styles/components/Buttons';
 
-const CloakButton = ({ url }) => {
+const CloakButton = ({ url, content }) => {
   const [isCloaked, setIsCloaked] = useState(true);
 
   return (
@@ -12,10 +12,10 @@ const CloakButton = ({ url }) => {
       onMouseLeave={() => setIsCloaked(true)}
     >
       {isCloaked ? (
-        <PrimaryButton as="span">Voir l'offre</PrimaryButton>
+        <PrimaryButton as="span"> {content}</PrimaryButton>
       ) : (
         <PrimaryButton as="a" href={url} target="_blank" rel="noopener">
-          Voir l'offre
+          {content}
         </PrimaryButton>
       )}
     </div>
@@ -24,6 +24,7 @@ const CloakButton = ({ url }) => {
 
 CloakButton.propTypes = {
   url: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default CloakButton;

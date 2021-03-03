@@ -3,7 +3,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import CategoryWrapper from '../wrappers/CategoryWrapper';
 
-const PostPage = ({ data }) => {
+const CategoryPage = ({ data }) => {
   const { categorie, postsCategorie } = data;
   return (
     <div>
@@ -12,7 +12,7 @@ const PostPage = ({ data }) => {
   );
 };
 
-PostPage.propTypes = {
+CategoryPage.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
@@ -54,4 +54,4 @@ export const query = graphql`
   }
 `;
 
-export default PostPage;
+export default CategoryPage;

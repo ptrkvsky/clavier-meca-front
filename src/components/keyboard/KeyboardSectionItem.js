@@ -109,7 +109,7 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
           <span class="teaser">{keyboard.teaser}</span>
         </div>
         <div className="button-wrapper">
-          <CloakButton url={url} />
+          <CloakButton url={url} content="Voir l'offre" />
         </div>
       </StickyHeading>
 
@@ -137,7 +137,7 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
         <KeyboardProsCons pros={keyboard._rawPros} cons={keyboard._rawCons} />
 
         <div className="button">
-          <CloakButton url={url} />
+          <CloakButton url={url} content="Voir l'offre" />
         </div>
       </div>
     </Article>

@@ -23,7 +23,7 @@ const KeyboardTableItem = ({ keyboard, position }) => {
         <span className="currency">€</span>
       </td>
       <td className="cell offer">
-        <CloakButton url={keyboard.url} />
+        <CloakButton url={keyboard.url} content="Voir l'offre" />
       </td>
     </tr>
   );
