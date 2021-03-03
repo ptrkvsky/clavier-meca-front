@@ -44,7 +44,7 @@ KeyboardTableItem.propTypes = {
     price: PropTypes.number,
     title: PropTypes.string,
     url: PropTypes.string,
-  }).object,
+  }).object.isRequired,
   position: PropTypes.number.isRequired,
 };
 
