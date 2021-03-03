@@ -3,16 +3,14 @@ import React from 'react';
 import PostsList from '../components/posts/PostsList';
 import Seo from '../components/general/Seo';
 import { DefaultLayout } from '../styles/global/layouts';
-import styled from '@emotion/styled';
-import theme from '../styles/global/theme';
-import mediaQueries from '../styles/global/mediaQueries';
+import { MainTitle } from '../styles/components/Titles';
 
 const CategoryWrapper = ({ posts, title }) => {
   return (
     <>
-      <Seo title={title} />
+      <Seo title={`${title} - clavier-meca.com`} />
       <DefaultLayout>
-        <h1>{title}</h1>
+        <MainTitle>{title}</MainTitle>
         <PostsList posts={posts} />
       </DefaultLayout>
     </>

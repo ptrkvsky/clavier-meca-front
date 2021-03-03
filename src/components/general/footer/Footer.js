@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import CloakLinkFooter from './CloakLinkFooter';
 import theme from '../../../styles/global/theme';
+import mediaQueries from '../../../styles/global/mediaQueries';
 
 const FooterWrapper = styled('footer')`
   margin: 114px 0 0 0;
@@ -15,7 +16,12 @@ const FooterWrapper = styled('footer')`
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
+
+    ${mediaQueries.tabletLandscape} {
+      flex-direction: column;
+    }
   }
+
   .disclaimer {
     max-width: ${theme.contentWidth};
   }
