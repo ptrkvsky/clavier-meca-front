@@ -16,21 +16,20 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const { createPage } = actions;
 
+  const authorTemplate = require.resolve('./src/templates/Author.js');
   const postTemplate = require.resolve('./src/templates/Post.js');
   const categoryTemplate = require.resolve('./src/templates/Category.js');
 
   const result = await graphql(`
     {
       allSanityPost(filter: { slug: { current: { ne: null } } }) {
-        edges {
-          node {
+        nodes {
+          slug {
+            current
+          }
+          categories {
             slug {
               current
-            }
-            categories {
-              slug {
-                current
-              }
             }
           }
         }
@@ -48,15 +47,29 @@ exports.createPages = async ({ graphql, actions }) => {
           asin
         }
       }
+      allSanityAuthor {
+        nodes {
+          slug {
+            current
+          }
+        }
+      }
     }
   `);
   if (result.errors) {
     throw result.errors;
   }
 
+  // Authors
+  const authors = result.data.allSanityAuthor.nodes || [];
+
   // Category
   const categorySet = new Set();
-  const posts = result.data.allSanityPost.edges || [];
+  const posts = result.data.allSanityPost.nodes || [];
+
+  // Keyboards
+  const asinKeyboardsSet = new Set();
+  const keyboards = result.data.allSanityKeyboard.nodes || [];
 
   // Products
   const asinProductsSet = new Set();
@@ -95,10 +108,6 @@ exports.createPages = async ({ graphql, actions }) => {
     commonParameters,
     requestParametersProducts
   );
-
-  // Keyboards
-  const asinKeyboardsSet = new Set();
-  const keyboards = result.data.allSanityKeyboard.nodes || [];
 
   // Loop over all products
   keyboards.forEach(node => {
@@ -156,20 +165,20 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Build pages for every posts
-  posts.forEach((edge, index) => {
+  posts.forEach((post, index) => {
     // Get categories
-    if (edge.node.categories[0].slug.current) {
-      edge.node.categories.forEach(cat => {
+    if (post.categories[0].slug.current) {
+      post.categories.forEach(cat => {
         categorySet.add(cat.slug.current);
       });
     }
     // Create pages and pass products and keyboards as context
-    const path = `/${edge.node.slug.current}`;
+    const path = `/${post.slug.current}`;
     createPage({
       path,
       component: postTemplate,
       context: {
-        slug: edge.node.slug.current,
+        slug: post.slug.current,
         productsAmazon,
         keyboardsAmazon: keyboardsAmazonMerged,
       },
@@ -185,6 +194,17 @@ exports.createPages = async ({ graphql, actions }) => {
       component: categoryTemplate,
       context: {
         categorySlug: category,
+      },
+    });
+  });
+
+  // Build pages for every author
+  authors.forEach(author => {
+    createPage({
+      path: `/auteur/${author.slug.current}`,
+      component: authorTemplate,
+      context: {
+        authorSlug: author.slug.current,
       },
     });
   });

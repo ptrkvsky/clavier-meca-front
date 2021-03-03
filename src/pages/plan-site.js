@@ -3,14 +3,27 @@ import { graphql } from 'gatsby';
 import PlanSiteWrapper from '../wrappers/PlanSiteWrapper';
 
 const IndexPage = ({ data }) => {
-  const posts = data.posts.nodes;
+  console.info(data);
+  const authors = data.authors.nodes;
   const categories = data.categories.nodes;
+  const posts = data.posts.nodes;
 
-  return <PlanSiteWrapper posts={posts} categories={categories} />;
+  return (
+    <PlanSiteWrapper authors={authors} categories={categories} posts={posts} />
+  );
 };
 
 export const query = graphql`
   {
+    authors: allSanityAuthor {
+      nodes {
+        slug {
+          current
+        }
+        name
+        _id
+      }
+    }
     posts: allSanityPost {
       nodes {
         _id

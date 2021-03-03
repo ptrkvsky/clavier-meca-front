@@ -4,11 +4,11 @@ import SiteMapList from '../components/sitemap/SiteMapList';
 import { MainTitle } from '../styles/components/Titles';
 import { DefaultLayout } from '../styles/global/layouts';
 
-const PlanSiteWrapper = ({ posts, categories }) => {
+const PlanSiteWrapper = ({ authors, posts, categories }) => {
   return (
     <DefaultLayout>
       <MainTitle>Plan de site</MainTitle>
-      <SiteMapList posts={posts} categories={categories} />
+      <SiteMapList authors={authors} categories={categories} posts={posts} />
     </DefaultLayout>
   );
 };

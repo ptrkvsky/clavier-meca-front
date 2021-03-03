@@ -28,10 +28,21 @@ export const query = graphql`
       id
       publishedAt(formatString: "DD MMMM YYYY", locale: "fr")
       author {
+        id
+        image {
+          asset {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 140)
+              }
+            }
+          }
+        }
+        _rawBio(resolveReferences: { maxDepth: 10 })
+        name
         slug {
           current
         }
-        name
       }
       slug {
         current
