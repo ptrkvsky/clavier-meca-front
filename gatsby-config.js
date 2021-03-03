@@ -12,6 +12,7 @@ module.exports = {
     siteUrl: `https://www.clavier-meca.com`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-offline',
     {
@@ -48,7 +49,6 @@ module.exports = {
         cssPropOptimization: true,
       },
     },
-
     {
       resolve: 'gatsby-source-sanity',
       options: {

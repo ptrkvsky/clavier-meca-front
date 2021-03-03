@@ -73,6 +73,7 @@ export default function GlobalStyle() {
         a,
         .daclok {
           text-decoration: underline;
+          color: inherit;
         }
 
         /*Gatsby transition */

@@ -10,7 +10,6 @@ const KeyboardTableItem = ({ keyboard, position }) => {
   const price = keyboard?.Offers?.Listings[0]?.Price.Amount || keyboard.price;
   const image =
     keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
-
   return (
     <tr>
       <td className="cell pos">
@@ -44,7 +43,7 @@ KeyboardTableItem.propTypes = {
     price: PropTypes.number,
     title: PropTypes.string,
     url: PropTypes.string,
-  }).object.isRequired,
+  }).isRequired,
   position: PropTypes.number.isRequired,
 };
 
