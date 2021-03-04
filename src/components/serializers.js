@@ -21,6 +21,11 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
         const newTableOfContent = tableOfContent;
 
         if (props.node.style === 'h2') {
+          let slug = '';
+          if (typeof props.children[0] === 'string') {
+            slug = props.children[0];
+          }
+
           if (setTableOfContent && tableOfContent) {
             newTableOfContent.push({
               hn: 'h2',
@@ -31,7 +36,7 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
 
           return (
             <h2
-              id={slugify(props.children[0], {
+              id={slugify(slug, {
                 replacement: '-', // replace spaces with replacement character, defaults to `-` // remove characters that match regex, defaults to `undefined`
                 lower: true, // convert to lower case, defaults to `false`
                 strict: true, // strip special characters except replacement, defaults to `false`

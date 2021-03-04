@@ -56,7 +56,7 @@ const KeyboardAside = ({ keyboard, subTitleCol, titleCol }) => {
       <Title>{titleCol}</Title>
       <TitleProduct>{keyboard.title}</TitleProduct>
       <SubTitle>{subTitleCol}</SubTitle>
-      <CloakButton url={keyboard.urlAmazon} />
+      <CloakButton url={keyboard.urlAmazon} content="Voir l'offre" />
     </Aside>
   );
 };
