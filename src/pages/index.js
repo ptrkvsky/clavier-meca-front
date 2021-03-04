@@ -3,21 +3,33 @@ import { graphql } from 'gatsby';
 import IndexWrapper from '../wrappers/IndexWrapper';
 
 const IndexPage = ({ data }) => {
-  const posts = data.posts.nodes;
-
-  const postsHome = posts.filter(post => post.home === true);
-  return <IndexWrapper posts={postsHome} />;
+  const { home } = data;
+  console.info(data);
+  return <IndexWrapper home={home} />;
 };
 
 export const query = graphql`
   {
-    posts: allSanityPost {
-      nodes {
-        categories {
-          title
+    home: sanityHome {
+      h1
+      _rawIntro(resolveReferences: { maxDepth: 10 })
+      mainImage {
+        alt
+        asset {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 568
+                height: 758
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
         }
+      }
+      postComparatifs {
+        _id
         title
-        home
         slug {
           current
         }
@@ -27,8 +39,33 @@ export const query = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  width: 200
-                  placeholder: BLURRED
+                  width: 760
+                  height: 495
+                  formats: [AUTO, WEBP, AVIF]
+                )
+              }
+            }
+          }
+        }
+      }
+      postGuides {
+        _id
+        title
+        slug {
+          current
+        }
+        categories {
+          slug {
+            current
+          }
+        }
+        mainImage {
+          asset {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 421
+                  height: 421
                   formats: [AUTO, WEBP, AVIF]
                 )
               }

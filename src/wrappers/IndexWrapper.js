@@ -4,8 +4,11 @@ import { MainTitle } from '../styles/components/Titles';
 import { DefaultLayout } from '../styles/global/layouts';
 import Seo from '../components/general/Seo';
 import defaultSchema from '../schemas/defaultSchema';
+import Banner from '../components/home/banner';
+import Comparatifs from '../components/home/Comparatifs';
 
-const IndexWrapper = ({ posts }) => {
+const IndexWrapper = ({ home }) => {
+  const { postComparatifs, postGuides } = home;
   return (
     <>
       <Seo
@@ -14,8 +17,15 @@ const IndexWrapper = ({ posts }) => {
         jsonSchema={defaultSchema}
       />
       <DefaultLayout>
-        <MainTitle>Clavier Meca </MainTitle>
-        <PostsList posts={posts} />
+        <Banner
+          h1={home.h1}
+          intro={home._rawIntro}
+          image={home.mainImage.asset.localFile.childImageSharp.gatsbyImageData}
+          alt={home.mainImage.alt}
+        />
+        <Comparatifs posts={postComparatifs} />
+        <h2>Nos meilleurs guides autour du clavier</h2>
+        <PostsList posts={postGuides} />
       </DefaultLayout>
     </>
   );
