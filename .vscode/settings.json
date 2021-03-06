@@ -23,4 +23,5 @@
     "javascript",
     "javascriptreact"
   ],
+  "eslint.enable": true,
 }

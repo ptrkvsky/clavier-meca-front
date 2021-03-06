@@ -1,19 +1,85 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import styled from '@emotion/styled';
+import mediaQueries from '../../styles/global/mediaQueries';
+import fonts from '../../styles/global/fonts';
+
+
+const WrapperTitle = styled(Link)`
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background: ${props => (props.hover ? 'yellow' : '')};
+  transition: all 0.25s linear;
+`;
+
+const Title = styled('h3')`
+  position: relative;
+  bottom: 15px;
+  font-family: ${fonts.title};
+  letter-spacing: -1px;
+  a {
+    text-decoration: none;
+  }
+`;
+
+const WrapperImage = styled(Link)`
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: ${props => (props.hover ? 1 : 0)};
+    background: yellow;
+    mix-blend-mode: multiply;
+    transition: all 0.3s linear;
+  }
+`;
 
 const PostItem = ({ post }) => {
+  const [hoverState, setHoverState] = useState(false);
+
+  const handleEnter = () => {
+    setHoverState(true);
+  };
+  const handleLeave = () => {
+    setHoverState(false);
+  };
+
   const imagePost =
     post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
 
   const alt = post.mainImage?.alt;
   return (
     <>
-      <h2>
-        <Link to={`/${post.slug.current}`}>{post.title}</Link>
-      </h2>
-      {imagePost ? <GatsbyImage alt={alt ? alt : ''} image={imagePost} /> : ''}
+      <WrapperTitle
+        to={`/${post.slug.current}`}
+        hover={hoverState}
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+      >
+        <Title>{post.title}</Title>
+      </WrapperTitle>
+      {imagePost ? (
+        <WrapperImage
+          to={`/${post.slug.current}`}
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
+          hover={hoverState}
+        >
+          <GatsbyImage alt={alt ? alt : ''} image={imagePost} />
+        </WrapperImage>
+      ) : (
+        ''
+      )}
     </>
   );
 };

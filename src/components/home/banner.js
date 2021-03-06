@@ -47,7 +47,7 @@ const Title = styled('h1')`
     bottom: -32px;
     width: 128px;
     height: 20px;
-    background-color: ${theme.colors.primary};
+    background-color: ${props => theme.colors.primary};
   }
 `;
 
