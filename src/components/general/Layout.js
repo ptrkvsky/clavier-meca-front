@@ -1,11 +1,18 @@
 import React from 'react';
-import Nav from './header/nav/index';
+import { ThemeProvider } from '@emotion/react'
+// Style
 import 'normalize.css';
+import styled from '@emotion/styled'
 import GlobalStyle from '../../styles/global/';
+import theme from '../../styles/global/theme';
+// Components
+import Nav from './header/nav/index';
 import Header from './header';
 import Footer from './footer/index';
-import styled from '@emotion/styled';
 import Scroll from './Scroll';
+import Cursor from './CustomCursor'
+// Context
+import { useGlobalStateContext, useGlobalDispatchContext } from '../../context/globalContext'
 
 const MainWrapper = styled('div')`
   display: grid;
@@ -27,18 +34,30 @@ const MainWrapper = styled('div')`
   }
 `;
 
-const Layout = ({ children, amazonPaapi }) => {
+
+const Layout = ({ children }) => {
+  const dispatch = useGlobalDispatchContext()
+  const { cursorStyles } = useGlobalStateContext()
+
+  const handleOnCursor = cursorType => {
+    cursorType = (cursorStyles.includes(cursorType) && cursorType) || false
+    dispatch({ type: "CURSOR_TYPE", cursorType: cursorType })
+  }
+
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <p onMouseEnter={() => handleOnCursor("hovered")} onMouseLeave={() => handleOnCursor()}>Test Hover</p>
       <GlobalStyle />
+      <Cursor />
       <MainWrapper>
+        
         <main>{children}</main>
-        <Header />
+        <Header handleOnCursor={handleOnCursor}/>
 
         <Footer />
       </MainWrapper>
       <Scroll showBelow={1000} />
-    </>
+    </ThemeProvider>
   );
 };
 

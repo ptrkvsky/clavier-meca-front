@@ -13,6 +13,6 @@ const LogoStyle = styled(Link)`
   text-decoration: none;
 `;
 
-const Logo = () => <LogoStyle to="/">Clavier Meca</LogoStyle>;
+const Logo = ({handleOnCursor}) => <LogoStyle to="/" onMouseEnter={() => handleOnCursor("hovered")} onMouseLeave={() => handleOnCursor()}>Clavier Meca</LogoStyle>;
 
 export default Logo;

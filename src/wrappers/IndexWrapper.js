@@ -6,6 +6,7 @@ import Seo from '../components/general/Seo';
 import defaultSchema from '../schemas/defaultSchema';
 import Banner from '../components/home/banner';
 import Comparatifs from '../components/home/Comparatifs';
+import Guides from '../components/home/Guides';
 
 const IndexWrapper = ({ home }) => {
   const { postComparatifs, postGuides } = home;
@@ -24,8 +25,7 @@ const IndexWrapper = ({ home }) => {
           alt={home.mainImage.alt}
         />
         <Comparatifs posts={postComparatifs} />
-        <h2>Nos meilleurs guides autour du clavier</h2>
-        <PostsList posts={postGuides} />
+        <Guides posts={postGuides} />
       </DefaultLayout>
     </>
   );
