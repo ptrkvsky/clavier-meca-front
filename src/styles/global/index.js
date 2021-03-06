@@ -51,6 +51,9 @@ export default function GlobalStyle() {
             line-height: 5.833vw; */
           }
         }
+        #___gatsby{
+          background-color: #FFF;
+        }
 
         strong {
           font-family: ${theme.fonts.title};
