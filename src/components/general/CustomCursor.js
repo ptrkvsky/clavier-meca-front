@@ -39,7 +39,7 @@ const Cursor = styled("div")`
     left: 0;
     width: 32px;
     height: 32px;
-    background: ${props => props.theme.colors.primary};
+    background: #9aff00;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.1s ease-in-out;
@@ -54,6 +54,7 @@ const Cursor = styled("div")`
         width: 56px;
         height: 56px;
         border: 4px solid ${props => props.theme.colors.primary} !important;
+        mix-blend-mode: initial;
     }
 
     &.pointer {

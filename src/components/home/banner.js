@@ -1,18 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { motion } from "framer-motion"
 import theme from '../../styles/global/theme';
 import mediaQueries from '../../styles/global/mediaQueries';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import PortableText from '../../components/portableText';
 
 const Grid = styled('section')`
   display: grid;
   grid-template-columns: 1fr 1fr;
-
-  .col-left {
-    display: flex;
-    align-items: center;
-  }
 
   .container-title {
     position: relative;
@@ -22,6 +18,14 @@ const Grid = styled('section')`
     grid-template-columns: 1fr;
   }
 `;
+
+const ColLeft = styled(motion.div)`
+
+    display: flex;
+    align-items: center;
+ 
+`;
+
 
 const Title = styled('h1')`
   position: absolute;
@@ -51,7 +55,7 @@ const Title = styled('h1')`
   }
 `;
 
-const Intro = styled('div')`
+const Intro = styled(motion.div)`
   font-size: 24px;
   line-height: 30px;
   font-family: ${theme.fonts.light};
@@ -61,19 +65,44 @@ const Intro = styled('div')`
   }
 `;
 
+const parent = {
+  initial : {y: 30, opacity: 0},
+  
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1, ease: [0.6, 0.05, -0.01, 0.9],
+      staggerChilren: 0.2,
+    }
+  }
+}
+
+const child = {
+  initial : {y: 30, opacity: 0},
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+      ease: [0.5, 0.05, -0.01, 0.9]
+    }
+  }
+}
+
 const Banner = ({ h1, intro, image, alt }) => {
   return (
     <Grid>
-      <div className="col-left">
+      <ColLeft variants={parent} initial='initial' animate='animate'>
         <div>
-          <div className="container-title">
+          <div variants={child} className="container-title">
             <Title>{h1}</Title>
           </div>
-          <Intro>
+          <Intro variants={child}>
             <PortableText blocks={intro} />
           </Intro>
         </div>
-      </div>
+      </ColLeft>
       <div>
         <GatsbyImage image={image} alt={alt} />
       </div>

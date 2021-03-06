@@ -46,14 +46,11 @@ const Layout = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <p onMouseEnter={() => handleOnCursor("hovered")} onMouseLeave={() => handleOnCursor()}>Test Hover</p>
       <GlobalStyle />
       <Cursor />
-      <MainWrapper>
-        
+      <MainWrapper>        
         <main>{children}</main>
         <Header handleOnCursor={handleOnCursor}/>
-
         <Footer />
       </MainWrapper>
       <Scroll showBelow={1000} />
