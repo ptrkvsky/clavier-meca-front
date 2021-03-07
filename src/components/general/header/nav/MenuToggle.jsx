@@ -16,7 +16,7 @@ const Path = (props) => (
 
 const Button = styled('button')` 
     display: none;
-    position: absolute;
+    position: fixed;
     top: 15px;
     right: 15px;
     z-index: 930;

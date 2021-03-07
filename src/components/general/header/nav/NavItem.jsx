@@ -53,10 +53,12 @@ const variants = {
   },
 };
 
-const NavItem = ({ slug, name, tablet = false }) => (
+const NavItem = ({
+  slug, name, tablet = false, toggle,
+}) => (
 
   <NavItemStyle variants={tablet ? variants : ''}>
-    <Link to={`/${slug}`} activeClassName="active">
+    <Link to={`/${slug}`} activeClassName="active" onClick={toggle}>
       {name}
     </Link>
   </NavItemStyle>

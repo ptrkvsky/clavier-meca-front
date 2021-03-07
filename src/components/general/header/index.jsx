@@ -19,6 +19,9 @@ const HeaderStyle = styled(motion.header)`
   ${mediaQueries.tabletLandscape}{
     width: 100%;
   }
+  ${mediaQueries.mobile}{
+    padding-left: 2vw;
+  }
 `;
 
 const Header = ({ handleOnCursor }) => (

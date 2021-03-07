@@ -4,6 +4,7 @@ const theme = {
     lighter: '#767676',
     revert: '#FFF',
     primary: '#8000FF',
+    primary17: '#E9D4FF',
     border: '#F6F6F6',
     contrast: '#767676',
   },

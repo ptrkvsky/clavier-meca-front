@@ -22,6 +22,11 @@ const Ul = styled(motion.ul)`
         gap: 0;
         flex-direction: column;
     }
+    ${mediaQueries.mobile} {
+        left: initial;
+        right: 48px;
+    }
+    pointer-events: ${(props) => (props.isOpen ? '' : 'none')};
 `;
 
 const variants = {
@@ -33,24 +38,29 @@ const variants = {
   },
 };
 
-const NavList = ({ menuItems, tablet }) => (
-  <Ul variants={tablet ? variants : ''}>
+const NavList = ({
+  menuItems, tablet, toggle, isOpen,
+}) => (
+  <Ul isOpen={isOpen} variants={tablet ? variants : ''}>
     {menuItems.map((menuItem) => (
       <NavItem
         key={menuItem.menuItemSlug.current}
         name={menuItem.menuItemName}
         slug={menuItem.menuItemSlug.current}
         tablet={tablet}
+        toggle={toggle}
       />
     ))}
   </Ul>
 );
 
 NavList.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
   menuItems: PropTypes.shape({
     map: PropTypes.func.isRequired,
   }).isRequired,
   tablet: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
 };
 
 export default NavList;

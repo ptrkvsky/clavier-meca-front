@@ -47,9 +47,9 @@ export default function GlobalStyle() {
           }
 
           ${mediaQueries.mobile} {
-            /* font-size: 3.889vw;
-            line-height: 5.833vw; */
-          }
+             font-size: 3.889vw;
+            line-height: 5.833vw; 
+          } 
         }
         #___gatsby{
           background-color: #FFF;

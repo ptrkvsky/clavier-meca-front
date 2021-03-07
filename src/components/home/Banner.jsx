@@ -16,13 +16,22 @@ const Grid = styled('section')`
   }
 
   ${mediaQueries.tabletLandscape} {
-    grid-template-columns: 1fr;
+    display: block;
   }
 `;
 
 const ColLeft = styled(motion.div)`
   display: flex;
   align-items: center;
+  ${mediaQueries.mobile} {
+    padding: 0 8px;
+  }
+`;
+
+const ColRight = styled(motion.div)`
+  text-align: right;
+  font-size: 0;
+  line-height: 1;
 `;
 
 const Title = styled('h1')`
@@ -39,7 +48,13 @@ const Title = styled('h1')`
 
   ${mediaQueries.mobile} {
     position: relative;
-    font-size: 35px;
+    font-size: 43px;
+    margin: 16px 0 23px;
+    &:after{
+      bottom: -1px;
+      width: 93px;
+      height: 13px;
+    }
   }
 
   &:after {
@@ -50,6 +65,11 @@ const Title = styled('h1')`
     width: 128px;
     height: 20px;
     background-color: ${(props) => props.theme.colors.primary};
+    ${mediaQueries.mobile} {
+        bottom: -5px;
+        width: 93px;
+        height: 13px;
+    }
   }
 `;
 
@@ -60,6 +80,8 @@ const Intro = styled(motion.div)`
   margin-top: 351px;
   ${mediaQueries.mobile} {
     margin-top: 0;
+    font-size: 22px;
+    line-height: 28px;
   }
 `;
 
@@ -95,17 +117,17 @@ const Banner = ({
   <Grid>
     <ColLeft variants={parent} initial="initial" animate="animate">
       <div>
-        <div variants={child} className="container-title">
+        <motion.div variants={child} className="container-title">
           <Title>{h1}</Title>
-        </div>
+        </motion.div>
         <Intro variants={child}>
           <PortableText blocks={intro} />
         </Intro>
       </div>
     </ColLeft>
-    <div>
+    <ColRight>
       <GatsbyImage image={image} alt={alt} />
-    </div>
+    </ColRight>
   </Grid>
 );
 

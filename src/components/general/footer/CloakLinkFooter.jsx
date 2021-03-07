@@ -1,13 +1,18 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import theme from '../../../styles/global/theme';
 import { Link } from 'gatsby';
+import mediaQueries from '../../../styles/global/mediaQueries';
 
 const LinkFooter = styled(Link)`
   font-size: 18px;
-  color: ${theme.colors.revert};
+  color: ${(props) => props.theme.colors.revert};
   text-decoration: none;
   letter-spacing: -1px;
+  ${mediaQueries.mobile} {
+    font-size: 22px;
+    line-height: 1.5;
+  }
   &:hover {
     text-decoration: underline;
   }
@@ -15,9 +20,13 @@ const LinkFooter = styled(Link)`
 
 const SpanFooter = styled('span')`
   font-size: 18px;
-  color: ${theme.colors.revert};
+  color: ${(props) => props.theme.colors.revert};
   text-decoration: none;
   letter-spacing: -1px;
+  ${mediaQueries.mobile} {
+    font-size: 22px;
+    line-height: 1.5;
+  }
   &:hover {
     text-decoration: underline;
   }
@@ -39,6 +48,11 @@ const CloakLinkFooter = ({ url, content }) => {
       )}
     </div>
   );
+};
+
+CloakLinkFooter.propTypes = {
+  content: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default CloakLinkFooter;
