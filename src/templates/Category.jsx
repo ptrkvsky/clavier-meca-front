@@ -6,9 +6,7 @@ import CategoryWrapper from '../wrappers/CategoryWrapper';
 const CategoryPage = ({ data }) => {
   const { categorie, postsCategorie } = data;
   return (
-    <div>
-      <CategoryWrapper title={categorie.title} posts={postsCategorie.nodes} />
-    </div>
+    <CategoryWrapper title={categorie.title} posts={postsCategorie.nodes} />
   );
 };
 
@@ -39,8 +37,8 @@ export const query = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  width: 200
-                  placeholder: BLURRED
+                  width: 568
+                  height: 758
                   formats: [AUTO, WEBP, AVIF]
                 )
               }

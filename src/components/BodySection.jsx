@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import PortableText from '../components/portableText';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
-import theme from '../styles/global/theme';
+import PortableText from './portableText';
 import quote from '../assets/images/chevron.svg';
 
 const BodySectionStyled = styled('section')`
-  max-width: ${theme.contentWidth};
+  max-width: ${(props) => props.theme.contentWidth};
   margin: 0 auto;
   font-size: 18px;
   line-height: 24px;
@@ -18,7 +16,7 @@ const BodySectionStyled = styled('section')`
     padding: 54px 0 54px 98px;
     font-size: 32px;
     line-height: 44px;
-    font-family: ${theme.fonts.light};
+    font-family: ${(props) => props.theme.fonts.light};
     &:before {
       content: url('${quote}');
       position: absolute;
@@ -30,20 +28,20 @@ const BodySectionStyled = styled('section')`
     position: relative;
     font-size: 48px;
     line-height: 64px;
-    font-family: ${theme.fonts.title};
+    font-family: ${(props) => props.theme.fonts.title};
     margin: 120px 0 85px 0;
     span {
-      z-index: -1;
+      z-index: 0;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       left: -160px;
       font-size: 250px;
       color: white;
-      text-shadow: -1px -1px 0 ${theme.colors.primary},
-        1px -1px 0 ${theme.colors.primary}, -1px 1px 0 ${theme.colors.primary},
-        1px 1px 0 ${theme.colors.primary};
-      font-family: ${theme.fonts.light};
+      text-shadow: -1px -1px 0 ${(props) => props.theme.colors.primary},
+        1px -1px 0 ${(props) => props.theme.colors.primary}, -1px 1px 0 ${(props) => props.theme.colors.primary},
+        1px 1px 0 ${(props) => props.theme.colors.primary};
+      font-family: ${(props) => props.theme.fonts.light};
       opacity: 0.2;
     }
   }
@@ -52,7 +50,7 @@ const BodySectionStyled = styled('section')`
     position: relative;
     margin: 64px 0 67px;
     font-size: 48px;
-    font-family: ${theme.fonts.title};
+    font-family: ${(props) => props.theme.fonts.title};
     line-height: 64px;
 
     &:after {
@@ -62,30 +60,30 @@ const BodySectionStyled = styled('section')`
       bottom: -20px;
       width: 74px;
       height: 11px;
-      background-color: ${theme.colors.primary};
+      background-color: ${(props) => props.theme.colors.primary};
     }
   }
 
   h4 {
-    font-family: ${theme.fonts.title};
+    font-family: ${(props) => props.theme.fonts.title};
     font-size: 32px;
   }
 `;
 
-const BodySection = ({ _rawBodyTextt, tableOfContent, setTableOfContent }) => {
-  return (
-    <BodySectionStyled className="numberh2">
-      <PortableText
-        blocks={_rawBodyTextt}
-        tableOfContent={tableOfContent}
-        setTableOfContent={setTableOfContent}
-      />
-    </BodySectionStyled>
-  );
-};
+const BodySection = ({ _rawBodyTextt, tableOfContent, setTableOfContent }) => (
+  <BodySectionStyled className="numberh2">
+    <PortableText
+      blocks={_rawBodyTextt}
+      tableOfContent={tableOfContent}
+      setTableOfContent={setTableOfContent}
+    />
+  </BodySectionStyled>
+);
 
 BodySection.propTypes = {
   _rawBodyTextt: PropTypes.array.isRequired,
+  setTableOfContent: PropTypes.func.isRequired,
+  tableOfContent: PropTypes.object.isRequired,
 };
 
 export default BodySection;

@@ -5,17 +5,15 @@ import Seo from '../components/general/Seo';
 import { DefaultLayout } from '../styles/global/layouts';
 import { MainTitle } from '../styles/components/Titles';
 
-const CategoryWrapper = ({ posts, title }) => {
-  return (
-    <>
-      <Seo title={`${title} - clavier-meca.com`} />
-      <DefaultLayout>
-        <MainTitle>{title}</MainTitle>
-        <PostsList posts={posts} />
-      </DefaultLayout>
-    </>
-  );
-};
+const CategoryWrapper = ({ posts, title }) => (
+  <>
+    <Seo title={`${title} - clavier-meca.com`} />
+    <DefaultLayout>
+      <MainTitle>{title}</MainTitle>
+      <PostsList posts={posts} />
+    </DefaultLayout>
+  </>
+);
 
 CategoryWrapper.propTypes = {
   posts: PropTypes.array.isRequired,

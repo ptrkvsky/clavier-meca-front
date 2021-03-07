@@ -19,6 +19,7 @@
     ],
     "rules": {
         // "react/forbid-prop-types": [true, { "forbid": ["any"], "checkContextTypes": false, "checkChildContextTypes": false }]
-        "react/forbid-prop-types": 0
+        "react/forbid-prop-types": 0,
+        "no-underscore-dangle": "off"
     }
 }

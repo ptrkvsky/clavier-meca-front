@@ -29,15 +29,15 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
 
     [...h2Array].forEach((h2, index) => {
       // If there is no number add one
-      const indexMoreOne = parseInt(index) + 1;
+      const indexMoreOne = parseInt(index, 10) + 1;
       if (!h2.children.length > 0) {
         // Add 0 in front of index
-        const hnNumber = ('0' + indexMoreOne).slice(-2);
+        const hnNumber = (`0${indexMoreOne}`).slice(-2);
         h2.innerHTML += `<span>${hnNumber}</span>`;
       }
     });
   }, [tableOfContent, setTableOfContent]);
-  console.info(post);
+
   return (
     <>
       <Seo title={post.title} />
@@ -65,9 +65,11 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
 PostWrapper.propTypes = {
   keyboardsAmazon: PropTypes.array.isRequired,
   post: PropTypes.shape({
-    content: PropTypes.any,
-    title: PropTypes.any,
-  }),
+    author: PropTypes.object.isRequired,
+    categories: PropTypes.object.isRequired,
+    content: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
   productsAmazon: PropTypes.array.isRequired,
 };
 

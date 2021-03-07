@@ -7,7 +7,8 @@ import KeyboardProsCons from './KeyboardProsCons';
 import { TitleH3, TitleH4 } from '../../styles/components/Titles';
 import CloakButton from '../helpers/CloakButton';
 import PortableText from '../portableText';
-import theme from '../../styles/global/theme';
+import mediaQueries from '../../styles/global/mediaQueries';
+import fonts from '../../styles/global/fonts';
 
 const Article = styled('article')` 
   margin: 98px 0;
@@ -26,6 +27,9 @@ const StickyHeading = styled('div')`
   display: grid;
   grid-template-columns: 466px 1fr;
   gap: 24px;
+  ${mediaQueries.mobile}{
+    grid-template-columns: 1fr;
+  }
 
   .button-wrapper {
     display: flex;
@@ -37,7 +41,7 @@ const StickyHeading = styled('div')`
     bottom: 44px;
     left: 98px;
     font-size: 16px;
-    color: ${theme.colors.lighter};
+    color: ${(props) => props.theme.colors.lighter};
   }
 `;
 
@@ -60,14 +64,22 @@ const WrapperImageDesc = styled('div')`
     align-items: baseline;
     border-bottom: 8px solid #000;
     margin-bottom: 59px;
+
+    ${mediaQueries.mobile}{
+      flex-direction: column;
+    }
+
     dl {
       display: flex;
       align-items: center;
       margin-left: 24px;
+      ${mediaQueries.mobile} {
+        flex-direction: column;
+      }
     }
     dt {
       padding: 0;
-      font-family: ${theme.fonts.title};
+      font-family: ${fonts.title};
       text-transform: uppercase;
       letter-spacing: -1px;
     }
@@ -76,7 +88,7 @@ const WrapperImageDesc = styled('div')`
       align-items: baseline;
       margin: 0 24px 0 7px;
       padding: 0;
-      font-family: ${theme.fonts.light};
+      font-family: ${fonts.light};
       &:last-child {
         margin-right: 0;
       }
@@ -84,13 +96,11 @@ const WrapperImageDesc = styled('div')`
   }
 `;
 
-const displaySwitch = switchArrray => {
-  return switchArrray.map(switchItem => <span>{switchItem.nom}</span>);
-};
+// eslint-disable-next-line max-len
+const displaySwitch = (switchArrray) => switchArrray.map((switchItem) => <span>{switchItem.nom}</span>);
 
 const KeyboardsSection = ({ keyboard, Hn }) => {
-  const image =
-    keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+  const image = keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
 
   const url = keyboard.urlAmazon || keyboard.urlMateriel;
   const idTitle = `#${slugify(keyboard.title)}`;
@@ -106,7 +116,7 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
           <KeyboardTitle id={idTitle} as={Hn}>
             {keyboard.title}
           </KeyboardTitle>
-          <span class="teaser">{keyboard.teaser}</span>
+          <span className="teaser">{keyboard.teaser}</span>
         </div>
         <div className="button-wrapper">
           <CloakButton url={url} content="Voir l'offre" />
@@ -115,10 +125,10 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
 
       <div>
         <WrapperImageDesc>
-          <div class="wrapper-image">
+          <div className="wrapper-image">
             <GatsbyImage image={image} alt={keyboard.mainImage.alt} />
           </div>
-          <div class="wrapper-desc">
+          <div className="wrapper-desc">
             <TitleH4>Points clefs</TitleH4>
             <dl>
               <dt>Gabarit :</dt>
@@ -145,11 +155,31 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
 };
 
 KeyboardsSection.propTypes = {
+  Hn: PropTypes.string.isRequired,
   keyboard: PropTypes.shape({
     Hn: PropTypes.string.isRequired,
+    _rawCons: PropTypes.array.isRequired,
+    _rawPros: PropTypes.array.isRequired,
+    _rawShortDesc: PropTypes.array.isRequired,
     keyboard: PropTypes.object.isRequired,
-  }),
-  keyboardsAmazon: PropTypes.array.isRequired,
+    layout: PropTypes.bool.isRequired,
+    mainImage: PropTypes.shape({
+      alt: PropTypes.any,
+      asset: PropTypes.shape({
+        localFile: PropTypes.shape({
+          childImageSharp: PropTypes.shape({
+            gatsbyImageData: PropTypes.any,
+          }),
+        }),
+      }),
+    }),
+    rgb: PropTypes.string.isRequired,
+    switchCategory: PropTypes.array.isRequired,
+    teaser: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    urlAmazon: PropTypes.string.isRequired,
+    urlMateriel: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default KeyboardsSection;

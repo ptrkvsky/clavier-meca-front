@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import PostWrapper from '../wrappers/PostWrapper';
 
@@ -68,8 +68,8 @@ export const query = graphql`
                   localFile {
                     childImageSharp {
                       gatsbyImageData(
-                        width: 200
-                        height: 113
+                        width: 421
+                        height: 421
                         placeholder: BLURRED
                         formats: [AUTO, WEBP, AVIF]
                       )

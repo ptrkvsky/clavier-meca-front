@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import theme from '../styles/global/theme';
-import mediaQueries from '../styles/global/mediaQueries';
 import { BsLayoutTextSidebarReverse as Icon } from '@react-icons/all-files/bs/BsLayoutTextSidebarReverse';
+import mediaQueries from '../styles/global/mediaQueries';
 
 import TableOfContentList from './TableOfContentList';
 
@@ -18,6 +18,10 @@ const TableOfContentStyled = styled('div')`
 
   ${mediaQueries.tabletLandscape} {
     margin: 68px 0;
+  }
+
+  ${mediaQueries.mobile} {
+    margin: 48px 0;
   }
 
   .heading {
@@ -47,6 +51,10 @@ const TableOfContent = ({ tableOfContent }) => {
       />
     </TableOfContentStyled>
   );
+};
+
+TableOfContent.propTypes = {
+  tableOfContent: PropTypes.array.isRequired,
 };
 
 export default TableOfContent;

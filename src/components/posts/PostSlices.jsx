@@ -16,8 +16,8 @@ const PostSlices = ({
   productsAmazon,
 }) => {
   const slices = content
-    .filter(c => !c.disabled)
-    .map((c, i) => {
+    .filter((c) => !c.disabled)
+    .map((c) => {
       let el = null;
       switch (c._type) {
         case 'hero':
