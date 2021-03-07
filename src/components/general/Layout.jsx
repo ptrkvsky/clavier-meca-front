@@ -6,6 +6,7 @@ import 'normalize.css';
 import styled from '@emotion/styled';
 import GlobalStyle from '../../styles/global';
 import theme from '../../styles/global/theme';
+import mediaQueries from '../../styles/global/mediaQueries';
 // Components
 import Header from './header';
 import Footer from './footer/index';
@@ -26,9 +27,11 @@ const MainWrapper = styled('div')`
   header {
     grid-area: header;
   }
+
   main {
     grid-area: main;
   }
+
   footer {
     grid-area: footer;
   }

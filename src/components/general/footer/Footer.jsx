@@ -1,15 +1,20 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import CloakLinkFooter from './CloakLinkFooter';
-import theme from '../../../styles/global/theme';
 import mediaQueries from '../../../styles/global/mediaQueries';
 
 const FooterWrapper = styled('footer')`
   margin: 114px 0 0 0;
   padding: 80px;
-  color: ${theme.colors.revert};
-  background: ${theme.bg.revert};
+  color: ${(props) => props.theme.colors.revert};
+  background: ${(props) => props.theme.bg.revert};
+
+  ${mediaQueries.mobile} {
+    margin: 64px 0 0 0;
+    padding: 24px;
+  }
 
   .footer-top {
     display: flex;
@@ -23,7 +28,7 @@ const FooterWrapper = styled('footer')`
   }
 
   .disclaimer {
-    max-width: ${theme.contentWidth};
+    max-width: ${(props) => props.theme.contentWidth};
   }
 
   .separator {
@@ -32,7 +37,7 @@ const FooterWrapper = styled('footer')`
   }
 
   a {
-    color: ${theme.colors.revert};
+    color: ${(props) => props.theme.colors.revert};
     text-decoration: none;
     &:hover {
       text-decoration: underline;
@@ -42,9 +47,13 @@ const FooterWrapper = styled('footer')`
 
 const LinkFooter = styled(Link)`
   font-size: 18px;
-  color: ${theme.colors.revert};
+  color: ${(props) => props.theme.colors.revert};
   text-decoration: none;
   letter-spacing: -1px;
+  ${mediaQueries.mobile} {
+    font-size: 22px;
+    line-height: 1.5;
+  }
   &:hover {
     text-decoration: underline;
   }
@@ -57,9 +66,15 @@ const Footer = ({ data }) => {
   return (
     <FooterWrapper>
       <div className="footer-top">
-        <p className="logo">CLAVIER MECA / {date.getFullYear()}</p>
+        <p className="logo">
+          CLAVIER MECA /
+          {' '}
+          {date.getFullYear()}
+        </p>
         <div className="disclaimer">
-          <h2>Informations consommatteurs</h2>
+          <h2>
+            Information et protection du consommateur
+          </h2>
           <p>
             Notre site est rédigé par des passionnés et des professionnels du
             matériel informatique. Certains liens sont liés à des programmes
@@ -80,11 +95,21 @@ const Footer = ({ data }) => {
             content="Mentions légales"
           />
           <br />
-          <CloakLinkFooter url={`/contact`} content="Contact" />
+          <CloakLinkFooter url="/contact" content="Contact" />
         </div>
       </div>
     </FooterWrapper>
   );
+};
+
+Footer.propTypes = {
+  data: PropTypes.shape({
+    sanityPost: PropTypes.shape({
+      slug: PropTypes.shape({
+        current: PropTypes.string.isRequired,
+      }),
+    }),
+  }).isRequired,
 };
 
 export default Footer;

@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { BiArrowToTop as Icon } from '@react-icons/all-files/bi/BiArrowToTop';
 import styled from '@emotion/styled';
-import theme from '../../styles/global/theme';
 
 const ButtonTop = styled('button')`
   display: block;
@@ -9,7 +9,7 @@ const ButtonTop = styled('button')`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 800;
   position: fixed;
   bottom: 24px;
   right: 24px;
@@ -17,37 +17,35 @@ const ButtonTop = styled('button')`
   height: 40px;
   border-radius: 3px;
   background-color: #e6e6e6;
-  color: ${theme.colors.main};
+  color: ${(props) => props.theme.colors.main};
   border: none;
   cursor: pointer;
   transition: all 0.2s linear;
   &:hover {
-    background-color: ${theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.primary};
     svg {
-      color: ${theme.colors.revert};
+      color: ${(props) => props.theme.colors.revert};
     }
   }
 `;
 
 const Scroll = ({ showBelow }) => {
-  const [show, setShow] = useState(showBelow ? false : true);
+  const [show, setShow] = useState(!showBelow);
 
   const handleScroll = () => {
     if (window.pageYOffset > showBelow) {
       if (!show) setShow(true);
-    } else {
-      if (show) setShow(false);
-    }
+    } else if (show) setShow(false);
   };
 
   const handleClick = () => {
-    window[`scrollTo`]({ top: 0, behavior: `smooth` });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
     if (showBelow) {
-      window.addEventListener(`scroll`, handleScroll);
-      return () => window.removeEventListener(`scroll`, handleScroll);
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
     }
   });
 
@@ -64,5 +62,9 @@ const Scroll = ({ showBelow }) => {
       )}
     </>
   );
+};
+
+Scroll.propTypes = {
+  showBelow: PropTypes.bool.isRequired,
 };
 export default Scroll;

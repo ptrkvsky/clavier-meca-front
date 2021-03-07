@@ -6,15 +6,19 @@ import styled from '@emotion/styled';
 import mediaQueries from '../../styles/global/mediaQueries';
 import fonts from '../../styles/global/fonts';
 
-
 const WrapperTitle = styled(Link)`
   padding: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background: ${props => (props.hover ? 'yellow' : '')};
+  background: ${(props) => (props.hover ? 'yellow' : '')};
   transition: all 0.25s linear;
+
+  ${mediaQueries.mobile}{
+    display: block;
+    padding: 0 8px;
+  }
 `;
 
 const Title = styled('h3')`
@@ -22,8 +26,13 @@ const Title = styled('h3')`
   bottom: 15px;
   font-family: ${fonts.title};
   letter-spacing: -1px;
-  a {
-    text-decoration: none;
+  font-size: 24px;
+  
+  ${mediaQueries.mobile}{
+    bottom: 0;
+    font-size: 27px;
+    line-height: 1;
+    font-family: ${fonts.main}
   }
 `;
 
@@ -37,7 +46,7 @@ const WrapperImage = styled(Link)`
     left: 0px;
     width: 100%;
     height: 100%;
-    opacity: ${props => (props.hover ? 1 : 0)};
+    opacity: ${(props) => (props.hover ? 1 : 0)};
     background: yellow;
     mix-blend-mode: multiply;
     transition: all 0.3s linear;
@@ -54,10 +63,9 @@ const PostItem = ({ post }) => {
     setHoverState(false);
   };
 
-  const imagePost =
-    post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
-
+  const imagePost = post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
   const alt = post.mainImage?.alt;
+
   return (
     <>
       <WrapperTitle
@@ -75,7 +83,7 @@ const PostItem = ({ post }) => {
           onMouseLeave={handleLeave}
           hover={hoverState}
         >
-          <GatsbyImage alt={alt ? alt : ''} image={imagePost} />
+          <GatsbyImage alt={alt || ''} image={imagePost} />
         </WrapperImage>
       ) : (
         ''
@@ -100,7 +108,7 @@ PostItem.propTypes = {
       current: PropTypes.string.isRequired,
     }),
     title: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default PostItem;

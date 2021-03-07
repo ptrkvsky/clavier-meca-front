@@ -10,14 +10,12 @@ const NavStyle = styled(motion.nav)`
   display: ${(props) => (props.tablet ? 'none' : 'initial')};
   ${mediaQueries.tabletLandscape} {
     display: ${(props) => (props.tablet ? 'initial' : 'none')};
-    width: 300px;
   }
-
 
   .background {
     display: none;
     z-index: 900;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -65,10 +63,9 @@ const Nav = ({ data }) => {
   const menuItems = data.sanityMenu.menuItem;
   return (
     <>
-
       <NavStyle tablet={false} className="desktop">
         <div className="wrapper">
-          <NavList tablet={false} menuItems={menuItems} />
+          <NavList isOpen tablet={false} menuItems={menuItems} />
         </div>
       </NavStyle>
       <NavStyle
@@ -81,7 +78,7 @@ const Nav = ({ data }) => {
         <motion.div className="background" variants={sidebar} />
 
         <div className="wrapper">
-          <NavList tablet menuItems={menuItems} />
+          <NavList isOpen={isOpen} tablet menuItems={menuItems} toggle={() => toggleOpen()} />
         </div>
         <MenuToggle toggle={() => toggleOpen()} />
       </NavStyle>
