@@ -13,12 +13,11 @@ exports.createPages = async ({ graphql, actions }) => {
   };
 
   /** Promise */
-
   const { createPage } = actions;
 
-  const authorTemplate = require.resolve('./src/templates/Author.js');
-  const postTemplate = require.resolve('./src/templates/Post.js');
-  const categoryTemplate = require.resolve('./src/templates/Category.js');
+  const authorTemplate = require.resolve('./src/templates/Author.jsx');
+  const postTemplate = require.resolve('./src/templates/Post.jsx');
+  const categoryTemplate = require.resolve('./src/templates/Category.jsx');
 
   const result = await graphql(`
     {

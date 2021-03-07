@@ -29,7 +29,6 @@ export default function GlobalStyle() {
 
         * {
           box-sizing: border-box;
-          /* cursor: none; */
         }
 
         body {

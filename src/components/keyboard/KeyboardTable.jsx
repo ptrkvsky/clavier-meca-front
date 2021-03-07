@@ -2,20 +2,31 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 import { TitleH2 } from '../../styles/components/Titles';
-import theme from '../../styles/global/theme';
+import fonts from '../../styles/global/fonts';
+import mediaQueries from '../../styles/global/mediaQueries';
 import PortableText from '../portableText';
 import KeyboardContainer from './KeyboardContainer';
 import KeyboardTableItem from './KeyboardTableItem';
 
+const TableWrapper = styled('div')` 
+  ${mediaQueries.mobile}{
+    max-width: 375px;
+    overflow-x: auto;
+    margin: 48px 0;
+  }
+`;
 const Table = styled('table')`
   border-collapse: collapse;
   width: 100%;
   margin: 114px 0;
+  ${mediaQueries.mobile}{
+    margin: 0;
+  }
   thead {
-    background-color: ${theme.colors.primary};
-    color: ${theme.colors.revert};
+    background-color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.revert};
     font-size: 24px;
-    font-family: ${theme.fonts.title};
+    font-family: ${fonts.title};
     text-transform: uppercase;
     th {
       height: 52px;
@@ -27,12 +38,12 @@ const Table = styled('table')`
   tbody {
     tr {
       &:nth-child(odd) {
-        background-color: ${theme.colors.border};
+        background-color: ${(props) => props.theme.colors.border};
       }
       &:nth-child(1) {
         .pos {
           font-size: 36px;
-          color: ${theme.colors.primary};
+          color: ${(props) => props.theme.colors.primary};
         }
       }
       &:nth-child(2) {
@@ -43,7 +54,7 @@ const Table = styled('table')`
     }
     .pos {
       font-size: 32px;
-      font-family: ${theme.fonts.title};
+      font-family: ${fonts.title};
       .marker {
         font-size: 24px;
       }
@@ -55,14 +66,14 @@ const Table = styled('table')`
     }
     .name {
       font-size: 24px;
-      font-family: ${theme.fonts.title};
+      font-family: ${fonts.title};
     }
     .photo {
       font-size: 0;
     }
     .price {
       font-size: 24px;
-      font-family: ${theme.fonts.light};
+      font-family: ${fonts.light};
       .currency {
         font-size: 18px;
       }
@@ -76,11 +87,11 @@ const KeyboardTable = ({
   hn,
   title,
   keyboardsAmazon,
-}) => {
-  return (
-    <section className="numberh2">
-      <TitleH2 as={hn}>{title}</TitleH2>
-      <PortableText blocks={_rawDescription} />
+}) => (
+  <section className="numberh2">
+    <TitleH2 as={hn}>{title}</TitleH2>
+    <PortableText blocks={_rawDescription} />
+    <TableWrapper>
       <Table>
         <thead>
           <tr>
@@ -103,9 +114,9 @@ const KeyboardTable = ({
           ))}
         </tbody>
       </Table>
-    </section>
-  );
-};
+    </TableWrapper>
+  </section>
+);
 
 KeyboardTable.propTypes = {
   _rawDescription: PropTypes.array.isRequired,

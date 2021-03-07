@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import PortableText from '../components/portableText';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
-import theme from '../styles/global/theme';
+import PortableText from './portableText';
+import fonts from '../styles/global/fonts';
 import mediaQueries from '../styles/global/mediaQueries';
 
 const HighlightStyled = styled('section')`
@@ -21,9 +20,13 @@ const HighlightStyled = styled('section')`
     font-size: 32px;
     line-height: 44px;
     letter-spacing: -1px;
-    font-family: ${theme.fonts.light};
+    font-family: ${fonts.light};
     ${mediaQueries.tabletLandscape} {
       width: auto;
+    }
+    ${mediaQueries.mobile} {
+      font-size: 26px;
+      line-height: 32px;
     }
     p:first-of-type {
       margin: 0;
@@ -32,17 +35,15 @@ const HighlightStyled = styled('section')`
   }
 `;
 
-const Highlight = ({ _rawContent, illustration }) => {
-  return (
-    <HighlightStyled>
-      <div className="highlight-wrapper">
-        <div className="highlight">
-          <PortableText blocks={_rawContent} />
-        </div>
+const Highlight = ({ _rawContent }) => (
+  <HighlightStyled>
+    <div className="highlight-wrapper">
+      <div className="highlight">
+        <PortableText blocks={_rawContent} />
       </div>
-    </HighlightStyled>
-  );
-};
+    </div>
+  </HighlightStyled>
+);
 
 Highlight.propTypes = {
   _rawContent: PropTypes.array.isRequired,

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import theme from '../global/theme';
+import mediaQueries from '../global/mediaQueries';
 
 const MainTitle = styled('h1')`
   margin: 100px 0;
@@ -9,6 +10,12 @@ const MainTitle = styled('h1')`
   font-family: ${theme.fonts.title};
   text-align: center;
   text-transform: uppercase;
+
+  ${mediaQueries.mobile}{
+    font-size: 24px;
+    letter-spacing: 14px;
+    margin: 48px 0 24px;
+  }
 `;
 
 const TitleH2 = styled('h2')`
@@ -57,4 +64,6 @@ const TitleH4 = styled('h4')`
   letter-spacing: -1px;
 `;
 
-export { MainTitle, TitleH2, TitleH3, TitleH4 };
+export {
+  MainTitle, TitleH2, TitleH3, TitleH4,
+};

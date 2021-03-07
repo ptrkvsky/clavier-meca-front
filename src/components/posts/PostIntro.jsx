@@ -10,50 +10,54 @@ const PostIntroStyle = styled('div')`
   grid-template-columns: 1fr 760px 1fr;
   ${mediaQueries.tabletLandscape} {
     grid-template-columns: 1fr;
-    margin: 64px 0;
-    display: grid;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 24px;
+    margin: 64px 0;
   }
-
+  ${mediaQueries.mobile} {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+    margin: 48px 0;
+    padding: 0 8px;
+  }
+  
   h1 {
     margin: 0;
     padding: 0;
     font-size: 48px;
     line-height: 59px;
     font-family: ${theme.fonts.title};
+
+    ${mediaQueries.mobile} {
+      font-size: 35px;
+      line-height: 35px;
+    }
   }
   .info {
     font-size: 14px;
     line-height: 18px;
     text-transform: uppercase;
-    color: ${theme.colors.lighter};
+    color: ${(props) => props.theme.colors.lighter};
   }
   .categorie {
     position: relative;
     top: 11px;
   }
   .date-wrapper {
-    position: relative;
-  }
-  .date {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    text-align: right;
   }
 `;
 
-const PostIntro = ({ post }) => {
-  return (
-    <PostIntroStyle>
-      <span className="info categorie">{post.categories[0].title}</span>
-      <h1>{post.title}</h1>
-      <div className="date-wrapper">
-        <span className="info date">{post.publishedAt}</span>
-      </div>
-    </PostIntroStyle>
-  );
-};
+const PostIntro = ({ post }) => (
+  <PostIntroStyle>
+    <span className="info categorie">{post.categories[0].title}</span>
+    <h1>{post.title}</h1>
+    <div className="date-wrapper">
+      <span className="info date">{post.publishedAt}</span>
+    </div>
+  </PostIntroStyle>
+);
 
 PostIntro.propTypes = {
   post: PropTypes.object.isRequired,

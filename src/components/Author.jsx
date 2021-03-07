@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import theme from '../styles/global/theme';
 import mediaQueries from '../styles/global/mediaQueries';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import PortableText from './portableText';
 import { TitleH3 } from '../styles/components/Titles';
 import CloakButton from './helpers/CloakButton';
@@ -15,13 +15,18 @@ const Article = styled('article')`
   margin: 0 auto;
   grid-gap: 64px;
   margin-top: 114px;
+  
+  ${mediaQueries.mobile}{
+    margin-top: 64px;
+    grid-gap: 24px;
+    grid-template-columns: 1fr;
+  }
 
   .gatsby-image-wrapper {
     border-radius: 50%;
   }
 `;
 const Author = ({ author }) => {
-  console.info(author._rawBio);
   const bioSliced = author._rawBio.slice(0, 2);
   return (
     <Article>

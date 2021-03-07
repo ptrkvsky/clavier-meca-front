@@ -1,11 +1,17 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { graphql } from 'gatsby';
 import IndexWrapper from '../wrappers/IndexWrapper';
 
 const IndexPage = ({ data }) => {
   const { home } = data;
-  console.info(data);
   return <IndexWrapper home={home} />;
+};
+
+IndexPage.propTypes = {
+  data: PropTypes.shape({
+    home: PropTypes.object.isRequired,
+  }).isRequired,
 };
 
 export const query = graphql`
