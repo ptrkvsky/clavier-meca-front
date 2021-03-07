@@ -4,7 +4,7 @@ import { MainTitle } from '../styles/components/Titles';
 import { DefaultLayout } from '../styles/global/layouts';
 import Seo from '../components/general/Seo';
 import defaultSchema from '../schemas/defaultSchema';
-import Banner from '../components/home/banner';
+import Banner from '../components/home/Banner';
 import Comparatifs from '../components/home/Comparatifs';
 import Guides from '../components/home/Guides';
 

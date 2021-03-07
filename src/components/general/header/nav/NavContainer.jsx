@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Nav from './index';
 
-const NavContainer = ({ data }) => {
-  return (
-    <>
-      <StaticQuery
-        query={graphql`
+const NavContainer = () => (
+  <>
+    <StaticQuery
+      query={graphql`
           query {
             sanityMenu(slug: { current: { eq: "main-menu" } }) {
               id
@@ -19,10 +19,13 @@ const NavContainer = ({ data }) => {
             }
           }
         `}
-        render={data => <Nav data={data} />}
-      />
-    </>
-  );
+      render={(data) => <Nav data={data} />}
+    />
+  </>
+);
+
+NavContainer.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 export default NavContainer;
