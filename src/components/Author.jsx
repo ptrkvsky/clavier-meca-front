@@ -15,11 +15,35 @@ const Article = styled('article')`
   margin: 0 auto;
   grid-gap: 64px;
   margin-top: 114px;
+  ${mediaQueries.mobile}{
+    grid-gap: 0;
+  }
+
+  .h3{
+    margin-top: 0;
+    ${mediaQueries.mobile}{
+      margin: 6px 0 61px;
+    }
+  }
+
+  .illu{
+    font-size: 0;
+    line-height: 0;
+  }
   
   ${mediaQueries.mobile}{
     margin-top: 64px;
     grid-gap: 24px;
     grid-template-columns: 1fr;
+
+    .illu {
+      text-align: center;
+    }
+    .content {
+      padding: 0 8px;
+      font-size: 17px;
+      line-height: 1.3;
+    }
   }
 
   .gatsby-image-wrapper {
@@ -36,11 +60,9 @@ const Author = ({ author }) => {
           alt={author.image.asset.alt && author.image.asset.alt}
         />
       </div>
-      <div>
+      <div className="content">
         <TitleH3
-          css={{
-            marginTop: 0,
-          }}
+          className="h3"
         >
           {author.name}
         </TitleH3>

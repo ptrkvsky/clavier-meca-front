@@ -3,7 +3,6 @@ import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import PortableText from './portableText';
-import theme from '../styles/global/theme';
 import fonts from '../styles/global/fonts';
 import mediaQueries from '../styles/global/mediaQueries';
 
@@ -18,14 +17,14 @@ const HeroStyled = styled('section')`
     
   }
   ${mediaQueries.mobile} {
-    margin: 48px 0;
+    margin: 24px 0;
   }
 
 
   .illustration {
     display: flex;
     padding: ${(props) => (props.padding ? '45px' : '0')};
-    background-color: ${(props) => (props.padding ? theme.colors.primary : 'transparent')};
+    background-color: ${(props) => (props.padding ? props.theme.colors.primary : 'transparent')};
   }
 
   .highlight-wrapper {
@@ -39,6 +38,10 @@ const HeroStyled = styled('section')`
     font-size: 24px;
     line-height: 40px;
     font-family: ${fonts.light};
+    ${mediaQueries.mobile} {
+      padding: 0 8px;
+      letter-spacing: 0;
+    }
   }
 `;
 
