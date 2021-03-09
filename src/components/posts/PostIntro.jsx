@@ -18,7 +18,7 @@ const PostIntroStyle = styled('div')`
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     gap: 16px;
-    margin: 48px 0;
+    margin: 24px 0;
     padding: 0 8px;
   }
   

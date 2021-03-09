@@ -7,6 +7,9 @@ import mediaQueries from '../styles/global/mediaQueries';
 
 const HighlightStyled = styled('section')`
   margin: 114px 0;
+  ${mediaQueries.mobile} {
+    margin: 24px 0;
+  } 
   .highlight-wrapper {
     display: flex;
     align-items: center;
@@ -25,12 +28,14 @@ const HighlightStyled = styled('section')`
       width: auto;
     }
     ${mediaQueries.mobile} {
-      font-size: 26px;
-      line-height: 32px;
+      padding: 0 8px;
+      font-size: 24px;
+      line-height: 40px;
+
     }
     p:first-of-type {
       margin: 0;
-      padding-top: 0;
+    
     }
   }
 `;

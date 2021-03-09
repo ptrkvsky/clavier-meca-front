@@ -50,6 +50,11 @@ export default function GlobalStyle() {
             line-height: 5.833vw; 
           } 
         }
+
+        iframe {
+          max-width: 100%;
+        }
+
         #___gatsby{
           background-color: #FFF;
         }
