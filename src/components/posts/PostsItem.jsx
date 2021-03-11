@@ -27,6 +27,7 @@ const Title = styled('h3')`
   font-family: ${fonts.title};
   letter-spacing: -1px;
   font-size: 24px;
+  text-align: center;
   
   ${mediaQueries.mobile}{
     bottom: 0;

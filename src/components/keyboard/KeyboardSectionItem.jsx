@@ -12,13 +12,21 @@ import fonts from '../../styles/global/fonts';
 
 const Article = styled('article')` 
   margin: 98px 0;
+  ${mediaQueries.mobile}{
+    margin: 48px 0;
+  }
   &:first-child {
-    margin-top 0;
+    margin-top: 0;
   }
   .button {
     display: flex;
     justify-content: center;
     margin-top: 32px;
+  }
+  .text-desc{
+    ${mediaQueries.mobile}{
+      padding: 0 8px;
+    }
   }
 `;
 
@@ -34,7 +42,10 @@ const StickyHeading = styled('div')`
   .button-wrapper {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    ${mediaQueries.mobile}{
+      margin: 12px 0 12px 8px;
+    }
   }
   .teaser {
     position: absolute;
@@ -42,11 +53,19 @@ const StickyHeading = styled('div')`
     left: 98px;
     font-size: 16px;
     color: ${(props) => props.theme.colors.lighter};
+    ${mediaQueries.mobile}{
+      bottom: 68px;
+    }
   }
 `;
 
 const KeyboardTitle = styled(TitleH3)`
   margin-top: 0;
+  ${mediaQueries.mobile}{
+    margin: 24px 0 3px;
+    padding-left: 8px;
+    line-height: 1;
+  }
 `;
 
 const WrapperImageDesc = styled('div')`
@@ -56,7 +75,6 @@ const WrapperImageDesc = styled('div')`
       height: 100%;
     }
   }
-
   .wrapper-desc {
     display: flex;
     flex-direction: row;
@@ -67,6 +85,7 @@ const WrapperImageDesc = styled('div')`
 
     ${mediaQueries.mobile}{
       flex-direction: column;
+      margin-bottom: 32px;
     }
 
     dl {
@@ -74,7 +93,11 @@ const WrapperImageDesc = styled('div')`
       align-items: center;
       margin-left: 24px;
       ${mediaQueries.mobile} {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 8px;
+        padding: 0;
+        margin: 12px 0 12px 8px;
       }
     }
     dt {
@@ -104,10 +127,6 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
 
   const url = keyboard.urlAmazon || keyboard.urlMateriel;
   const idTitle = `#${slugify(keyboard.title)}`;
-  // Amazon informations for V2 or A/B testing
-  // const features = keyboard.ItemInfo?.Features.DisplayValues;
-  // const price = keyboard.Offers?.Listings[0].Price.DisplayAmount;
-  // const availability = keyboard.Offers?.Listings[0].Availability.Message;
 
   return (
     <Article>
@@ -142,7 +161,9 @@ const KeyboardsSection = ({ keyboard, Hn }) => {
             </dl>
           </div>
         </WrapperImageDesc>
-        <PortableText blocks={keyboard._rawShortDesc} />
+        <div className="text-desc">
+          <PortableText blocks={keyboard._rawShortDesc} />
+        </div>
 
         <KeyboardProsCons pros={keyboard._rawPros} cons={keyboard._rawCons} />
 

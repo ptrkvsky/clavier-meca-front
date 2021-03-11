@@ -42,13 +42,6 @@ export default function GlobalStyle() {
 
           letter-spacing: 0.02em;
 
-          ${mediaQueries.tabletLandscape} {
-          }
-
-          ${mediaQueries.mobile} {
-             font-size: 3.889vw;
-            line-height: 5.833vw; 
-          } 
         }
 
         iframe {

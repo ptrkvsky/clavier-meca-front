@@ -1,85 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from '@emotion/styled';
+
 import { TitleH2 } from '../../styles/components/Titles';
-import fonts from '../../styles/global/fonts';
-import mediaQueries from '../../styles/global/mediaQueries';
+import { TableWrapper, Table, Section } from '../../styles/components/keyboard/keyboardTable';
 import PortableText from '../portableText';
 import KeyboardContainer from './KeyboardContainer';
 import KeyboardTableItem from './KeyboardTableItem';
-
-const TableWrapper = styled('div')` 
-  ${mediaQueries.mobile}{
-    max-width: 375px;
-    overflow-x: auto;
-    margin: 48px 0;
-  }
-`;
-const Table = styled('table')`
-  border-collapse: collapse;
-  width: 100%;
-  margin: 114px 0;
-  ${mediaQueries.mobile}{
-    margin: 0;
-  }
-  thead {
-    background-color: ${(props) => props.theme.colors.primary};
-    color: ${(props) => props.theme.colors.revert};
-    font-size: 24px;
-    font-family: ${fonts.title};
-    text-transform: uppercase;
-    th {
-      height: 52px;
-    }
-    .pos {
-      padding: 0 35px;
-    }
-  }
-  tbody {
-    tr {
-      &:nth-child(odd) {
-        background-color: ${(props) => props.theme.colors.border};
-      }
-      &:nth-child(1) {
-        .pos {
-          font-size: 36px;
-          color: ${(props) => props.theme.colors.primary};
-        }
-      }
-      &:nth-child(2) {
-        .pos {
-          font-size: 34px;
-        }
-      }
-    }
-    .pos {
-      font-size: 32px;
-      font-family: ${fonts.title};
-      .marker {
-        font-size: 24px;
-      }
-    }
-    .cell {
-      text-align: center;
-    }
-    .pos {
-    }
-    .name {
-      font-size: 24px;
-      font-family: ${fonts.title};
-    }
-    .photo {
-      font-size: 0;
-    }
-    .price {
-      font-size: 24px;
-      font-family: ${fonts.light};
-      .currency {
-        font-size: 18px;
-      }
-    }
-  }
-`;
 
 const KeyboardTable = ({
   keyboards,
@@ -88,9 +14,11 @@ const KeyboardTable = ({
   title,
   keyboardsAmazon,
 }) => (
-  <section className="numberh2">
+  <Section className="table-keybboard numberh2">
     <TitleH2 as={hn}>{title}</TitleH2>
-    <PortableText blocks={_rawDescription} />
+    <div className="table-desc">
+      <PortableText blocks={_rawDescription} />
+    </div>
     <TableWrapper>
       <Table>
         <thead>
@@ -115,7 +43,7 @@ const KeyboardTable = ({
         </tbody>
       </Table>
     </TableWrapper>
-  </section>
+  </Section>
 );
 
 KeyboardTable.propTypes = {
