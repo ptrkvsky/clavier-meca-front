@@ -40,7 +40,7 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
 
   return (
     <>
-      <Seo title={post.title} />
+      <Seo title={post.metaTitle} description={post.metaDescription} />
       <PostLayout>
         <PostIntro post={post} />
         {tableOfContent && <TableOfContent tableOfContent={tableOfContent} />}
@@ -68,6 +68,8 @@ PostWrapper.propTypes = {
     author: PropTypes.object.isRequired,
     categories: PropTypes.object.isRequired,
     content: PropTypes.object.isRequired,
+    metaDescription: PropTypes.string,
+    metaTitle: PropTypes.string,
     title: PropTypes.string.isRequired,
   }).isRequired,
   productsAmazon: PropTypes.array.isRequired,

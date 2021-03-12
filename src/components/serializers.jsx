@@ -1,13 +1,16 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import slugify from 'slugify';
 import getYouTubeId from 'get-youtube-id';
 import YouTube from 'react-youtube';
 import BasePortableText from '@sanity/block-content-to-react';
 import { Link } from 'gatsby';
-import CloakLink from '../components/helpers/CloakLink';
+import CloakLink from './helpers/CloakLink';
 import MainImage from './MainImage';
 
-const serializers = (tableOfContent = false, setTableOfContent = false) => {
+const Serializers = (tableOfContent = false, setTableOfContent = false) => {
   const configSlug = {
     replacement: '-', // replace spaces with replacement character, defaults to `-` // remove characters that match regex, defaults to `undefined`
     lower: true, // convert to lower case, defaults to `false`
@@ -17,7 +20,7 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
 
   const serializers = {
     types: {
-      block: props => {
+      block: (props) => {
         const newTableOfContent = tableOfContent;
 
         if (props.node.style === 'h2') {
@@ -56,9 +59,17 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
             setTableOfContent(newTableOfContent);
           }
           return (
-            <h3 id={slugify(props.children[0], configSlug)}>
-              {props.children}
-            </h3>
+            (typeof props.children[0] === 'string')
+              ? (
+                <h3 id={slugify(props.children[0], configSlug)}>
+                  {props.children}
+                </h3>
+              )
+              : (
+                <h3 id="toto">
+                  {props.children}
+                </h3>
+              )
           );
         }
         if (props.node.style === 'h4') {
@@ -107,7 +118,9 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
         return <Link to={link}>{children}</Link>;
       },
       link: ({ mark, children }) => {
-        const { blank, href, cloaked, sponsored, noreferrer, ugc } = mark;
+        const {
+          blank, href, cloaked, sponsored, noreferrer, ugc,
+        } = mark;
         const propsLink = {
           rel: ' ',
         };
@@ -131,17 +144,16 @@ const serializers = (tableOfContent = false, setTableOfContent = false) => {
 
         if (cloaked) {
           return <CloakLink url={href} content={children} />;
-        } else {
-          return (
-            <a href={href} {...propsLink}>
-              {children}
-            </a>
-          );
         }
+        return (
+          <a href={href} {...propsLink}>
+            {children}
+          </a>
+        );
       },
     },
   };
   return serializers;
 };
 
-export default serializers;
+export default Serializers;

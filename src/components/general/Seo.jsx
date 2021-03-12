@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const Seo = ({ description, lang, meta, title, jsonSchema }) => {
+const Seo = ({
+  description, lang, meta, title, jsonSchema,
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -15,10 +17,8 @@ const Seo = ({ description, lang, meta, title, jsonSchema }) => {
           }
         }
       }
-    `
+    `,
   );
-
-  const metaDescription = description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -29,36 +29,36 @@ const Seo = ({ description, lang, meta, title, jsonSchema }) => {
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
-          name: `description`,
-          content: metaDescription,
+          name: 'description',
+          content: description,
         },
         {
-          property: `og:title`,
+          property: 'og:title',
           content: title,
         },
         {
-          property: `og:description`,
-          content: metaDescription,
+          property: 'og:description',
+          content: description,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: 'og:type',
+          content: 'website',
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          name: 'twitter:card',
+          content: 'summary',
         },
         {
-          name: `twitter:creator`,
+          name: 'twitter:creator',
           content: site.siteMetadata.author,
         },
         {
-          name: `twitter:title`,
+          name: 'twitter:title',
           content: title,
         },
         {
-          name: `twitter:description`,
-          content: metaDescription,
+          name: 'twitter:description',
+          content: description,
         },
       ].concat(meta)}
     >
@@ -68,13 +68,15 @@ const Seo = ({ description, lang, meta, title, jsonSchema }) => {
 };
 
 Seo.defaultProps = {
-  lang: `fr`,
+  jsonSchema: '',
+  lang: 'fr',
   meta: [],
-  description: ``,
+  description: '',
 };
 
 Seo.propTypes = {
   description: PropTypes.string,
+  jsonSchema: PropTypes.object,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,

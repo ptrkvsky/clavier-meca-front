@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import slugify from 'slugify';
 
@@ -16,6 +17,12 @@ const TableOfContentListItem = ({ item }) => {
       </a>
     </li>
   );
+};
+
+TableOfContentListItem.propTypes = {
+  item: PropTypes.shape({
+    value: PropTypes.string,
+  }).isRequired,
 };
 
 export default TableOfContentListItem;
