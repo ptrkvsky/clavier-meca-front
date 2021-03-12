@@ -1,6 +1,5 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import PostsList from '../components/posts/PostsList';
-import { MainTitle } from '../styles/components/Titles';
 import { DefaultLayout } from '../styles/global/layouts';
 import Seo from '../components/general/Seo';
 import defaultSchema from '../schemas/defaultSchema';
@@ -13,8 +12,8 @@ const IndexWrapper = ({ home }) => {
   return (
     <>
       <Seo
-        title="Clavier Meca, guide et comparatifs pour découvrir tout l'univers des claviers mécaniques."
-        description="Clavier Meca est un site pour découvrir l'univers des claviers mécaniques, découvrez guides, infos, astuces sur les claviers, les switches mais aussi les touches."
+        title={home.metaTitle}
+        description={home.metaDescription}
         jsonSchema={defaultSchema}
       />
       <DefaultLayout>
@@ -29,6 +28,27 @@ const IndexWrapper = ({ home }) => {
       </DefaultLayout>
     </>
   );
+};
+
+IndexWrapper.propTypes = {
+  home: PropTypes.shape({
+    _rawIntro: PropTypes.array.isRequired,
+    h1: PropTypes.string.isRequired,
+    mainImage: PropTypes.shape({
+      alt: PropTypes.string.isRequired,
+      asset: PropTypes.shape({
+        localFile: PropTypes.shape({
+          childImageSharp: PropTypes.shape({
+            gatsbyImageData: PropTypes.object,
+          }),
+        }),
+      }),
+    }),
+    metaDescription: PropTypes.string.isRequired,
+    metaTitle: PropTypes.string.isRequired,
+    postComparatifs: PropTypes.array.isRequired,
+    postGuides: PropTypes.array.isRequired,
+  }).isRequired,
 };
 
 export default IndexWrapper;

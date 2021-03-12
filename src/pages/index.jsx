@@ -17,6 +17,8 @@ IndexPage.propTypes = {
 export const query = graphql`
   {
     home: sanityHome {
+      metaDescription
+      metaTitle
       h1
       _rawIntro(resolveReferences: { maxDepth: 10 })
       mainImage {

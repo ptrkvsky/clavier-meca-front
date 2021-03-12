@@ -26,6 +26,8 @@ export const query = graphql`
   query($slug: String!) {
     post: sanityPost(slug: { current: { eq: $slug } }) {
       id
+      metaTitle
+      metaDescription
       publishedAt(formatString: "DD MMMM YYYY", locale: "fr")
       author {
         id
