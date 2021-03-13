@@ -22,7 +22,7 @@ const Serializers = (tableOfContent = false, setTableOfContent = false) => {
     types: {
       block: (props) => {
         const newTableOfContent = tableOfContent;
-
+        console.log(props.children[0]);
         if (props.node.style === 'h2') {
           let slug = '';
           if (typeof props.children[0] === 'string') {
@@ -39,7 +39,7 @@ const Serializers = (tableOfContent = false, setTableOfContent = false) => {
 
           return (
             <h2
-              id={slugify(slug, {
+              id={slugify(slug.toString(), {
                 replacement: '-', // replace spaces with replacement character, defaults to `-` // remove characters that match regex, defaults to `undefined`
                 lower: true, // convert to lower case, defaults to `false`
                 strict: true, // strip special characters except replacement, defaults to `false`
@@ -61,7 +61,7 @@ const Serializers = (tableOfContent = false, setTableOfContent = false) => {
           return (
             (typeof props.children[0] === 'string')
               ? (
-                <h3 id={slugify(props.children[0], configSlug)}>
+                <h3 id={slugify(props.children[0].toString(), configSlug)}>
                   {props.children}
                 </h3>
               )
@@ -81,21 +81,21 @@ const Serializers = (tableOfContent = false, setTableOfContent = false) => {
             setTableOfContent(newTableOfContent);
           }
           return (
-            <h4 id={slugify(props.children[0], configSlug)}>
+            <h4 id={slugify(props.children[0].toString(), configSlug)}>
               {props.children}
             </h4>
           );
         }
         if (props.node.style === 'h5') {
           return (
-            <h5 id={slugify(props.children[0], configSlug)}>
+            <h5 id={slugify(props.children[0].toString(), configSlug)}>
               {props.children}
             </h5>
           );
         }
         if (props.node.style === 'h6') {
           return (
-            <h6 id={slugify(props.children[0], configSlug)}>
+            <h6 id={slugify(props.children[0].toString(), configSlug)}>
               {props.children}
             </h6>
           );
