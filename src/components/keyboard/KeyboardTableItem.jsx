@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from '@emotion/styled';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import CloakButton from '../helpers/CloakButton';
 
-const KeyboardTableItemStyle = styled('h2')``;
-
 const KeyboardTableItem = ({ keyboard, position }) => {
   const price = keyboard?.Offers?.Listings[0]?.Price.Amount || keyboard.price;
-  const image =
-    keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+  const image = keyboard.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+  console.info(keyboard)
   return (
     <tr>
       <td className="cell pos">
@@ -23,7 +20,7 @@ const KeyboardTableItem = ({ keyboard, position }) => {
         <span className="currency">€</span>
       </td>
       <td className="cell offer">
-        <CloakButton url={keyboard.url} content="Voir l'offre" />
+        <CloakButton url={keyboard.urlAmazon || keyboard.urlMateriel} content="Voir l'offre" />
       </td>
     </tr>
   );
@@ -31,6 +28,9 @@ const KeyboardTableItem = ({ keyboard, position }) => {
 
 KeyboardTableItem.propTypes = {
   keyboard: PropTypes.shape({
+    Offers: PropTypes.shape({
+      Listings: PropTypes.any,
+    }),
     mainImage: PropTypes.shape({
       asset: PropTypes.shape({
         localFile: PropTypes.shape({

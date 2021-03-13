@@ -19,9 +19,7 @@ const TableOfContentList = ({ tableOfContent, tocIsVisible }) => (
 );
 
 TableOfContentList.propTypes = {
-  tableOfContent: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  tableOfContent: PropTypes.array.isRequired,
   tocIsVisible: PropTypes.bool.isRequired,
 };
 

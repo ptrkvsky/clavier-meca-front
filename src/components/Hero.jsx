@@ -63,6 +63,10 @@ const Hero = ({ _rawBref, illustration, padding }) => (
   </HeroStyled>
 );
 
+Hero.defaultProps = {
+  padding: false,
+};
+
 Hero.propTypes = {
   _rawBref: PropTypes.array.isRequired,
   illustration: PropTypes.shape({
@@ -76,7 +80,7 @@ Hero.propTypes = {
       }),
     }),
   }).isRequired,
-  padding: PropTypes.bool.isRequired,
+  padding: PropTypes.bool,
 };
 
 export default Hero;

@@ -68,8 +68,6 @@ const Comparatifs = ({ posts }) => (
 );
 
 Comparatifs.propTypes = {
-  posts: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  posts: PropTypes.array.isRequired,
 };
 export default Comparatifs;

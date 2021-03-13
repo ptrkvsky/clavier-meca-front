@@ -95,8 +95,8 @@ PostWrapper.propTypes = {
   keyboardsAmazon: PropTypes.array.isRequired,
   post: PropTypes.shape({
     author: PropTypes.object.isRequired,
-    categories: PropTypes.object.isRequired,
-    content: PropTypes.object.isRequired,
+    categories: PropTypes.array.isRequired,
+    content: PropTypes.array.isRequired,
     metaDescription: PropTypes.string,
     metaTitle: PropTypes.string,
     title: PropTypes.string.isRequired

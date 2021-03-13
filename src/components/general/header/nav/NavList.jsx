@@ -54,13 +54,15 @@ const NavList = ({
   </Ul>
 );
 
+NavList.defaultProps = {
+  toggle: () => {},
+};
+
 NavList.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  menuItems: PropTypes.shape({
-    map: PropTypes.func.isRequired,
-  }).isRequired,
+  menuItems: PropTypes.array.isRequired,
   tablet: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+  toggle: PropTypes.func,
 };
 
 export default NavList;

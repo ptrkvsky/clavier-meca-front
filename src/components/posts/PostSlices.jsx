@@ -68,8 +68,8 @@ const PostSlices = ({
           el = (
             <ProductsSection
               key={c._key}
-              {...c}
               productsAmazon={productsAmazon}
+              {...c}
             />
           );
           break;

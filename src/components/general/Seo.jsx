@@ -71,15 +71,16 @@ Seo.defaultProps = {
   jsonSchema: '',
   lang: 'fr',
   meta: [],
+  title: '',
   description: '',
 };
 
 Seo.propTypes = {
   description: PropTypes.string,
-  jsonSchema: PropTypes.object,
+  jsonSchema: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 export default Seo;

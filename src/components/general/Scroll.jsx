@@ -47,6 +47,7 @@ const Scroll = ({ showBelow }) => {
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
     }
+    return false;
   });
 
   return (
@@ -65,6 +66,6 @@ const Scroll = ({ showBelow }) => {
 };
 
 Scroll.propTypes = {
-  showBelow: PropTypes.bool.isRequired,
+  showBelow: PropTypes.number.isRequired,
 };
 export default Scroll;

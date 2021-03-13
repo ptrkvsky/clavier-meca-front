@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
 import React from 'react';
 import BasePortableText from '@sanity/block-content-to-react';
@@ -12,10 +13,15 @@ const PortableText = ({ blocks, tableOfContent, setTableOfContent }) => (
   />
 );
 
+PortableText.defaultProps = {
+  setTableOfContent: () => {},
+  tableOfContent: [],
+};
+
 PortableText.propTypes = {
   blocks: PropTypes.array.isRequired,
-  setTableOfContent: PropTypes.func.isRequired,
-  tableOfContent: PropTypes.array.isRequired,
+  setTableOfContent: PropTypes.func,
+  tableOfContent: PropTypes.array,
 };
 
 export default PortableText;
