@@ -128,12 +128,10 @@ export const query = graphql`
           illustration {
             image {
               asset {
-                fluid(maxWidth: 700) {
-                  ...GatsbySanityImageFluid_noBase64
-                }
                 localFile {
                   childImageSharp {
                     gatsbyImageData(
+                      width: 575
                       placeholder: BLURRED
                       formats: [AUTO, WEBP, AVIF]
                     )
