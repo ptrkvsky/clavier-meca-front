@@ -6,8 +6,8 @@ import { useGlobalStateContext } from '../../context/globalContext';
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({
-    x: 400,
-    y: 400,
+    x: -20,
+    y: -20,
   });
 
   const { cursorType } = useGlobalStateContext();
