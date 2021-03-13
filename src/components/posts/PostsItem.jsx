@@ -71,7 +71,7 @@ const PostItem = ({ post }) => {
     <>
       <WrapperTitle
         to={`/${post.slug.current}`}
-        hover={hoverState.toString()}
+        hover={hoverState}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
       >
@@ -82,7 +82,7 @@ const PostItem = ({ post }) => {
           to={`/${post.slug.current}`}
           onMouseEnter={handleEnter}
           onMouseLeave={handleLeave}
-          hover={hoverState.toString()}
+          hover={hoverState}
         >
           <GatsbyImage alt={alt || ''} image={imagePost} />
         </WrapperImage>
