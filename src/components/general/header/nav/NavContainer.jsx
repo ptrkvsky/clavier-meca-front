@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Nav from './index';
 
-const NavContainer = () => (
+const NavContainer = ({ handleOnCursor }) => (
   <>
     <StaticQuery
       query={graphql`
@@ -18,9 +19,13 @@ const NavContainer = () => (
             }
           }
         `}
-      render={(data) => <Nav data={data} />}
+      render={(data) => <Nav data={data} handleOnCursor={handleOnCursor} />}
     />
   </>
 );
+
+NavContainer.propTypes = {
+  handleOnCursor: PropTypes.func.isRequired,
+};
 
 export default NavContainer;

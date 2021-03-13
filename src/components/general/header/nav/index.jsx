@@ -55,17 +55,16 @@ const sidebar = {
   },
 };
 
-const Nav = ({ data }) => {
+const Nav = ({ data, handleOnCursor }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
-  // const { height } = useDimensions(containerRef);
 
   const menuItems = data.sanityMenu.menuItem;
   return (
     <>
       <NavStyle tablet={false} className="desktop">
         <div className="wrapper">
-          <NavList isOpen tablet={false} menuItems={menuItems} />
+          <NavList isOpen tablet={false} handleOnCursor={handleOnCursor} menuItems={menuItems} />
         </div>
       </NavStyle>
       <NavStyle
@@ -78,7 +77,7 @@ const Nav = ({ data }) => {
         <motion.div className="background" variants={sidebar} />
 
         <div className="wrapper">
-          <NavList isOpen={isOpen} tablet menuItems={menuItems} toggle={() => toggleOpen()} />
+          <NavList tablet isOpen={isOpen} menuItems={menuItems} toggle={() => toggleOpen()} />
         </div>
         <MenuToggle toggle={() => toggleOpen()} />
       </NavStyle>
@@ -92,6 +91,7 @@ Nav.propTypes = {
       menuItem: PropTypes.array,
     }),
   }).isRequired,
+  handleOnCursor: PropTypes.func.isRequired,
 };
 
 export default Nav;

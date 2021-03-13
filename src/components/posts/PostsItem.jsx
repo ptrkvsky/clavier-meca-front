@@ -80,6 +80,7 @@ const PostItem = ({ post }) => {
       {imagePost ? (
         <WrapperImage
           to={`/${post.slug.current}`}
+          title={post.title}
           onMouseEnter={handleEnter}
           onMouseLeave={handleLeave}
           hover={hoverState}

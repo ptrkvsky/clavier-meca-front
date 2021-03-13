@@ -54,19 +54,34 @@ const variants = {
 };
 
 const NavItem = ({
-  slug, name, tablet = false, toggle,
+  slug, name, tablet, toggle, handleOnCursor,
 }) => (
 
   <NavItemStyle variants={tablet ? variants : ''}>
-    <Link to={`/${slug}`} activeClassName="active" onClick={toggle}>
+    <Link
+      to={`/${slug}`}
+      activeClassName="active"
+      onClick={toggle}
+      onMouseEnter={() => handleOnCursor('hovered')}
+      onMouseLeave={() => handleOnCursor()}
+    >
       {name}
     </Link>
   </NavItemStyle>
 );
 
+NavItem.defaultProps = {
+  handleOnCursor: () => {},
+  tablet: false,
+  toggle: () => {},
+};
+
 NavItem.propTypes = {
+  handleOnCursor: PropTypes.func,
   name: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
+  tablet: PropTypes.bool,
+  toggle: PropTypes.func,
 };
 
 export default NavItem;

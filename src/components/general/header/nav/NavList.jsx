@@ -39,7 +39,7 @@ const variants = {
 };
 
 const NavList = ({
-  menuItems, tablet, toggle, isOpen,
+  menuItems, tablet, toggle, isOpen, handleOnCursor,
 }) => (
   <Ul isOpen={isOpen} variants={tablet ? variants : ''}>
     {menuItems.map((menuItem) => (
@@ -49,6 +49,7 @@ const NavList = ({
         slug={menuItem.menuItemSlug.current}
         tablet={tablet}
         toggle={toggle}
+        handleOnCursor={handleOnCursor}
       />
     ))}
   </Ul>
@@ -56,9 +57,11 @@ const NavList = ({
 
 NavList.defaultProps = {
   toggle: () => {},
+  handleOnCursor: () => {},
 };
 
 NavList.propTypes = {
+  handleOnCursor: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
   menuItems: PropTypes.array.isRequired,
   tablet: PropTypes.bool.isRequired,
