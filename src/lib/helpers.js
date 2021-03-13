@@ -6,7 +6,7 @@ export function cn(...args) {
 
 export function mapEdgesToNodes(data) {
   if (!data.edges) return [];
-  return data.edges.map(edge => edge.node);
+  return data.edges.map((edge) => edge.node);
 }
 
 export function filterOutDocsWithoutSlugs({ slug }) {
@@ -23,11 +23,11 @@ export function getBlogUrl(slug) {
 
 export function buildImageObj(source = { asset: {} }) {
   const imageObj = {
-    asset: { _ref: source.asset._ref || source.asset._id },
+    asset: { _ref: source.asset?._ref || source.asset?._id.trim() },
   };
 
-  if (source.crop) imageObj.crop = source.crop;
-  if (source.hotspot) imageObj.hotspot = source.hotspot;
+  if (source.crop) imageObj.crop = source?.crop.trim();
+  if (source.hotspot) imageObj.hotspot = source?.hotspot.trim();
 
   return imageObj;
 }
@@ -37,11 +37,11 @@ export function toPlainText(blocks) {
     return '';
   }
   return blocks
-    .map(block => {
+    .map((block) => {
       if (block._type !== 'block' || !block.children) {
         return '';
       }
-      return block.children.map(child => child.text).join('');
+      return block.children.map((child) => child.text).join('');
     })
     .join('\n\n');
 }

@@ -1,12 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { graphql } from 'gatsby';
 import Error404Wrapper from '../wrappers/Error404Wrapper';
 
 const Error404 = ({ data }) => {
   const posts = data.posts.nodes;
-
-  const postsHome = posts.filter(post => post.home === true);
-  return <Error404Wrapper posts={postsHome} />;
+  return <Error404Wrapper posts={posts} />;
 };
 
 export const query = graphql`
@@ -17,7 +16,6 @@ export const query = graphql`
           title
         }
         title
-        home
         slug {
           current
         }
@@ -39,5 +37,13 @@ export const query = graphql`
     }
   }
 `;
+
+Error404.propTypes = {
+  data: PropTypes.shape({
+    posts: PropTypes.shape({
+      nodes: PropTypes.array.isRequired,
+    }),
+  }).isRequired,
+};
 
 export default Error404;

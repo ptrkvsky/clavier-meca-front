@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import CloakLinkFooter from './CloakLinkFooter';
 import mediaQueries from '../../../styles/global/mediaQueries';
 
-const FooterWrapper = styled('footer')`
+const FooterWrapper = styled(motion.footer)`
   margin: 114px 0 0 0;
   padding: 80px;
   color: ${(props) => props.theme.colors.revert};
@@ -64,7 +65,11 @@ const Footer = ({ data }) => {
   const post = data.sanityPost;
 
   return (
-    <FooterWrapper>
+    <FooterWrapper
+      initial={{ y: 72, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: [0.6, 0.05, -0.01, 0.9] }}
+    >
       <div className="footer-top">
         <p className="logo">
           CLAVIER MECA /

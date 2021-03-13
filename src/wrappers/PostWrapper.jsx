@@ -8,6 +8,7 @@ import PostIntro from '../components/posts/PostIntro';
 import TableOfContent from '../components/TableOfContent';
 import Seo from '../components/general/Seo';
 import Author from '../components/Author';
+import KeyboardAside from '../components/keyboard/KeyboardAside';
 
 const PostLayout = styled('div')`
   width: ${theme.maxWidth};
@@ -16,6 +17,20 @@ const PostLayout = styled('div')`
 
   ${mediaQueries.tabletLandscape} {
     width: 100%;
+  }
+`;
+
+const Grid = styled('div')`
+  display: ${(props) => props.keyboard ? 'grid' : 'block'};
+  grid-template-columns: 1fr 269px;
+  grid-gap: 98px;
+  ${mediaQueries.tabletLandscape} {
+    grid-template-columns: 1fr;
+  }
+  .intro{
+    ${mediaQueries.mobile} {
+      padding-left: 8px;
+    }
   }
 `;
 
@@ -44,14 +59,23 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
       <PostLayout>
         <PostIntro post={post} />
         {tableOfContent && <TableOfContent tableOfContent={tableOfContent} />}
+        <Grid className={post.keyboard ? 'aside' : 'no-aside' } keyboard={!!post.keyboard}>
+          <div>
+            <PostSlices
+              content={post.content}
+              keyboardsAmazon={keyboardsAmazon}
+              tableOfContent={tableOfContent}
+              productsAmazon={productsAmazon}
+              setTableOfContent={setTableOfContent}
+            />
+          </div>
 
-        <PostSlices
-          content={post.content}
-          keyboardsAmazon={keyboardsAmazon}
-          tableOfContent={tableOfContent}
-          productsAmazon={productsAmazon}
-          setTableOfContent={setTableOfContent}
-        />
+          {post.keyboard &&
+            <div>
+              <KeyboardAside keyboard={post.keyboard} subTitleCol={post.keyboard.teaser} titleCol="" />
+            </div>
+          }
+        </Grid>
         {post.categories[0].title !== 'Informations' ? (
           <Author author={post.author} />
         ) : (
@@ -62,7 +86,12 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
   );
 };
 
+PostWrapper.defaultProps = {
+  keyboard: null
+}
+
 PostWrapper.propTypes = {
+  keyboard: PropTypes.object,
   keyboardsAmazon: PropTypes.array.isRequired,
   post: PropTypes.shape({
     author: PropTypes.object.isRequired,
@@ -70,9 +99,9 @@ PostWrapper.propTypes = {
     content: PropTypes.object.isRequired,
     metaDescription: PropTypes.string,
     metaTitle: PropTypes.string,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
   }).isRequired,
-  productsAmazon: PropTypes.array.isRequired,
-};
+  productsAmazon: PropTypes.array.isRequired
+}
 
 export default PostWrapper;

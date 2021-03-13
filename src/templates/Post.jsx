@@ -7,12 +7,11 @@ const PostPage = ({ data, pageContext }) => {
   const { post } = data;
   const productsAmazon = pageContext.productsAmazon.ItemsResult.Items;
   const { keyboardsAmazon } = pageContext;
-
   return (
     <PostWrapper
+      post={post}
       productsAmazon={productsAmazon}
       keyboardsAmazon={keyboardsAmazon}
-      post={post}
     />
   );
 };
@@ -29,6 +28,21 @@ export const query = graphql`
       metaTitle
       metaDescription
       publishedAt(formatString: "DD MMMM YYYY", locale: "fr")
+      keyboard {
+        id
+        urlAmazon
+        title
+        mainImage {
+          asset {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+        teaser
+      }
       author {
         id
         image {
@@ -52,9 +66,25 @@ export const query = graphql`
       categories {
         title
       }
-      summary
       title
       content {
+        ... on SanityIllustration {
+          _key
+          image {
+            asset {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                        width: 760
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                  )
+                }
+              }
+            }
+            alt
+          }
+        }
         ... on SanityKeyboardsTable {
           _type
           _rawDescription

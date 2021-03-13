@@ -10,7 +10,7 @@ const CloakImage = ({ asset, url }) => {
   }, [link]);
 
   return (
-    <a href={link} target="_blank">
+    <a href={link} target="_blank" rel="noreferrer">
       {asset.fluid && (
         <GatsbyImage
           image={asset.localFile.childImageSharp.gatsbyImageData}
@@ -25,6 +25,11 @@ CloakImage.propTypes = {
   asset: PropTypes.shape({
     alt: PropTypes.string,
     fluid: PropTypes.object,
+    localFile: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        gatsbyImageData: PropTypes.any,
+      }).isRequired,
+    }).isRequired,
   }).isRequired,
   url: PropTypes.string.isRequired,
 };
