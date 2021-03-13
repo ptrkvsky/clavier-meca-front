@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { motion } from 'framer-motion';
-import theme from '../../styles/global/theme';
+import fonts from '../../styles/global/fonts';
 import mediaQueries from '../../styles/global/mediaQueries';
 import PortableText from '../portableText';
 
@@ -20,7 +19,7 @@ const Grid = styled('section')`
   }
 `;
 
-const ColLeft = styled(motion.div)`
+const ColLeft = styled('div')`
   display: flex;
   align-items: center;
   ${mediaQueries.mobile} {
@@ -28,7 +27,9 @@ const ColLeft = styled(motion.div)`
   }
 `;
 
-const ColRight = styled(motion.div)`
+const ColRight = styled('div')`
+  position: relative;
+  z-index: 0;
   text-align: right;
   font-size: 0;
   line-height: 1;
@@ -37,14 +38,13 @@ const ColRight = styled(motion.div)`
 const Title = styled('h1')`
   position: absolute;
   z-index: 10;
-  background: #fff;
   padding: 18px 18px 18px 0;
   margin-bottom: 84px;
   font-size: 90px;
-  font-family: ${theme.fonts.title};
+  font-family: ${fonts.title};
   text-transform: uppercase;
   line-height: 1;
-  background: #fff;
+  background: ${(props) => props.theme.bg.main};
 
   ${mediaQueries.mobile} {
     position: relative;
@@ -73,10 +73,10 @@ const Title = styled('h1')`
   }
 `;
 
-const Intro = styled(motion.div)`
+const Intro = styled('div')`
   font-size: 24px;
   line-height: 30px;
-  font-family: ${theme.fonts.light};
+  font-family: ${fonts.light};
   margin-top: 351px;
   ${mediaQueries.mobile} {
     margin-top: 0;
@@ -85,42 +85,16 @@ const Intro = styled(motion.div)`
   }
 `;
 
-const parent = {
-  initial: { y: 30, opacity: 0 },
-
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      ease: [0.6, 0.05, -0.01, 0.9],
-      staggerChilren: 0.2,
-    },
-  },
-};
-
-const child = {
-  initial: { y: 30, opacity: 0 },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      ease: [0.5, 0.05, -0.01, 0.9],
-    },
-  },
-};
-
 const Banner = ({
   h1, intro, image, alt,
 }) => (
   <Grid>
-    <ColLeft variants={parent} initial="initial" animate="animate">
+    <ColLeft>
       <div>
-        <motion.div variants={child} className="container-title">
+        <div className="container-title">
           <Title>{h1}</Title>
-        </motion.div>
-        <Intro variants={child}>
+        </div>
+        <Intro>
           <PortableText blocks={intro} />
         </Intro>
       </div>

@@ -1,7 +1,7 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react/no-unescaped-entities */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-
-import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import theme from '../styles/global/theme';
 import { PrimaryButton } from '../styles/components/Buttons';
@@ -77,15 +77,14 @@ const Product = ({ product, productsAmazon }) => {
   let availability = null;
   // Filter amazon products tab
   if (productsAmazon) {
-    const productAmazonFiltered = productsAmazon.filter(productAmazon => {
+    const productAmazonFiltered = productsAmazon.filter((productAmazon) => {
       if (productAmazon.ASIN === product.product.asin) {
         return productAmazon;
       }
     });
 
     if (productAmazonFiltered.length > 0) {
-      availability =
-        productAmazonFiltered[0].Offers.Listings[0].Availability.Message;
+      availability = productAmazonFiltered[0].Offers.Listings[0].Availability.Message;
     }
   }
   return (
@@ -105,10 +104,11 @@ const Product = ({ product, productsAmazon }) => {
               </ProductTitle>
               <ProductDesc>
                 <PortableText blocks={product.product._rawLongDesc} />
-
                 {availability ? (
                   <p>
-                    <b>Disponibilité :</b> {availability}
+                    <b>Disponibilité :</b>
+                    {' '}
+                    {availability}
                   </p>
                 ) : (
                   ''
@@ -132,10 +132,23 @@ const Product = ({ product, productsAmazon }) => {
 };
 
 Product.propTypes = {
-  Hn: PropTypes.any,
+  Hn: PropTypes.string.isRequired,
   product: PropTypes.shape({
+    Hn: PropTypes.any,
+    product: PropTypes.shape({
+      _rawLongDesc: PropTypes.any,
+      asin: PropTypes.any,
+      mainImage: PropTypes.shape({
+        asset: PropTypes.any,
+      }),
+      title: PropTypes.any,
+      url: PropTypes.any,
+    }).isRequired,
     title: PropTypes.string,
-  }),
+  }).isRequired,
+  productsAmazon: PropTypes.shape({
+    filter: PropTypes.func,
+  }).isRequired,
 };
 
 export default Product;

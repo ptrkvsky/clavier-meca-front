@@ -8,6 +8,9 @@ import mediaQueries from '../styles/global/mediaQueries';
 const ImageContainer = styled('div')`
   margin: 44px -146px;
   text-align: center;
+  .aside & {
+    margin: 44px 0;
+  }
   img {
     max-width: 100%;
   }

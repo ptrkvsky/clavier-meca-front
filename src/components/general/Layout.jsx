@@ -6,9 +6,9 @@ import 'normalize.css';
 import styled from '@emotion/styled';
 import GlobalStyle from '../../styles/global';
 import theme from '../../styles/global/theme';
-import mediaQueries from '../../styles/global/mediaQueries';
 // Components
 import Header from './header';
+import Main from './Main';
 import Footer from './footer/index';
 import Scroll from './Scroll';
 import Cursor from './CustomCursor';
@@ -42,6 +42,7 @@ const Layout = ({ children }) => {
   const { cursorStyles } = useGlobalStateContext();
 
   const handleOnCursor = (cursorType) => {
+    // eslint-disable-next-line no-param-reassign
     cursorType = (cursorStyles.includes(cursorType) && cursorType) || false;
     dispatch({ type: 'CURSOR_TYPE', cursorType });
   };
@@ -51,7 +52,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Cursor />
       <MainWrapper>
-        <main>{children}</main>
+        <Main>{children}</Main>
         <Header handleOnCursor={handleOnCursor} />
         <Footer />
       </MainWrapper>
