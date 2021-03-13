@@ -1,11 +1,12 @@
+/* eslint-disable import/prefer-default-export */
 import styled from '@emotion/styled';
 import theme from '../global/theme';
 
 const PrimaryButton = styled('button')`
   cursor: pointer;
   display: inline-block;
-  padding: ${props => (props.big ? '12px 32px' : '10px 20px')};
-  font-size: ${props => (props.big ? '24px' : '18px')};
+  padding: ${(props) => (props.big ? '12px 32px' : '10px 20px')};
+  font-size: ${(props) => (props.big ? '24px' : '18px')};
   font-family: ${theme.fonts.title};
   text-align: center;
   text-transform: uppercase;

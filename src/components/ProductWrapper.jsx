@@ -20,7 +20,7 @@ const Article12 = styled('article')`
     grid-gap: 12px;
   }
 
-  &:nth-child(even) {
+  &:nth-of-type(even) {
     .desc {
       grid-column: 1;
       grid-row: 1;
@@ -65,17 +65,15 @@ const Article6 = styled('article')`
   }
 `;
 
-const ProductWrapper = ({ product, productsAmazon }) => {
-  return product.size === 'full' ? (
-    <Article12 className="full">
-      <Product product={product} productsAmazon={productsAmazon} />
-    </Article12>
-  ) : (
-    <Article6 className="small">
-      <Product product={product} productsAmazon={productsAmazon} />
-    </Article6>
-  );
-};
+const ProductWrapper = ({ product, productsAmazon }) => (product.size === 'full' ? (
+  <Article12 className="full">
+    <Product product={product} productsAmazon={productsAmazon} />
+  </Article12>
+) : (
+  <Article6 className="small">
+    <Product product={product} productsAmazon={productsAmazon} />
+  </Article6>
+));
 
 ProductWrapper.propTypes = {
   product: PropTypes.shape({

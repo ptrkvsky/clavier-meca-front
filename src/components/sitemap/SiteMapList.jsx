@@ -3,27 +3,25 @@ import React from 'react';
 import CategorieItem from './CategorieItem';
 import AuthorItem from './AuthorItem';
 
-const SiteMapList = ({ posts, categories, authors }) => {
-  return (
-    <>
-      {categories &&
-        categories.map(categorie => (
+const SiteMapList = ({ posts, categories, authors }) => (
+  <>
+    {categories
+        && categories.map((categorie) => (
           <CategorieItem
             key={categorie._id}
             categorie={categorie}
             posts={posts}
           />
         ))}
-      <h2>Auteurs</h2>
-      <ul>
-        {authors &&
-          authors.map(author => (
+    <h2>Auteurs</h2>
+    <ul>
+      {authors
+          && authors.map((author) => (
             <AuthorItem key={author._id} author={author} />
           ))}
-      </ul>
-    </>
-  );
-};
+    </ul>
+  </>
+);
 
 SiteMapList.propTypes = {
   authors: PropTypes.array.isRequired,

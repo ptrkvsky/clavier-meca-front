@@ -43,19 +43,19 @@ const Table = styled('table')`
     }
     tbody {
     tr {
-        &:nth-child(odd) {
-        background-color: ${(props) => props.theme.colors.border};
+        &:nth-of-type(odd) {
+            background-color: ${(props) => props.theme.colors.border};
         }
-        &:nth-child(1) {
-        .pos {
-            font-size: 36px;
-            color: ${(props) => props.theme.colors.primary};
+        &:nth-of-type(1) {
+            .pos {
+                font-size: 36px;
+                color: ${(props) => props.theme.colors.primary};
+            }
         }
-        }
-        &:nth-child(2) {
-        .pos {
-            font-size: 34px;
-        }
+        &:nth-of-type(2) {
+            .pos {
+                font-size: 34px;
+            }
         }
     }
     .pos {

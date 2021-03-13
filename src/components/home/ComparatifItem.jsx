@@ -88,9 +88,7 @@ const ComparatifItem = ({ post, revert }) => {
 ComparatifItem.propTypes = {
   post: PropTypes.shape({
     mainImage: PropTypes.shape({
-      alt: PropTypes.shape({
-        alt: PropTypes.string,
-      }),
+      alt: PropTypes.string,
       asset: PropTypes.shape({
         localFile: PropTypes.shape({
           childImageSharp: PropTypes.shape({

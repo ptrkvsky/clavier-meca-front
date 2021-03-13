@@ -66,10 +66,8 @@ const KeyboardsSection = ({
 KeyboardsSection.propTypes = {
   _rawDescription: PropTypes.array.isRequired,
   hn: PropTypes.string.isRequired,
-  keyboardCol: PropTypes.bool.isRequired,
-  keyboards: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  keyboardCol: PropTypes.object.isRequired,
+  keyboards: PropTypes.array.isRequired,
   keyboardsAmazon: PropTypes.array.isRequired,
   subTitleCol: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

@@ -5,14 +5,14 @@ import PostItem from './PostItem';
 const CategorieItem = ({ categorie, posts }) => {
   // Filter post by categories
   const postsFiltered = posts.filter(
-    post => post.categories[0].slug.current === categorie.slug.current
+    (post) => post.categories[0].slug.current === categorie.slug.current,
   );
 
   return (
     <>
       <h2>{categorie.title}</h2>
       <ul>
-        {postsFiltered.map(post => (
+        {postsFiltered.map((post) => (
           <li>
             <PostItem key={post._id} post={post} />
           </li>
@@ -25,6 +25,7 @@ const CategorieItem = ({ categorie, posts }) => {
 CategorieItem.propTypes = {
   categorie: PropTypes.shape({
     slug: PropTypes.string,
+    title: PropTypes.string,
   }).isRequired,
   posts: PropTypes.array.isRequired,
 };

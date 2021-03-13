@@ -106,10 +106,14 @@ const Banner = ({
 );
 
 Banner.propTypes = {
-  alt: PropTypes.string.isRequired,
+  alt: PropTypes.string,
   h1: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
-  intro: PropTypes.string.isRequired,
+  intro: PropTypes.array.isRequired,
+};
+
+Banner.defaultProps = {
+  alt: '',
 };
 
 export default Banner;

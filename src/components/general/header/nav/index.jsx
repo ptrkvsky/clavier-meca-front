@@ -89,9 +89,7 @@ const Nav = ({ data }) => {
 Nav.propTypes = {
   data: PropTypes.shape({
     sanityMenu: PropTypes.shape({
-      menuItem: PropTypes.shape({
-        map: PropTypes.func,
-      }),
+      menuItem: PropTypes.array,
     }),
   }).isRequired,
 };

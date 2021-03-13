@@ -33,10 +33,14 @@ const MainImage = ({ mainImage }) => {
   );
 };
 
+MainImage.defaultProps = {
+  mainImage: {},
+};
+
 MainImage.propTypes = {
   mainImage: PropTypes.shape({
-    alt: PropTypes.string.isRequired,
-  }).isRequired,
+    alt: PropTypes.string,
+  }),
 };
 
 export default MainImage;
