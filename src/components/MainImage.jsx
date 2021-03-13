@@ -23,7 +23,7 @@ const ImageContainer = styled('div')`
 `;
 
 const MainImage = ({ mainImage }) => {
-  const imgUrl = mainImage && imageUrlFor(buildImageObj(mainImage)).url();
+  const imgUrl = mainImage && imageUrlFor(buildImageObj(mainImage)).url().trim();
   return imgUrl ? (
     <ImageContainer>
       <img loading="lazy" src={imgUrl} alt={mainImage.alt || ''} />
