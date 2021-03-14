@@ -7,8 +7,8 @@ exports.createPages = async ({ graphql, actions }) => {
   // Redirect
   const { createRedirect } = actions;
   createRedirect({
-    fromPath: '/claviers-etanches/',
-    toPath: '/claviers-etanches',
+    fromPath: '/claviers-etanches',
+    toPath: '/claviers-etanches/',
     isPermanent: true,
   });
 
