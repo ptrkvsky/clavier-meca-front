@@ -97,7 +97,7 @@ const Footer = ({ data, pathName }) => {
             <LinkFooter to="/plan-site">Plan du site</LinkFooter>
           ) : (
             <CloakLinkFooter
-              url="plan-site"
+              url="/plan-site"
               content="Plan du site"
             />
           )}
