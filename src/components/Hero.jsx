@@ -49,6 +49,7 @@ const Hero = ({ _rawBref, illustration, padding }) => (
   <HeroStyled padding={padding}>
     <div className="illustration">
       <GatsbyImage
+        alt={illustration.image.alt}
         image={
             illustration.image.asset.localFile.childImageSharp.gatsbyImageData
           }
@@ -71,6 +72,7 @@ Hero.propTypes = {
   _rawBref: PropTypes.array.isRequired,
   illustration: PropTypes.shape({
     image: PropTypes.shape({
+      alt: PropTypes.isRequired,
       asset: PropTypes.shape({
         localFile: PropTypes.shape({
           childImageSharp: PropTypes.shape({
