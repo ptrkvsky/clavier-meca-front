@@ -60,7 +60,7 @@ const LinkFooter = styled(Link)`
   }
 `;
 
-const Footer = ({ data }) => {
+const Footer = ({ data, pathName }) => {
   const date = new Date();
   const post = data.sanityPost;
 
@@ -93,7 +93,14 @@ const Footer = ({ data }) => {
           </p>
         </div>
         <div className="menu">
-          <LinkFooter to="/plan-site">Plan du site</LinkFooter>
+          {pathName === '/' ? (
+            <LinkFooter to="/plan-site">Plan du site</LinkFooter>
+          ) : (
+            <CloakLinkFooter
+              url={`/${post.slug.current}`}
+              content="Plan du site"
+            />
+          )}
           <br />
           <CloakLinkFooter
             url={`/${post.slug.current}`}

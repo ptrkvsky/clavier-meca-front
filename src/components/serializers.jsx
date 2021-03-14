@@ -22,7 +22,6 @@ const Serializers = (tableOfContent = false, setTableOfContent = false) => {
     types: {
       block: (props) => {
         const newTableOfContent = tableOfContent;
-        console.log(props.children[0]);
         if (props.node.style === 'h2') {
           let slug = '';
           if (typeof props.children[0] === 'string') {
