@@ -37,7 +37,7 @@ const MainWrapper = styled('div')`
   }
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const dispatch = useGlobalDispatchContext();
   const { cursorStyles } = useGlobalStateContext();
 
@@ -46,7 +46,7 @@ const Layout = ({ children }) => {
     cursorType = (cursorStyles.includes(cursorType) && cursorType) || false;
     dispatch({ type: 'CURSOR_TYPE', cursorType });
   };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
       <MainWrapper>
         <Main>{children}</Main>
         <Header handleOnCursor={handleOnCursor} />
-        <Footer />
+        <Footer pathName={location.pathname} />
       </MainWrapper>
       <Scroll showBelow={1000} />
     </ThemeProvider>

@@ -65,7 +65,7 @@ const PostItem = ({ post }) => {
   };
 
   const imagePost = post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
-  const { alt } = post.mainImage;
+  const alt = post.mainImage?.alt;
 
   return (
     <>
@@ -85,7 +85,7 @@ const PostItem = ({ post }) => {
           onMouseLeave={handleLeave}
           hover={hoverState}
         >
-          <GatsbyImage alt={alt} image={imagePost} />
+          <GatsbyImage alt={alt && alt} image={imagePost} />
         </WrapperImage>
       ) : (
         ''

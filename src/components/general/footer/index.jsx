@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Footer from './Footer';
 
-const NavContainer = () => (
+const FooterContainer = ({ pathName }) => (
   <>
     <StaticQuery
       query={graphql`
@@ -16,9 +17,13 @@ const NavContainer = () => (
             }
           }
         `}
-      render={(data) => <Footer data={data} />}
+      render={(data) => <Footer pathName={pathName} data={data} />}
     />
   </>
 );
 
-export default NavContainer;
+FooterContainer.propTypes = {
+  pathName: PropTypes.string.isRequired,
+};
+
+export default FooterContainer;
