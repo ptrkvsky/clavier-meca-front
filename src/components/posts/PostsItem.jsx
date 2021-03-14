@@ -66,7 +66,6 @@ const PostItem = ({ post }) => {
 
   const imagePost = post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
   const { alt } = post.mainImage;
-  console.info(alt);
 
   return (
     <>

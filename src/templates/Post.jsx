@@ -33,6 +33,7 @@ export const query = graphql`
         urlAmazon
         title
         mainImage {
+          alt
           asset {
             localFile {
               childImageSharp {
@@ -71,6 +72,7 @@ export const query = graphql`
         ... on SanityIllustration {
           _key
           image {
+            alt
             asset {
               localFile {
                 childImageSharp {
@@ -96,6 +98,7 @@ export const query = graphql`
               asin
               price
               mainImage {
+                alt
                 asset {
                   localFile {
                     childImageSharp {
@@ -108,7 +111,6 @@ export const query = graphql`
                     }
                   }
                 }
-                alt
               }
               urlAmazon
               urlMateriel
@@ -127,6 +129,7 @@ export const query = graphql`
           padding
           illustration {
             image {
+              alt
               asset {
                 localFile {
                   childImageSharp {
@@ -175,6 +178,7 @@ export const query = graphql`
             urlMateriel
             title
             mainImage {
+              alt
               asset {
                 localFile {
                   childImageSharp {
@@ -197,6 +201,7 @@ export const query = graphql`
               _key
               asin
               mainImage {
+                alt
                 asset {
                   title
                   localFile {
@@ -209,7 +214,6 @@ export const query = graphql`
                     }
                   }
                 }
-                alt
                 caption
               }
               price
@@ -289,6 +293,7 @@ export const query = graphql`
               }
             }
             mainImage {
+              alt
               asset {
                 fluid {
                   ...GatsbySanityImageFluid
