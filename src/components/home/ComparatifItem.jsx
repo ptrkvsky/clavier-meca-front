@@ -69,8 +69,9 @@ const Title = styled('h3')`
 `;
 
 const ComparatifItem = ({ post, revert }) => {
-  const { alt } = post.mainImage.alt;
+  const { alt } = post.mainImage;
   const image = post.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
+
   const dispatch = useGlobalDispatchContext();
   const { cursorStyles } = useGlobalStateContext();
   const handleOnCursor = (cursorType) => {

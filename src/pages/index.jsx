@@ -68,6 +68,7 @@ export const query = graphql`
           }
         }
         mainImage {
+          alt
           asset {
             localFile {
               childImageSharp {
