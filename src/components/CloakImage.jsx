@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
-const CloakImage = ({ asset, url }) => {
+const CloakImage = ({ asset, url, alt }) => {
   const [link, setLink] = useState('#');
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const CloakImage = ({ asset, url }) => {
       {asset.fluid && (
         <GatsbyImage
           image={asset.localFile.childImageSharp.gatsbyImageData}
-          alt={asset.alt && asset.alt}
+          alt={alt && alt}
         />
       )}
     </a>
@@ -22,8 +22,9 @@ const CloakImage = ({ asset, url }) => {
 };
 
 CloakImage.propTypes = {
+  alt: PropTypes.string.isRequired,
   asset: PropTypes.shape({
-    alt: PropTypes.string,
+
     fluid: PropTypes.object,
     localFile: PropTypes.shape({
       childImageSharp: PropTypes.shape({

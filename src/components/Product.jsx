@@ -93,6 +93,7 @@ const Product = ({ product, productsAmazon }) => {
         <>
           <BlockIllu className="illu">
             <CloakImage
+              alt={product.product.mainImage.alt}
               asset={product.product.mainImage.asset}
               url={product.product.url}
             />
@@ -139,6 +140,7 @@ Product.propTypes = {
       _rawLongDesc: PropTypes.any,
       asin: PropTypes.any,
       mainImage: PropTypes.shape({
+        alt: PropTypes.string,
         asset: PropTypes.any,
       }),
       title: PropTypes.any,
