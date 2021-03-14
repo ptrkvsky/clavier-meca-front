@@ -97,7 +97,7 @@ const Footer = ({ data, pathName }) => {
             <LinkFooter to="/plan-site">Plan du site</LinkFooter>
           ) : (
             <CloakLinkFooter
-              url={`/${post.slug.current}`}
+              url="plan-site"
               content="Plan du site"
             />
           )}
