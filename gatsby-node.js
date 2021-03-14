@@ -6,7 +6,11 @@ const amazonPaapi = require('amazon-paapi');
 exports.createPages = async ({ graphql, actions }) => {
   // Redirect
   const { createRedirect } = actions;
-  createRedirect({ fromPath: '/claviers-etanches/', toPath: '/claviers-etanches', statusCode: 301 });
+  createRedirect({
+    fromPath: '/claviers-etanches/',
+    toPath: '/claviers-etanches',
+    isPermanent: true,
+  });
 
   const commonParameters = {
     AccessKey: process.env.GATSBY_AMAZON_ACCESS,
