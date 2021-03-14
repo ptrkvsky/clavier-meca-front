@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 });
@@ -8,7 +9,7 @@ module.exports = {
   siteMetadata: {
     title: 'Clavier Meca',
     description: 'Découvrir le monde merveilleux des claviers mécaniques',
-    author: 'Johan Petrikovsky',
+    author: 'Eric André',
     siteUrl: 'https://www.clavier-meca.com',
   },
   plugins: [
@@ -47,6 +48,7 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-offline',
