@@ -46,11 +46,11 @@ const Layout = ({ children, location }) => {
     cursorType = (cursorStyles.includes(cursorType) && cursorType) || false;
     dispatch({ type: 'CURSOR_TYPE', cursorType });
   };
-  
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Cursor />
+      {/* <Cursor /> */}
       <MainWrapper>
         <Main>{children}</Main>
         <Header handleOnCursor={handleOnCursor} />
@@ -63,6 +63,9 @@ const Layout = ({ children, location }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
 };
 
 export default Layout;
