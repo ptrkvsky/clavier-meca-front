@@ -4,8 +4,6 @@ import styled from '@emotion/styled';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import mediaQueries from '../../styles/global/mediaQueries';
-// Context
-import { useGlobalStateContext, useGlobalDispatchContext } from '../../context/globalContext';
 
 const Grid = styled('article')`
   position: relative;
@@ -59,6 +57,10 @@ const Title = styled('h3')`
   background-color: ${(props) => props.theme.colors.revert};
   a {
     text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      color: ${(props) => props.theme.colors.primary};
+    }
   }
   ${mediaQueries.mobile}{ 
     font-size: 27px;
@@ -72,20 +74,9 @@ const ComparatifItem = ({ post, revert }) => {
   const { alt } = post.mainImage;
   const image = post.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
 
-  const dispatch = useGlobalDispatchContext();
-  const { cursorStyles } = useGlobalStateContext();
-  const handleOnCursor = (cursorType) => {
-    // eslint-disable-next-line no-param-reassign
-    cursorType = (cursorStyles.includes(cursorType) && cursorType) || false;
-    dispatch({ type: 'CURSOR_TYPE', cursorType });
-  };
-
   return (
     <Grid className={`${revert ? 'revert' : ''}`}>
-      <div
-        onMouseEnter={() => handleOnCursor('hovered')}
-        onMouseLeave={() => handleOnCursor()}
-      >
+      <div>
         <ImageContainer
           title={post.title}
           to={`/${post.slug.current}`}
@@ -97,8 +88,6 @@ const ComparatifItem = ({ post, revert }) => {
         <Title>
           <Link
             to={`/${post.slug.current}`}
-            onMouseEnter={() => handleOnCursor('hovered')}
-            onMouseLeave={() => handleOnCursor()}
           >
             {post.title}
           </Link>
