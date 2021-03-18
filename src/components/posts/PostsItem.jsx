@@ -48,7 +48,7 @@ const WrapperImage = styled(Link)`
     width: 100%;
     height: 100%;
     opacity: ${(props) => (props.hover ? 1 : 0)};
-    background: ${(props) => props.theme.colors.primary};
+    background: ${(props) => (props.hover ? 1 : 0)};
     mix-blend-mode: multiply;
     transition: all 0.3s linear;
   }
