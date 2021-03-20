@@ -51,15 +51,14 @@ module.exports = {
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'gatsby-starter-default',
-        short_name: 'starter',
+        short_name: 'Clavier Meca',
         start_url: '/',
-        background_color: '#8000FF',
-        theme_color: '#8000FF',
+        background_color: '#8000ff',
+        theme_color: '#8000ff',
         display: 'minimal-ui',
         icon: 'src/assets/images/favicons/favicon.png', // This path is relative to the root of the site.
       },
@@ -96,5 +95,6 @@ module.exports = {
         overlayDrafts: !isProd,
       },
     },
+    'gatsby-plugin-offline',
   ],
 };
