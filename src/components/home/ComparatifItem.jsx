@@ -16,9 +16,18 @@ const Grid = styled('article')`
     display: block;
     margin-bottom: 32px;
   }
+
 `;
 
-const ImageContainer = styled(Link)`
+const LinkItem = styled(Link)`
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      color: ${(props) => props.theme.colors.primary};
+    }
+`;
+
+const ImageContainer = styled('div')`
   display: block;
   grid-area: col1;
   .revert & {
@@ -55,13 +64,6 @@ const Title = styled('h3')`
   font-size: 48px;
   letter-spacing: -2px;
   background-color: ${(props) => props.theme.colors.revert};
-  a {
-    text-decoration: none;
-    &:hover {
-      cursor: pointer;
-      color: ${(props) => props.theme.colors.primary};
-    }
-  }
   ${mediaQueries.mobile}{ 
     font-size: 27px;
     padding: 0 8px;
@@ -75,25 +77,23 @@ const ComparatifItem = ({ post, revert }) => {
   const image = post.mainImage.asset.localFile.childImageSharp.gatsbyImageData;
 
   return (
-    <Grid className={`${revert ? 'revert' : ''}`}>
-      <div>
-        <ImageContainer
-          title={post.title}
-          to={`/${post.slug.current}`}
-        >
-          <GatsbyImage image={image} alt={alt} />
-        </ImageContainer>
-      </div>
-      <ColLeft>
-        <Title>
-          <Link
-            to={`/${post.slug.current}`}
-          >
+    <LinkItem
+      title={post.title}
+      to={`/${post.slug.current}`}
+    >
+      <Grid className={`${revert ? 'revert' : ''}`}>
+        <div>
+          <ImageContainer>
+            <GatsbyImage image={image} alt={alt} />
+          </ImageContainer>
+        </div>
+        <ColLeft>
+          <Title>
             {post.title}
-          </Link>
-        </Title>
-      </ColLeft>
-    </Grid>
+          </Title>
+        </ColLeft>
+      </Grid>
+    </LinkItem>
   );
 };
 
