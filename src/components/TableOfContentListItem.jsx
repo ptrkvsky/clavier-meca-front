@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import slugify from 'slugify';
+import styled from '@emotion/styled';
+
+const LinkItem = styled('div')` 
+  text-decoration: none;
+  font-size: 16px;
+`;
 
 const TableOfContentListItem = ({ item }) => {
   const link = slugify(item.value, {
@@ -12,9 +18,9 @@ const TableOfContentListItem = ({ item }) => {
 
   return (
     <li>
-      <a href={`#${link}`} title={item.value}>
+      <LinkItem href={`#${link}`} title={item.value}>
         {item.value}
-      </a>
+      </LinkItem>
     </li>
   );
 };

@@ -12,7 +12,7 @@ const WrapperTitle = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background: ${(props) => (props.hover ? 'yellow' : '')};
+  background: ${(props) => (props.hover ? props.theme.colors.primary17 : '')};
   transition: all 0.25s linear;
 
   ${mediaQueries.mobile}{
@@ -48,7 +48,7 @@ const WrapperImage = styled(Link)`
     width: 100%;
     height: 100%;
     opacity: ${(props) => (props.hover ? 1 : 0)};
-    background: ${(props) => (props.hover ? 1 : 0)};
+    background: ${(props) => (props.hover ? props.theme.colors.primary17 : 'transparent')};
     mix-blend-mode: multiply;
     transition: all 0.3s linear;
   }

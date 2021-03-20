@@ -33,7 +33,7 @@ const TableOfContentStyled = styled('div')`
 `;
 
 const TableOfContent = ({ tableOfContent }) => {
-  const [tocIsVisible, setTocIsVisible] = useState(false);
+  const [tocIsVisible, setTocIsVisible] = useState(true);
 
   const handleClick = () => {
     setTocIsVisible(!tocIsVisible);

@@ -7,7 +7,7 @@ import { MainTitle } from '../styles/components/Titles';
 
 const CategoryWrapper = ({ posts, title }) => (
   <>
-    <Seo title={`${title} - clavier-meca.com`} />
+    <Seo title={`${title}`} />
     <DefaultLayout>
       <MainTitle>{title}</MainTitle>
       <PostsList posts={posts} />
