@@ -54,7 +54,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-default',
+        name: 'Clavier Meca',
         short_name: 'Clavier Meca',
         start_url: '/',
         background_color: '#8000ff',
