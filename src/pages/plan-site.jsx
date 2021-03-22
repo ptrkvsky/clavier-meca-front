@@ -1,16 +1,22 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { graphql } from 'gatsby';
 import PlanSiteWrapper from '../wrappers/PlanSiteWrapper';
 
 const IndexPage = ({ data }) => {
-  console.info(data);
   const authors = data.authors.nodes;
   const categories = data.categories.nodes;
-  const posts = data.posts.nodes;
+  const postsArray = data.posts.nodes;
+  const posts = postsArray.filter(post => post.isOnSitemap === true);
+  console.info(posts);
 
   return (
     <PlanSiteWrapper authors={authors} categories={categories} posts={posts} />
   );
+};
+
+IndexPage.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
@@ -28,10 +34,13 @@ export const query = graphql`
       nodes {
         _id
         title
+        isOnSitemap
         slug {
           current
         }
         categories {
+          _id
+          title
           slug {
             current
           }
@@ -40,11 +49,11 @@ export const query = graphql`
     }
     categories: allSanityCategory {
       nodes {
+        _id
         title
         slug {
           current
         }
-        _id
       }
     }
   }
