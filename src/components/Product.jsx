@@ -77,14 +77,15 @@ const Product = ({ product, productsAmazon }) => {
   let availability = null;
   // Filter amazon products tab
   if (productsAmazon) {
-    const productAmazonFiltered = productsAmazon.filter((productAmazon) => {
+    const productAmazonFiltered = productsAmazon.filter(productAmazon => {
       if (productAmazon.ASIN === product.product.asin) {
         return productAmazon;
       }
     });
 
     if (productAmazonFiltered.length > 0) {
-      availability = productAmazonFiltered[0].Offers.Listings[0].Availability.Message;
+      availability =
+        productAmazonFiltered[0]?.Offers?.Listings[0]?.Availability?.Message;
     }
   }
   return (
@@ -107,9 +108,7 @@ const Product = ({ product, productsAmazon }) => {
                 <PortableText blocks={product.product._rawLongDesc} />
                 {availability ? (
                   <p>
-                    <b>Disponibilité :</b>
-                    {' '}
-                    {availability}
+                    <b>Disponibilité :</b> {availability}
                   </p>
                 ) : (
                   ''
