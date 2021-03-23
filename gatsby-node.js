@@ -6,11 +6,11 @@ const amazonPaapi = require('amazon-paapi');
 exports.createPages = async ({ graphql, actions }) => {
   // Redirect
   const { createRedirect } = actions;
-  // createRedirect({
-  //   fromPath: '/claviers-etanches',
-  //   toPath: '/claviers-etanches/',
-  //   isPermanent: true,
-  // });
+  createRedirect({
+    fromPath: '/comment-faire-clavier-custom/',
+    toPath: '/comment-faire-clavier-custom',
+    isPermanent: true,
+  });
 
   const commonParameters = {
     AccessKey: process.env.GATSBY_AMAZON_ACCESS,
@@ -83,7 +83,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const products = result.data.allSanityProduct.nodes || [];
 
   // Loop over all products
-  products.forEach((node) => {
+  products.forEach(node => {
     // addAsin to set
     if (node.asin) {
       asinProductsSet.add(node.asin);
@@ -113,11 +113,11 @@ exports.createPages = async ({ graphql, actions }) => {
   };
   const productsAmazon = await amazonPaapi.GetItems(
     commonParameters,
-    requestParametersProducts,
+    requestParametersProducts
   );
 
   // Loop over all products
-  keyboards.forEach((node) => {
+  keyboards.forEach(node => {
     // addAsin to set
     if (node.asin) {
       asinKeyboardsSet.add(node.asin);
@@ -126,7 +126,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Keyboards Amazon
   const asinKeyboardsList = Array.from(asinKeyboardsSet);
-  const asinKeyboardsListFiltered = asinKeyboardsList.filter((el) => el != null);
+  const asinKeyboardsListFiltered = asinKeyboardsList.filter(el => el != null);
   const chunk = 9;
   const arrayRequest = []; // array for slice results
   // Slice tab of keyboards into chunk of 9 elements
@@ -158,24 +158,24 @@ exports.createPages = async ({ graphql, actions }) => {
   for (let i = 0; i < arrayRequest.length; i += 1) {
     const resultApi = await amazonPaapi.GetItems(
       commonParameters,
-      arrayRequest[i],
+      arrayRequest[i]
     );
     keyboardsAmazon.push(resultApi);
   }
 
   // Merge arrays from every amazon request
   const keyboardsAmazonMerged = [];
-  keyboardsAmazon.forEach((element) => {
-    element.ItemsResult.Items.forEach((el) => {
+  keyboardsAmazon.forEach(element => {
+    element.ItemsResult.Items.forEach(el => {
       keyboardsAmazonMerged.push(el);
     });
   });
 
   // Build pages for every posts
-  posts.forEach((post) => {
+  posts.forEach(post => {
     // Get categories
     if (post.categories[0].slug.current) {
-      post.categories.forEach((cat) => {
+      post.categories.forEach(cat => {
         categorySet.add(cat.slug.current);
       });
     }
@@ -195,7 +195,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Build pages for every category
   const categoryList = Array.from(categorySet);
 
-  categoryList.forEach((category) => {
+  categoryList.forEach(category => {
     createPage({
       path: `/${category}`,
       component: categoryTemplate,
@@ -206,7 +206,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Build pages for every author
-  authors.forEach((author) => {
+  authors.forEach(author => {
     createPage({
       path: `/auteur/${author.slug.current}`,
       component: authorTemplate,
