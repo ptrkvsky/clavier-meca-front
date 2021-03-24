@@ -21,13 +21,13 @@ const PostLayout = styled('div')`
 `;
 
 const Grid = styled('div')`
-  display: ${(props) => props.keyboard ? 'grid' : 'block'};
+  display: ${props => (props.keyboard ? 'grid' : 'block')};
   grid-template-columns: 1fr 269px;
   grid-gap: 98px;
   ${mediaQueries.tabletLandscape} {
     grid-template-columns: 1fr;
   }
-  .intro{
+  .intro {
     ${mediaQueries.mobile} {
       padding-left: 8px;
     }
@@ -47,7 +47,7 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
       const indexMoreOne = parseInt(index, 10) + 1;
       if (!h2.children.length > 0) {
         // Add 0 in front of index
-        const hnNumber = (`0${indexMoreOne}`).slice(-2);
+        const hnNumber = `0${indexMoreOne}`.slice(-2);
         h2.innerHTML += `<span>${hnNumber}</span>`;
       }
     });
@@ -59,7 +59,10 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
       <PostLayout>
         <PostIntro post={post} />
         {tableOfContent && <TableOfContent tableOfContent={tableOfContent} />}
-        <Grid className={post.keyboard ? 'aside' : 'no-aside' } keyboard={!!post.keyboard}>
+        <Grid
+          className={post.keyboard ? 'aside' : 'no-aside'}
+          keyboard={!!post.keyboard}
+        >
           <div>
             <PostSlices
               content={post.content}
@@ -70,11 +73,15 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
             />
           </div>
 
-          {post.keyboard &&
+          {post.keyboard && (
             <div>
-              <KeyboardAside keyboard={post.keyboard} subTitleCol={post.keyboard.teaser} titleCol="" />
+              <KeyboardAside
+                keyboard={post.keyboard}
+                subTitleCol={post.keyboard.teaser}
+                titleCol=""
+              />
             </div>
-          }
+          )}
         </Grid>
         {post.categories[0].title !== 'Informations' ? (
           <Author author={post.author} />
@@ -87,8 +94,8 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
 };
 
 PostWrapper.defaultProps = {
-  keyboard: null
-}
+  keyboard: null,
+};
 
 PostWrapper.propTypes = {
   keyboard: PropTypes.object,
@@ -99,9 +106,9 @@ PostWrapper.propTypes = {
     content: PropTypes.array.isRequired,
     metaDescription: PropTypes.string,
     metaTitle: PropTypes.string,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
   }).isRequired,
-  productsAmazon: PropTypes.array.isRequired
-}
+  productsAmazon: PropTypes.array.isRequired,
+};
 
 export default PostWrapper;

@@ -12,10 +12,10 @@ const WrapperTitle = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background: ${(props) => (props.hover ? props.theme.colors.primary17 : '')};
+  background: ${props => (props.hover ? props.theme.colors.primary17 : '')};
   transition: all 0.25s linear;
 
-  ${mediaQueries.mobile}{
+  ${mediaQueries.mobile} {
     display: block;
     padding: 0 8px;
   }
@@ -28,12 +28,12 @@ const Title = styled('h3')`
   letter-spacing: -1px;
   font-size: 24px;
   text-align: center;
-  
-  ${mediaQueries.mobile}{
+
+  ${mediaQueries.mobile} {
     bottom: 0;
     font-size: 27px;
     line-height: 1;
-    font-family: ${fonts.main}
+    font-family: ${fonts.main};
   }
 `;
 
@@ -47,8 +47,9 @@ const WrapperImage = styled(Link)`
     left: 0px;
     width: 100%;
     height: 100%;
-    opacity: ${(props) => (props.hover ? 1 : 0)};
-    background: ${(props) => (props.hover ? props.theme.colors.primary17 : 'transparent')};
+    opacity: ${props => (props.hover ? 1 : 0)};
+    background: ${props =>
+      props.hover ? props.theme.colors.primary17 : 'transparent'};
     mix-blend-mode: multiply;
     transition: all 0.3s linear;
   }
@@ -64,7 +65,8 @@ const PostItem = ({ post }) => {
     setHoverState(false);
   };
 
-  const imagePost = post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
+  const imagePost =
+    post.mainImage?.asset.localFile.childImageSharp.gatsbyImageData;
   const alt = post.mainImage?.alt;
 
   return (
@@ -85,7 +87,7 @@ const PostItem = ({ post }) => {
           onMouseLeave={handleLeave}
           hover={hoverState}
         >
-          <GatsbyImage alt={alt && alt} image={imagePost} />
+          <GatsbyImage alt={alt && alt} image={imagePost.split(' ').join('')} />
         </WrapperImage>
       ) : (
         ''

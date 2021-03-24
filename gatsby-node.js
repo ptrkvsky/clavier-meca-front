@@ -4,14 +4,6 @@ require('dotenv').config({
 const amazonPaapi = require('amazon-paapi');
 
 exports.createPages = async ({ graphql, actions }) => {
-  // Redirect
-  const { createRedirect } = actions;
-  createRedirect({
-    fromPath: '/comment-faire-clavier-custom/',
-    toPath: '/comment-faire-clavier-custom',
-    isPermanent: true,
-  });
-
   const commonParameters = {
     AccessKey: process.env.GATSBY_AMAZON_ACCESS,
     SecretKey: process.env.GATSBY_AMAZON_SECRET,
