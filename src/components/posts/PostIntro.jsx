@@ -43,9 +43,14 @@ const PostIntroStyle = styled('div')`
   .categorie {
     position: relative;
     top: 11px;
+    ${mediaQueries.mobile} {
+      top: 0;
+    }
   }
   .date-wrapper {
-    text-align: right;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
   }
 `;
 

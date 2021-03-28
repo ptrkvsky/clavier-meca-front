@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import TableOfContentListItem from './TableOfContentListItem';
 
 const Ul = styled('ul')`
-  display: ${(props) => (props.tocIsVisible ? '' : 'none')};
+  display: ${(props) => (props.tocIsVisible ? 'inherit' : 'none')};
 `;
 
 const TableOfContentList = ({ tableOfContent, tocIsVisible }) => (
