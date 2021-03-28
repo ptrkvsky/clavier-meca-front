@@ -24,7 +24,6 @@ const CloakImage = ({ asset, url, alt }) => {
 CloakImage.propTypes = {
   alt: PropTypes.string.isRequired,
   asset: PropTypes.shape({
-
     fluid: PropTypes.object,
     localFile: PropTypes.shape({
       childImageSharp: PropTypes.shape({

@@ -15,23 +15,23 @@ const Article = styled('article')`
   margin: 0 auto;
   grid-gap: 64px;
   margin-top: 114px;
-  ${mediaQueries.mobile}{
+  ${mediaQueries.mobile} {
     grid-gap: 0;
   }
 
-  .h3{
+  .h3 {
     margin-top: 0;
-    ${mediaQueries.mobile}{
+    ${mediaQueries.mobile} {
       margin: 6px 0 61px;
     }
   }
 
-  .illu{
+  .illu {
     font-size: 0;
     line-height: 0;
   }
-  
-  ${mediaQueries.mobile}{
+
+  ${mediaQueries.mobile} {
     margin-top: 64px;
     grid-gap: 24px;
     grid-template-columns: 1fr;
@@ -61,11 +61,7 @@ const Author = ({ author }) => {
         />
       </div>
       <div className="content">
-        <TitleH3
-          className="h3"
-        >
-          {author.name}
-        </TitleH3>
+        <TitleH3 className="h3">{author.name}</TitleH3>
         <PortableText blocks={bioSliced} />
         <CloakButton
           url={`/auteur/${author.slug.current}`}

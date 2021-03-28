@@ -5,8 +5,8 @@ import PostWrapper from '../wrappers/PostWrapper';
 
 const PostPage = ({ data, pageContext }) => {
   const { post } = data;
-  const productsAmazon = pageContext.productsAmazon.ItemsResult.Items;
-  const { keyboardsAmazon } = pageContext;
+  const productsAmazon = [];
+  const keyboardsAmazon = [];
   return (
     <PostWrapper
       post={post}
