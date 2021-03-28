@@ -51,7 +51,7 @@ const PostWrapper = ({ post, productsAmazon, keyboardsAmazon }) => {
         h2.innerHTML += `<span>${hnNumber}</span>`;
       }
     });
-  }, [tableOfContent, setTableOfContent]);
+  }, []);
 
   return (
     <>
