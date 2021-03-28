@@ -87,7 +87,7 @@ const PostItem = ({ post }) => {
           onMouseLeave={handleLeave}
           hover={hoverState}
         >
-          <GatsbyImage alt={alt && alt} image={imagePost.split(' ').join('')} />
+          <GatsbyImage alt={alt && alt} image={imagePost} />
         </WrapperImage>
       ) : (
         ''

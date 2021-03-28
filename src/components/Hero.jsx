@@ -14,17 +14,16 @@ const HeroStyled = styled('section')`
   ${mediaQueries.tabletLandscape} {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    
   }
   ${mediaQueries.mobile} {
     margin: 24px 0;
   }
 
-
   .illustration {
     display: flex;
-    padding: ${(props) => (props.padding ? '45px' : '0')};
-    background-color: ${(props) => (props.padding ? props.theme.colors.primary : 'transparent')};
+    padding: ${props => (props.padding ? '45px' : '0')};
+    background-color: ${props =>
+      props.padding ? props.theme.colors.primary : 'transparent'};
   }
 
   .highlight-wrapper {
@@ -51,8 +50,8 @@ const Hero = ({ _rawBref, illustration, padding }) => (
       <GatsbyImage
         alt={illustration.image.alt}
         image={
-            illustration.image.asset.localFile.childImageSharp.gatsbyImageData
-          }
+          illustration.image.asset.localFile.childImageSharp.gatsbyImageData
+        }
         className="illustration"
       />
     </div>

@@ -44,13 +44,13 @@ const Title = styled('h1')`
   font-family: ${fonts.title};
   text-transform: uppercase;
   line-height: 1;
-  background: ${(props) => props.theme.bg.main};
+  background: ${props => props.theme.bg.main};
 
   ${mediaQueries.mobile} {
     position: relative;
     font-size: 43px;
     margin: 16px 0 23px;
-    &:after{
+    &:after {
       bottom: -1px;
       width: 93px;
       height: 13px;
@@ -64,11 +64,11 @@ const Title = styled('h1')`
     bottom: -32px;
     width: 128px;
     height: 20px;
-    background-color: ${(props) => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.primary};
     ${mediaQueries.mobile} {
-        bottom: -5px;
-        width: 93px;
-        height: 13px;
+      bottom: -5px;
+      width: 93px;
+      height: 13px;
     }
   }
 `;
@@ -85,9 +85,7 @@ const Intro = styled('div')`
   }
 `;
 
-const Banner = ({
-  h1, intro, image, alt,
-}) => (
+const Banner = ({ h1, intro, image, alt }) => (
   <Grid>
     <ColLeft>
       <div>
