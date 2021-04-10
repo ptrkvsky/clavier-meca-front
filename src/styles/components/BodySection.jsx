@@ -8,6 +8,10 @@ const BodySectionStyled = styled('section')`
   font-size: 18px;
   line-height: 24px;
 
+  img {
+    max-width: 100%;
+  }
+
   ${mediaQueries.mobile} {
     padding: 0 8px;
   }
@@ -81,12 +85,12 @@ const BodySectionStyled = styled('section')`
       margin: 24px 0 32px 0;
       font-size: 30px;
       line-height: 1.2;
-      text-overflow: ellipsis;
     }
     ${mediaQueries.miniMobile} {
       white-space: nowrap;
       overflow: hidden;
       max-width: 360px;
+      text-overflow: ellipsis;
     }
 
     &:after {
