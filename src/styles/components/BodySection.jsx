@@ -81,6 +81,7 @@ const BodySectionStyled = styled('section')`
       margin: 24px 0 32px 0;
       font-size: 30px;
       line-height: 1.2;
+      text-overflow: ellipsis;
     }
     ${mediaQueries.miniMobile} {
       white-space: nowrap;
