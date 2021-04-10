@@ -37,7 +37,7 @@ export default function GlobalStyle() {
 
           font-family: ${theme.fonts.main};
           font-size: 0.972vw;
-          font-size: clamp(1.2rem, 0.972vw, 2.8rem);
+          font-size: clamp(1.0rem, 0.972vw, 2.8rem);
           font-style: normal;
           letter-spacing: 0.02em;
         }
