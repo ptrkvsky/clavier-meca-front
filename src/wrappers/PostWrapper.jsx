@@ -21,7 +21,7 @@ const PostLayout = styled('div')`
 `;
 
 const Grid = styled('div')`
-  display: ${(props) => (props.keyboard ? 'grid' : 'block')};
+  display: ${props => (props.keyboard ? 'grid' : 'block')};
   grid-template-columns: 1fr 269px;
   grid-gap: 98px;
   ${mediaQueries.tabletLandscape} {
@@ -104,6 +104,9 @@ PostWrapper.propTypes = {
     author: PropTypes.object.isRequired,
     categories: PropTypes.array.isRequired,
     content: PropTypes.array.isRequired,
+    keyboard: PropTypes.shape({
+      teaser: PropTypes.string,
+    }),
     metaDescription: PropTypes.string,
     metaTitle: PropTypes.string,
     title: PropTypes.string.isRequired,

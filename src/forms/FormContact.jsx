@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { PrimaryButton } from '../styles/components/Buttons';
 import styled from '@emotion/styled';
+import { PrimaryButton } from '../styles/components/Buttons';
 import theme from '../styles/global/theme';
 import mediaQueries from '../styles/global/mediaQueries';
 
@@ -87,7 +87,7 @@ const FormContact = () => {
   const formEl = useRef(null);
   const [formSuccess, setFormSuccess] = useState(false);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(formEl.current);
     fetch('/contact', {
@@ -96,7 +96,7 @@ const FormContact = () => {
       body: new URLSearchParams(formData).toString(),
     })
       .then(() => setFormSuccess(true))
-      .catch(error => alert(error));
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -110,11 +110,12 @@ const FormContact = () => {
     >
       <input type="hidden" name="bot-field" />
       <input type="hidden" name="form-name" value="contact" />
-      <div class="input-text-wrapper">
-        <div class="item-form">
-          <label>
+      <div className="input-text-wrapper">
+        <div className="item-form">
+          <label htmlFor="first-name">
             <span className="label">Prénom </span>
             <input
+              id="first-name"
               className="ipt txt"
               type="text"
               placeholder="Prénom"
@@ -122,10 +123,11 @@ const FormContact = () => {
             />
           </label>
         </div>
-        <div class="item-form">
-          <label>
+        <div className="item-form">
+          <label htmlFor="email">
             <span className="label">E-mail </span>
             <input
+              id="email"
               className="ipt txt"
               type="email"
               placeholder="Email"
@@ -135,25 +137,26 @@ const FormContact = () => {
         </div>
       </div>
       <div>
-        <label className="label">
+        <label htmlFor="message" className="label">
           Message
           <textarea
+            id="message"
             placeholder="Un mot sympathique"
             className="ipt txtarea"
             name="message"
-          ></textarea>
+          />
         </label>
       </div>
-      <p class="warning">
+      <p className="warning">
         Vos informations ne seront transmises à aucun tiers et seront
         automatiquement supprimées après 15 jours.
       </p>
-      <div data-netlify-recaptcha="true"></div>
-      <div class="submit-wrapper">
-        <PrimaryButton big={true} type="submit">
-          J'envoie
+      <div data-netlify-recaptcha="true" />
+      <div className="submit-wrapper">
+        <PrimaryButton big type="submit">
+          J&apos;envoie
         </PrimaryButton>
-        <div class="success">
+        <div className="success">
           {formSuccess ? 'Votre message a été envoyé avec succès, merci !' : ''}
         </div>
       </div>

@@ -3,7 +3,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PostWrapper from '../wrappers/PostWrapper';
 
-const PostPage = ({ data, pageContext }) => {
+const PostPage = ({ data }) => {
   const { post } = data;
   const productsAmazon = [];
   const keyboardsAmazon = [];
@@ -18,7 +18,6 @@ const PostPage = ({ data, pageContext }) => {
 
 PostPage.propTypes = {
   data: PropTypes.object.isRequired,
-  pageContext: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
