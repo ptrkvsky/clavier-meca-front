@@ -12,9 +12,12 @@ const CloakButton = ({ url, content }) => {
       onMouseLeave={() => setIsCloaked(true)}
     >
       {isCloaked ? (
-        <PrimaryButton as="span"> {content}</PrimaryButton>
+        // <PrimaryButton as="span"> {content}</PrimaryButton>
+        <PrimaryButton as="a" href={url} target="_blank" rel="noopener noreferrer">
+          {content}
+        </PrimaryButton>
       ) : (
-        <PrimaryButton as="a" href={url} target="_blank" rel="noopener">
+        <PrimaryButton as="a" href={url} target="_blank" rel="noopener noreferrer">
           {content}
         </PrimaryButton>
       )}
