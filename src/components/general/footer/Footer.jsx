@@ -91,7 +91,7 @@ const Footer = ({ data, pathName }) => {
             meilleurs produits. Cela ne vous coûte rien de plus que votre achat
             comme vous le faites habituellement.
           </p>
-          <p> En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.</p>
+          <p>En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.</p>
         </div>
         <div className="menu">
           {pathName === '/' ? (
