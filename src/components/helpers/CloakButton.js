@@ -13,11 +13,11 @@ const CloakButton = ({ url, content }) => {
     >
       {isCloaked ? (
         // <PrimaryButton as="span"> {content}</PrimaryButton>
-        <PrimaryButton as="a" href={url} target="_blank" rel="noopener noreferrer">
+        <PrimaryButton as="a" href={url} target="_blank" rel="noopener noreferrer nofollow">
           {content}
         </PrimaryButton>
       ) : (
-        <PrimaryButton as="a" href={url} target="_blank" rel="noopener noreferrer">
+        <PrimaryButton as="a" href={url} target="_blank" rel="noopener noreferrer nofollow">
           {content}
         </PrimaryButton>
       )}
