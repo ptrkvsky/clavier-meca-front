@@ -10,9 +10,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "cross-env NODE_OPTIONS=\"-r esm\" gatsby serve",
-    "clean": "gatsby clean",
-    "netlify": "netlify dev",
-    "prebuild": "netlify-lambda install"
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "@emotion/core": "^11.0.0",
@@ -40,7 +38,6 @@
     "gatsby-transformer-sharp": "^3.0.0",
     "get-youtube-id": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",
-    "netlify-cli": "^2.62.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
