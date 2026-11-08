@@ -1,0 +1,30 @@
+---
+interface Props { keyboard?: import('../lib/types').SanityDocument; Hn?: string; }
+import SanityImage from './SanityImage.astro';
+import PortableText from './PortableText.astro';
+import OfferLink from './OfferLink.astro';
+import { headingTag, headingId } from '../lib/content.mjs';
+const { keyboard, Hn = 'h3' } = Astro.props;
+const Heading = headingTag(Hn, 'h3');
+---
+{keyboard && <article class="my-16 first:mt-0">
+  <div class="mb-6 flex flex-wrap items-center justify-between gap-5">
+    <div><Heading id={headingId(keyboard)} class="text-3xl font-bold tracking-tight md:text-4xl">{keyboard.title}</Heading><p class="mt-3 text-muted">{keyboard.teaser}</p></div>
+    <OfferLink url={keyboard.urlAmazon || keyboard.urlMateriel} />
+  </div>
+  <SanityImage image={keyboard.mainImage} width={1150} class="max-h-96 w-full object-contain" />
+  <div class="my-8 flex flex-wrap items-baseline gap-6 border-b-8 border-black pb-5">
+    <h4 class="text-xl font-bold">Points clefs</h4>
+    <dl class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      {keyboard.layout && <div><dt class="inline font-bold">Gabarit : </dt><dd class="inline">{keyboard.layout}</dd></div>}
+      {(keyboard.switchCategory ?? []).length > 0 && <div><dt class="inline font-bold">Switches : </dt><dd class="inline">{(keyboard.switchCategory ?? []).map(item => item.nom).filter(Boolean).join(', ')}</dd></div>}
+      <div><dt class="inline font-bold">RGB : </dt><dd class="inline">{keyboard.rgb ? 'Oui' : 'Non'}</dd></div>
+    </dl>
+  </div>
+  <PortableText blocks={keyboard.shortDesc} />
+  <div class="my-8 grid gap-6 md:grid-cols-2">
+    {keyboard.pros?.length > 0 && <section class="border-t-4 border-green-600 p-5"><h4 class="text-xl font-bold">Les points forts</h4><PortableText blocks={keyboard.pros} /></section>}
+    {keyboard.cons?.length > 0 && <section class="border-t-4 border-red-600 p-5"><h4 class="text-xl font-bold">Les points faibles</h4><PortableText blocks={keyboard.cons} /></section>}
+  </div>
+  <div class="text-center"><OfferLink url={keyboard.urlAmazon || keyboard.urlMateriel} /></div>
+</article>}

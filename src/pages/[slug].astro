@@ -1,0 +1,48 @@
+---
+interface Props { kind: string; entry: import('../lib/types').SanityDocument }
+import Layout from '../layouts/Layout.astro';
+import PostCards from '../components/PostCards.astro';
+import Slices from '../components/Slices.astro';
+import KeyboardAside from '../components/KeyboardAside.astro';
+import SanityImage from '../components/SanityImage.astro';
+import PortableText from '../components/PortableText.astro';
+import { getContent, getRoutes } from '../lib/sanity.mjs';
+import { tableOfContents, formatDate } from '../lib/content.mjs';
+export async function getStaticPaths() {
+  const content = await getContent();
+  return getRoutes(content).map(route => ({ params: { slug: route.slug }, props: { kind: route.kind, entry: route.entry } }));
+}
+const { kind, entry } = Astro.props;
+const content = await getContent();
+const isPost = kind === 'post';
+const posts = isPost ? [] : content.posts.filter(post => post.categories?.some(category => category._id === entry._id));
+const toc = isPost ? tableOfContents(entry.content) : [];
+const author = isPost ? entry.author : undefined;
+---
+<Layout title={entry.metaTitle || entry.title} description={entry.metaDescription || (typeof entry.description === 'string' ? entry.description : undefined)} image={entry.mainImage} article={isPost ? entry : undefined}>
+  <div class="site-container">
+    {isPost ? <article>
+      <header class="my-10 grid gap-5 md:my-24 xl:grid-cols-[1fr_760px_1fr]">
+        <p class="text-sm text-muted uppercase">{entry.categories?.map(category => category.title).join(' / ')}</p>
+        <h1 class="text-4xl leading-tight font-bold tracking-tight md:text-5xl">{entry.title}</h1>
+        {entry.publishedAt && <time datetime={entry.publishedAt} class="self-end text-sm text-muted uppercase lg:text-right">{formatDate(entry.publishedAt)}</time>}
+      </header>
+      {toc.length > 0 && <details class="mx-auto mb-14 max-w-article border-y-2 border-black py-6">
+        <summary class="text-xl font-bold">Sommaire</summary>
+        <nav aria-label="Sommaire de l’article" class="mt-6"><ol class="space-y-3">{toc.map(item => <li class:list={[item.level > 2 && 'ml-5 text-sm']}><a href={`#${item.id}`} class="hover:text-brand">{item.title}</a></li>)}</ol></nav>
+      </details>}
+      <div class:list={['grid gap-12', entry.keyboard ? 'lg:grid-cols-[minmax(0,1fr)_269px]' : 'grid-cols-1']}>
+        <div class="min-w-0"><Slices content={entry.content} /></div>
+        {entry.keyboard && <div><KeyboardAside keyboard={entry.keyboard} /></div>}
+      </div>
+      {author?.name && !entry.categories?.some(category => category.title === 'Informations') && <section class="mx-auto mt-20 flex max-w-article flex-col gap-7 border-t-8 border-black pt-10 sm:flex-row">
+        <a href={`/auteur/${author.slug?.current}`} class="shrink-0"><SanityImage image={author.image} width={280} height={280} sizes="140px" class="h-35 w-35 rounded-full object-cover" /></a>
+        <div><h2 class="text-2xl font-bold"><a href={`/auteur/${author.slug?.current}`} class="hover:text-brand">{author.name}</a></h2><PortableText blocks={author.bio} /></div>
+      </section>}
+    </article> : <section>
+      <h1 class="page-title">{entry.title}</h1>
+      {Array.isArray(entry.description) && <PortableText blocks={entry.description} class="mb-12 max-w-article" />}
+      <PostCards posts={posts} />
+    </section>}
+  </div>
+</Layout>

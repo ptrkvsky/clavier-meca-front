@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@font-face { font-family: Suisse; src: url('../assets/fonts/swissintl/swiss-intel-regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: Suisse; src: url('../assets/fonts/swissintl/swiss-intel-light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+@font-face { font-family: Suisse; src: url('../assets/fonts/swissintl/swiss-intel-bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
+@theme {
+  --font-sans: Suisse, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --color-brand: #8000ff;
+  --color-brand-light: #e9d4ff;
+  --color-muted: #767676;
+  --container-site: 1150px;
+  --container-article: 760px;
+}
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+  body { @apply bg-white font-sans text-base leading-relaxed text-black antialiased; }
+  button, summary { cursor: pointer; }
+  :focus-visible { @apply outline-2 outline-offset-4 outline-brand; }
+  ::selection { @apply bg-brand text-white; }
+}
+@layer components {
+  .site-container { @apply mx-auto w-full max-w-site px-5 xl:px-0; }
+  .page-title { @apply my-12 text-4xl leading-tight font-bold tracking-tight md:my-24 md:text-6xl; }
+  .section-title { @apply relative mb-16 text-4xl leading-none font-bold tracking-tight md:text-6xl; }
+  .section-title::after { content: ''; @apply absolute -bottom-6 left-0 h-3 w-20 bg-brand; }
+  .offer-button { @apply inline-flex items-center justify-center rounded-full bg-brand px-7 py-3 text-base font-bold text-white no-underline transition-colors hover:bg-black; }
+  .article-prose { @apply text-lg leading-relaxed wrap-break-word; }
+  .article-prose p { @apply my-6; }
+  .article-prose h2 { @apply mt-16 mb-8 text-3xl leading-tight font-bold tracking-tight md:text-5xl; }
+  .article-prose h3 { @apply mt-12 mb-6 text-2xl leading-tight font-bold md:text-3xl; }
+  .article-prose h4, .article-prose h5, .article-prose h6 { @apply mt-8 mb-4 text-xl font-bold; }
+  .article-prose a { @apply text-brand underline underline-offset-4 hover:text-black; }
+  .article-prose ul { @apply my-6 list-disc space-y-2 pl-7; }
+  .article-prose ol { @apply my-6 list-decimal space-y-2 pl-7; }
+  .article-prose blockquote { @apply my-10 border-l-8 border-brand bg-brand-light p-6 text-xl font-light; }
+  .article-prose figure { @apply my-10; }
+  .article-prose img { @apply mx-auto h-auto max-w-full; }
+  .article-prose figcaption { @apply mt-3 text-center text-sm text-muted; }
+  .article-prose iframe { @apply my-10 max-w-full; }
+  .form-input { @apply mt-3 block min-h-14 w-full border-b-8 border-black bg-transparent py-3 text-xl focus:bg-neutral-100; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

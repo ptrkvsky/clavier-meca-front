@@ -1,0 +1,13 @@
+---
+interface Props { keyboard?: import('../lib/types').SanityDocument; title?: string; subtitle?: string; }
+import SanityImage from './SanityImage.astro';
+import OfferLink from './OfferLink.astro';
+const { keyboard, title, subtitle } = Astro.props;
+---
+{keyboard && <aside class="sticky top-8 rounded bg-neutral-100 p-5 text-center">
+  <SanityImage image={keyboard.mainImage} width={568} class="w-full" sizes="269px" />
+  {title && <h2 class="mt-6 text-xl font-bold text-brand">{title}</h2>}
+  <h3 class="my-5 text-2xl font-bold">{keyboard.title}</h3>
+  <p class="mb-6 font-light">{subtitle || keyboard.teaser}</p>
+  <OfferLink url={keyboard.urlAmazon || keyboard.urlMateriel} />
+</aside>}

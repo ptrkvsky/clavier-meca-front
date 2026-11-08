@@ -1,15 +1,11 @@
-# Mac files
+node_modules/
+dist/
+.astro/
+.cache/
+.env
+.env.*
+!.env.example
 .DS_Store
-.cache
-.storybook
-.env.production
-.env.development
+*.log
 
-# gatsby
-/public
-
-# Dependency directories
-/node_modules
-
-# lerna files
-/lerna-debug.log
+storybook-static/

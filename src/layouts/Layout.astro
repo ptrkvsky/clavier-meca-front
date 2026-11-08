@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+import { getContent } from '../lib/sanity.mjs';
+import { imageUrl } from '../lib/content.mjs';
+const { title = 'Clavier Meca', description = 'Découvrir le monde merveilleux des claviers mécaniques.', image, noindex = false, article } = Astro.props;
+const { menu } = await getContent();
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = imageUrl(image, 1200, 630);
+const navItems = menu?.menuItem ?? [];
+const schema = article ? {
+  '@context': 'https://schema.org', '@type': 'Article', headline: article.title,
+  datePublished: article.publishedAt, dateModified: article._updatedAt,
+  author: article.author?.name ? { '@type': 'Person', name: article.author.name, url: new URL(`/auteur/${article.author.slug?.current}`, Astro.site).href } : undefined,
+  image: socialImage || undefined, mainEntityOfPage: canonical.href,
+} : { '@context': 'https://schema.org', '@type': 'Organization', name: 'Clavier Meca', url: Astro.site?.href };
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title === 'Clavier Meca' ? title : `${title} | Clavier Meca`}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#8000ff" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Clavier Meca" />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    <meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
+    <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\u003c')} />
+  </head>
+  <body id="haut" class="flex min-h-screen flex-col">
+    <a href="#contenu" class="sr-only z-50 bg-brand px-6 py-3 text-white focus:not-sr-only focus:absolute">Aller au contenu</a>
+    <header class="site-container relative z-20 flex min-h-20 items-center justify-between gap-4">
+      <a href="/" class="text-xl leading-none font-bold tracking-widest uppercase">Clavier Meca</a>
+      <nav aria-label="Navigation principale" class="hidden items-center gap-10 md:flex">
+        {navItems.map(item => <a href={`/${item.menuItemSlug.current}`} aria-current={Astro.url.pathname === `/${item.menuItemSlug.current}` ? 'page' : undefined} class="hover:text-brand aria-[current=page]:text-brand">{item.menuItemName}</a>)}
+      </nav>
+      <details class="group md:hidden">
+        <summary class="flex h-12 w-12 list-none items-center justify-center rounded-full bg-black text-white [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
+          <span aria-hidden="true" class="text-2xl group-open:hidden">☰</span><span aria-hidden="true" class="hidden text-2xl group-open:block">×</span>
+        </summary>
+        <nav aria-label="Navigation mobile" class="absolute top-full right-5 left-5 grid gap-5 border-2 border-black bg-white p-7 text-2xl shadow-xl">
+          {navItems.map(item => <a href={`/${item.menuItemSlug.current}`} class="hover:text-brand">{item.menuItemName}</a>)}
+        </nav>
+      </details>
+    </header>
+    <main id="contenu" class="grow" tabindex="-1"><slot /></main>
+    <footer class="mt-24 bg-black px-5 py-16 text-white md:mt-28 md:px-12 md:py-20">
+      <div class="mx-auto grid max-w-site gap-10 lg:grid-cols-[1fr_2fr_auto]">
+        <p class="text-sm uppercase">Clavier Meca / {new Date().getFullYear()}</p>
+        <div class="space-y-5 text-sm leading-relaxed">
+          <h2 class="text-xl font-bold">Information et protection du consommateur</h2>
+          <p>Notre site est rédigé par des passionnés et des professionnels du matériel informatique. Certains liens sont liés à des programmes d’affiliation (Amazon, Materiel.net). Chaque clic sur un produit est susceptible de vous renvoyer vers l’un de ces commerçants. Si vous décidez de commander un produit, nous recevons une commission via nos liens. Cela nous fera plaisir et nous aidera à poursuivre nos efforts pour vous donner une information toujours plus riche sur les meilleurs produits. Cela ne vous coûte rien de plus que votre achat comme vous le faites habituellement.</p>
+          <p>En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.</p>
+        </div>
+        <nav aria-label="Pied de page" class="flex flex-col items-start gap-2">
+          <a class="hover:underline" href="/plan-site">Plan du site</a>
+          <a class="hover:underline" href="/mentions-legales">Mentions légales</a>
+          <a class="hover:underline" href="/contact">Contact</a>
+          <a class="mt-5 hover:underline" href="#haut">Retour en haut ↑</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

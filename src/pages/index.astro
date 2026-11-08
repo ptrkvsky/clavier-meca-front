@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SanityImage from '../components/SanityImage.astro';
+import PortableText from '../components/PortableText.astro';
+import PostCards from '../components/PostCards.astro';
+import { getContent } from '../lib/sanity.mjs';
+const { home } = await getContent();
+if (!home) throw new Error('La page d’accueil Sanity est introuvable.');
+---
+<Layout title={home.metaTitle} description={home.metaDescription} image={home.mainImage}>
+  <div class="site-container">
+    <section class="relative mb-20 grid items-center gap-10 md:mb-32 md:grid-cols-2 md:gap-0">
+      <div class="relative z-10 min-w-0 py-6 md:pr-6">
+        <h1 class="relative mb-12 bg-white text-[clamp(2rem,10vw,3rem)] leading-none font-bold tracking-tight uppercase after:absolute after:-bottom-7 after:left-0 after:h-3 after:w-24 after:bg-brand md:text-[clamp(48px,6.25vw,90px)] md:after:h-5 md:after:w-32">{home.h1}</h1>
+        <PortableText blocks={home.intro} class="mt-16 text-xl leading-relaxed font-light md:mt-24 md:text-2xl" />
+      </div>
+      <SanityImage image={home.mainImage} width={1136} height={1516} eager sizes="(max-width: 768px) 100vw, 568px" class="w-full object-cover" />
+    </section>
+    <section>
+      <h2 class="section-title">Comparatifs claviers</h2>
+      <div class="relative before:absolute before:inset-y-10 before:left-1/4 before:-z-10 before:w-1/2 before:bg-brand-light">
+        {(home.postComparatifs ?? []).filter(post => post.slug?.current).map((post, index) => <a href={`/${post.slug.current}`} class="group mb-10 grid items-center md:mb-16 md:grid-cols-2">
+          <SanityImage image={post.mainImage} width={1150} height={750} sizes="(max-width: 768px) 100vw, 575px" class:list={['w-full object-cover', index % 2 && 'md:order-2']} />
+          <h3 class:list={['relative z-10 bg-white py-5 text-3xl leading-tight font-bold tracking-tight group-hover:text-brand md:p-6 md:text-5xl', index % 2 ? 'md:-mr-16' : 'md:-ml-16']}>{post.title}</h3>
+        </a>)}
+      </div>
+    </section>
+    <section class="mt-24 md:mt-32">
+      <h2 class="section-title">Nos meilleurs guides autour du clavier</h2>
+      <PostCards posts={(home.postGuides ?? []).filter(post => post.slug?.current)} />
+    </section>
+  </div>
+</Layout>

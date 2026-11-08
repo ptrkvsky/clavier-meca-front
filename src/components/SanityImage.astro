@@ -1,0 +1,10 @@
+---
+interface Props { image?: any; width?: number; height?: number; class?: string; eager?: boolean; sizes?: string; }
+import { imageUrl } from '../lib/content.mjs';
+const { image, width = 1150, height, class: className = '', eager = false, sizes = '(max-width: 768px) 100vw, 760px' } = Astro.props;
+const src = imageUrl(image, width, height);
+const dimensions = image?.asset?.metadata?.dimensions;
+const aspect = height ? width / height : dimensions?.aspectRatio || 1.5;
+const widths = [...new Set([320, 568, 760, 1150, width].filter(value => value <= width))].sort((a,b) => a-b);
+---
+{src && <img src={src} srcset={widths.map(value => `${imageUrl(image, value, height ? Math.round(value / aspect) : undefined)} ${value}w`).join(', ')} sizes={sizes} width={width} height={Math.round(width / aspect)} alt={image?.alt || ''} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding="async" class={className} />}

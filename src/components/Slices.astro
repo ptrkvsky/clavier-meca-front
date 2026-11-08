@@ -1,0 +1,58 @@
+---
+interface Props { content?: import('../lib/types').SanityDocument[]; }
+import SanityImage from './SanityImage.astro';
+import PortableText from './PortableText.astro';
+import OfferLink from './OfferLink.astro';
+import Keyboard from './Keyboard.astro';
+import KeyboardAside from './KeyboardAside.astro';
+import { headingTag, headingId, safeUrl } from '../lib/content.mjs';
+const { content = [] } = Astro.props;
+---
+{content.filter(slice => !slice.disabled).map(slice => {
+  const Heading = headingTag(slice.hn || slice.Hn);
+  const item = slice.switch;
+  return <>
+    {slice._type === 'hero' && <section class="mb-16 grid items-center gap-10 md:grid-cols-2">
+      <PortableText blocks={slice.bref} class="text-xl font-light md:text-2xl" />
+      <div>{[slice.illustration].filter(illustration => illustration && !illustration.disabled).map(illustration => <figure><SanityImage image={illustration.image} width={760} eager class="w-full" />{illustration.image?.caption && <figcaption class="mt-3 text-sm text-muted">{illustration.image.caption}</figcaption>}</figure>)}</div>
+    </section>}
+    {slice._type === 'bodySection' && <section class="mx-auto max-w-article"><PortableText blocks={slice.bodyTextt} /></section>}
+    {slice._type === 'highlight' && <aside class="mx-auto my-12 max-w-article border-l-8 border-brand bg-brand-light p-7 md:p-10"><PortableText blocks={slice.content} /></aside>}
+    {slice._type === 'illustration' && <figure class="mx-auto my-10 max-w-article"><SanityImage image={slice.image} width={1150} class="w-full" />{slice.image?.caption && <figcaption class="mt-3 text-center text-sm text-muted">{slice.image.caption}</figcaption>}</figure>}
+    {slice._type === 'keyboardsTable' && <section class="my-16">
+      <Heading id={headingId(slice)} class="section-title">{slice.title}</Heading>
+      <PortableText blocks={slice.description} />
+      <div class="mt-8 overflow-x-auto"><table class="w-full min-w-160 border-collapse text-left">
+        <caption class="sr-only">{slice.title}</caption>
+        <thead class="border-b-8 border-black text-sm uppercase"><tr>{['#', 'Photo', 'Nom', 'Prix indicatif', 'Offre'].map(label => <th scope="col" class="px-3 py-5">{label}</th>)}</tr></thead>
+        <tbody>{(slice.keyboards ?? []).filter(row => row.keyboard?.title).map((row, index) => <tr class="border-b border-neutral-200"><td class="p-3 text-3xl font-bold text-brand">{index+1}</td><td class="w-48 p-3"><SanityImage image={row.keyboard.mainImage} width={320} class="max-h-28 w-full object-contain" sizes="160px" /></td><th scope="row" class="p-3 text-xl">{row.keyboard.title}</th><td class="p-3">{row.keyboard.price ? `${row.keyboard.price} €` : '—'}</td><td class="p-3"><OfferLink url={row.keyboard.urlAmazon || row.keyboard.urlMateriel} /></td></tr>)}</tbody>
+      </table></div>
+    </section>}
+    {slice._type === 'keyboardsSection' && <section class="my-16">
+      {slice.title && <Heading id={headingId(slice)} class="section-title">{slice.title}</Heading>}
+      <PortableText blocks={slice.description} />
+      <div class:list={['mt-10 grid gap-12', slice.rightCol && slice.keyboardCol ? 'lg:grid-cols-[minmax(0,1fr)_269px]' : 'grid-cols-1']}>
+        <div class="min-w-0">{(slice.keyboards ?? []).map(row => <Keyboard keyboard={row.keyboard} Hn={row.Hn} />)}</div>
+        {slice.rightCol && slice.keyboardCol && <div><KeyboardAside keyboard={slice.keyboardCol} title={slice.titleCol} subtitle={slice.subTitleCol} /></div>}
+      </div>
+    </section>}
+    {slice._type === 'productsSection' && <section class="my-16 space-y-12">
+      {(slice.products ?? []).filter(row => row.product?.title).map(row => {
+        const ProductHeading = headingTag(row.Hn, 'h3');
+        return <article class="grid items-center gap-8 md:grid-cols-2">
+          <SanityImage image={row.product.mainImage} width={760} class="w-full object-contain" />
+          <div><ProductHeading class="mb-5 text-2xl font-bold uppercase">{row.product.title}</ProductHeading><PortableText blocks={row.product.longDesc} /><div class="mt-6"><OfferLink url={row.product.url} /></div></div>
+        </article>;
+      })}
+    </section>}
+    {slice._type === 'switchBlock' && item && <section class="my-20">
+      <Heading id={headingId({ ...slice, title: item.nom })} class="mb-12 text-center text-3xl font-bold tracking-widest uppercase md:text-5xl">{item.nom}</Heading>
+      <div class="grid items-center gap-10 md:grid-cols-2">
+        <div class="p-10" style={{ backgroundColor: /^#[\da-f]{3,8}$/i.test(item.couleur?.hex || '') ? item.couleur.hex : '#e9d4ff' }}><SanityImage image={item.mainImage} width={760} class="w-full" /></div>
+        <div><dl class="space-y-6 text-xl font-light">
+          {[["Type", typeof item.type === 'string' ? item.type : item.type?.title, ''], ["Distance d’activation", item.distanceDactivation, 'mm'], ["Force d’actionnement", item.forceDactionnement, 'g'], ["Distance de voyage", item.distanceTotale, 'mm'], ["Force maximale", item.forceMaximale, 'g']].filter(([,value]) => value !== undefined && value !== null && value !== '').map(([label,value,unit]) => <div><dt class="text-sm font-bold uppercase">{label}</dt><dd>{value} {unit}</dd></div>)}
+        </dl>{safeUrl(item.son?.asset?.url) && <audio class="mt-8 max-w-full" controls preload="none" src={safeUrl(item.son.asset.url)} aria-label={`Son du switch ${item.nom}`}>Votre navigateur ne prend pas en charge la lecture audio.</audio>}</div>
+      </div>
+    </section>}
+  </>;
+})}

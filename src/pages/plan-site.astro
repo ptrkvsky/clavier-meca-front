@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getContent } from '../lib/sanity.mjs';
+const { authors, categories, posts } = await getContent();
+const visiblePosts = posts.filter(post => post.isOnSitemap === true);
+---
+<Layout title="Plan du site">
+  <div class="site-container">
+    <h1 class="page-title">Plan de site</h1>
+    <div class="grid gap-12 md:grid-cols-2">
+      <section><h2 class="mb-6 text-3xl font-bold">Catégories</h2><ul class="space-y-3">{categories.map(category => <li><a class="underline hover:text-brand" href={`/${category.slug.current}`}>{category.title}</a></li>)}</ul></section>
+      <section><h2 class="mb-6 text-3xl font-bold">Auteurs</h2><ul class="space-y-3">{authors.map(author => <li><a class="underline hover:text-brand" href={`/auteur/${author.slug.current}`}>{author.name}</a></li>)}</ul></section>
+      <section class="md:col-span-2"><h2 class="mb-6 text-3xl font-bold">Articles</h2><ul class="space-y-3">{visiblePosts.map(post => <li><a class="underline hover:text-brand" href={`/${post.slug.current}`}>{post.title}</a></li>)}</ul></section>
+    </div>
+  </div>
+</Layout>

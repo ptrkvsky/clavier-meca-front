@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Contact">
+  <div class="site-container">
+    <h1 class="page-title">Contact</h1>
+    <form name="contact" method="POST" action="/contact" data-netlify="true" netlify-honeypot="bot-field" class="mx-auto max-w-4xl" id="contact-form">
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="hidden"><label>Ne pas remplir ce champ : <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <div class="mb-12 grid gap-10 md:grid-cols-2">
+        <label for="first-name" class="text-2xl font-bold uppercase md:text-3xl">Prénom<input id="first-name" name="name" type="text" autocomplete="given-name" placeholder="Prénom" required class="form-input font-normal normal-case" /></label>
+        <label for="email" class="text-2xl font-bold uppercase md:text-3xl">E-mail<input id="email" name="email" type="email" autocomplete="email" placeholder="E-mail" required class="form-input font-normal normal-case" /></label>
+      </div>
+      <label for="message" class="text-2xl font-bold uppercase md:text-3xl">Message<textarea id="message" name="message" rows={9} placeholder="Un mot sympathique" required class="form-input font-normal normal-case"></textarea></label>
+      <p class="my-10 text-xl leading-relaxed">Vos informations ne seront transmises à aucun tiers et seront automatiquement supprimées après 15 jours.</p>
+      <div class="flex flex-wrap items-center gap-6"><button type="submit" class="offer-button">J’envoie</button><p id="form-status" role="status" aria-live="polite" class="text-lg"></p></div>
+    </form>
+  </div>
+</Layout>
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contact-form');
+  const status = document.querySelector<HTMLElement>('#form-status');
+  form?.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!status) return;
+    if (['localhost', '127.0.0.1', '::1'].includes(location.hostname) || import.meta.env.DEV) {
+      status.textContent = 'L’envoi du formulaire sera disponible sur le site déployé avec Netlify Forms.';
+      return;
+    }
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (button) button.disabled = true;
+    status.textContent = 'Envoi en cours…';
+    try {
+      const body = new URLSearchParams();
+      new FormData(form).forEach((value, key) => body.set(key, String(value)));
+      const response = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+      if (!response.ok) throw new Error('Envoi impossible');
+      form.reset();
+      status.textContent = 'Votre message a été envoyé avec succès, merci !';
+    } catch {
+      status.textContent = 'Le message n’a pas pu être envoyé. Veuillez réessayer.';
+    } finally {
+      if (button) button.disabled = false;
+    }
+  });
+</script>

@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostCards from '../components/PostCards.astro';
+import { getContent } from '../lib/sanity.mjs';
+const { posts } = await getContent();
+---
+<Layout title="Erreur 404" noindex>
+  <div class="site-container">
+    <h1 class="page-title">Erreur 404</h1>
+    <p class="text-xl">La page que vous recherchez n’est plus ici.</p>
+    <p class="mt-4 mb-10">En attendant retrouvez notre sélection des meilleurs articles.</p>
+    <a class="offer-button mb-16" href="/">Retour à l’accueil</a>
+    <PostCards posts={posts.slice(0, 6)} />
+  </div>
+</Layout>

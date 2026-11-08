@@ -1,0 +1,6 @@
+---
+interface Props { blocks?: any[]; class?: string; }
+import { portableHtml } from '../lib/content.mjs';
+const { blocks = [], class: className = '' } = Astro.props;
+---
+<div class:list={['article-prose', className]} set:html={portableHtml(blocks)} />

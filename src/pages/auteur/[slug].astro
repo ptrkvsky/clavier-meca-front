@@ -1,0 +1,23 @@
+---
+interface Props { author: import('../../lib/types').SanityDocument }
+import Layout from '../../layouts/Layout.astro';
+import SanityImage from '../../components/SanityImage.astro';
+import PortableText from '../../components/PortableText.astro';
+import PostCards from '../../components/PostCards.astro';
+import { getContent } from '../../lib/sanity.mjs';
+export async function getStaticPaths() {
+  const { authors } = await getContent();
+  return authors.map(author => ({ params: { slug: author.slug.current }, props: { author } }));
+}
+const { author } = Astro.props;
+const { posts } = await getContent();
+const authorPosts = posts.filter(post => post.author?._id === author._id);
+---
+<Layout title={author.name} image={author.image}>
+  <div class="site-container">
+    <h1 class="page-title">{author.name}</h1>
+    <SanityImage image={author.image} width={280} height={280} sizes="140px" class="mx-auto my-12 h-35 w-35 rounded-full object-cover" />
+    <PortableText blocks={author.bio} class="mx-auto max-w-article" />
+    {authorPosts.length > 0 && <section class="mt-20"><h2 class="section-title">Les articles de {author.name}</h2><PostCards posts={authorPosts} /></section>}
+  </div>
+</Layout>

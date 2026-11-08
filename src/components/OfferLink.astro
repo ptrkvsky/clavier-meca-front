@@ -1,0 +1,7 @@
+---
+interface Props { url?: string; label?: string; }
+import { safeUrl } from '../lib/content.mjs';
+const { url, label = "Voir l’offre" } = Astro.props;
+const href = safeUrl(url);
+---
+{href && <a class="offer-button" href={href} target="_blank" rel="sponsored noopener noreferrer">{label} <span aria-hidden="true" class="ml-3">↗</span></a>}
